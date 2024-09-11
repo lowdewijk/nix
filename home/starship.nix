@@ -5,6 +5,7 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    catppuccin.enable = true;
     settings = {
       add_newline = false;
       aws.disabled = true;

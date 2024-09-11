@@ -6,6 +6,7 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
@@ -14,13 +15,22 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./system
-
+        
+        inputs.catppuccin.nixosModules.catppuccin
       	# make home-manager as a module of nixos
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.lobo = import ./home;
+          home-manager.users.lobo = {
+	    imports = [
+	      ./home
+	      inputs.catppuccin.homeManagerModules.catppuccin
+            ];
+          };
+	  home-manager.extraSpecialArgs = {
+            inherit inputs;
+          };
         }
       ];
     };

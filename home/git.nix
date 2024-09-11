@@ -77,7 +77,7 @@
     aliases = {
       s = "status";
       a = "add";
-      A = "add -A";
+      A = "add -A .";
       d = "diff";
       p = "push";
       unadd = "reset HEAD --";

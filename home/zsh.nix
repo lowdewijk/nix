@@ -6,6 +6,7 @@
 
      enableCompletion = true;
      syntaxHighlighting.enable = true;
+     syntaxHighlighting.catppuccin.enable = true;
      autocd = true;
 
      shellAliases = {
@@ -20,7 +21,12 @@
      initExtra = ''
        setopt +o nomatch
        eval "$(starship init zsh)"
-       neofetch
+
+       # run neofetch the first time a console is started
+       LIVE_COUNTER=$(ps a | awk '{print $2}' | grep -vi -e "tty*" -e "?" | uniq | wc -l);
+       if [ $LIVE_COUNTER -eq 1 ]; then
+         neofetch
+       fi
      '';
      history = {
        extended = true;

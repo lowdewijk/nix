@@ -7,7 +7,10 @@
     ./zsh.nix
     ./starship.nix
     ./kitty.nix
-    ./neovim.nix
+    ./neovim
+    ./tmux.nix
+    ./bat.nix
+    ./fzf.nix
   ];
 
   home.username = "lobo";
@@ -18,6 +21,8 @@
     "Xcursor.size" = 16;
     "Xft.dpi" = 172;
   };
+
+  catppuccin.flavor = "mocha";
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -36,14 +41,11 @@
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq
     eza # A modern replacement for ‘ls’
-    fzf # A command-line fuzzy finder
 
     # misc
     cowsay
     file
     which
-    tree
-    bat
 
     # nix related
     #
