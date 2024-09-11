@@ -1,7 +1,7 @@
 { config, pkgs, ...}:
 
 {
-  # starship - an customizable prompt for any shell
+  # starship - a customizable prompt for any shell
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
