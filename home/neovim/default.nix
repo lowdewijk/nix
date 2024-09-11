@@ -9,8 +9,6 @@
     vimdiffAlias = true;
     defaultEditor = true;
 
-    catppuccin.enable = true;
-
     extraLuaConfig = lib.fileContents ./init.lua;
     plugins = with pkgs-unstable.vimPlugins; [
        vim-sleuth
