@@ -66,10 +66,6 @@
       receive = {
         fsckObjects = true;
       };
-      # Cache git logins
-      credential = {
-        helper = [ "cache --timeout 14440" ];
-      };
     };
 
     # List of paths that should be globally ignored
@@ -80,6 +76,8 @@
     ];
     aliases = {
       s = "status";
+      d = "diff";
+      p = "push";
       unadd = "reset HEAD --";
       c = "commit";
       last = "log -1 HEAD";

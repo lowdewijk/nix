@@ -7,6 +7,7 @@
     ./zsh.nix
     ./starship.nix
     ./alacritty.nix
+    ./neovim.nix
   ];
 
   home.username = "lobo";

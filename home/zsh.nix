@@ -15,9 +15,6 @@
        tree = "eza --tree";
        cat = "bat";
        g = "git";
-       gc = "git c";
-       gs = "git s";
-       ga = "git add -A";
      };
      completionInit = "autoload -U compinit && compinit -i";
      initExtra = ''
@@ -28,11 +25,14 @@
        extended = true;
        size = 10000;
      };
+    sessionVariables = {
+      # Suppress direnv logs
+      DIRENV_LOG_FORMAT = "";
+
+      # Don't use nano
+      EDITOR = "nvim";
+    };
     plugins = [
-      {
-        name = "nix-zsh-completions";
-        src = "${pkgs.nix-zsh-completions}/share/zsh/site-functions";
-      }
       {
         name = "nix-shell";
         src = "${pkgs.zsh-nix-shell}/share/zsh/site-functions";
@@ -59,4 +59,5 @@
       }
     ];
  };
+
 }
