@@ -5,6 +5,7 @@
     [ 
       ./hardware-configuration.nix
       ./1password.nix
+      ./fonts.nix
     ];
 
   # Enable flake support
