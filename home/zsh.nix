@@ -20,6 +20,7 @@
      initExtra = ''
        setopt +o nomatch
        eval "$(starship init zsh)"
+       neofetch
      '';
      history = {
        extended = true;
