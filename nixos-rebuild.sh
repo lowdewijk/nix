@@ -15,3 +15,5 @@ sudo cp -rf $SCRIPT_DIR/system /etc/nixos
 sudo cp -rf $SCRIPT_DIR/home /etc/nixos
 
 sudo nixos-rebuild $@
+
+cp -f /etc/nixos/flake.lock $SCRIPT_DIR
