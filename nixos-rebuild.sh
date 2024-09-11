@@ -9,7 +9,8 @@ if [ $# -eq 0 ]; then
 fi
 
 echo "Copying nix files from $SCRIPT_DIR to /etc/nixos"
-sudo cp -rf $SCRIPT_DIR/*.nix /etc/nixos
-sudo cp -rf $SCRIPT_DIR/flake.lock /etc/nixos
+sudo cp -f $SCRIPT_DIR/flake.nix /etc/nixos
+sudo cp -f $SCRIPT_DIR/flake.lock /etc/nixos
+sudo cp -rf $SCRIPT_DIR/system /etc/nixos
 
 sudo nixos-rebuild $@

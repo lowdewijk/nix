@@ -2,8 +2,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
+      ./1password.nix
     ];
 
   # Enable flake support
@@ -97,16 +98,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Install 1Password CLI
-  programs._1password.enable = true;
-
-  # Install and configure 1Password GUI
-  programs._1password-gui = {
-    enable = true;
-    # Certain features, including CLI integration and system authentication support, require enabling PolKit integration
-    polkitPolicyOwners = [ "lobo" ];
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
