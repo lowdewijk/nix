@@ -1,7 +1,8 @@
-{ lib, pkgs, ...}:
+{ lib, pkgs, pkgs-unstable, ...}:
 {
   programs.neovim = {
     enable = true;
+    package = pkgs-unstable.neovim-unwrapped;
 
     viAlias = true;
     vimAlias = true; 
@@ -11,7 +12,7 @@
     catppuccin.enable = true;
 
     extraLuaConfig = lib.fileContents ./init.lua;
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs-unstable.vimPlugins; [
        vim-sleuth
        comment-nvim
        gitsigns-nvim
@@ -33,6 +34,7 @@
        catppuccin-nvim
        todo-comments-nvim
        nvim-treesitter
+       nvim-treesitter.withAllGrammars
        tmux-nvim
     ];
   };

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs-unstable, ... }:
 
 {
   imports = [
@@ -29,6 +29,7 @@
     firefox
     neofetch
     nnn # terminal file manager
+    xsel
 
     # archives
     zip
