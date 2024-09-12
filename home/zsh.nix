@@ -24,14 +24,14 @@
      };
      completionInit = "autoload -U compinit && compinit -i";
      initExtra = ''
-       setopt +o nomatch
-       eval "$(starship init zsh)"
+        setopt +o nomatch
+        eval "$(starship init zsh)"
 
-       # run neofetch the first time a console is started
-       LIVE_COUNTER=$(ps a | awk '{print $2}' | grep -vi -e "tty*" -e "?" | uniq | wc -l);
-       if [ $LIVE_COUNTER -eq 1 ]; then
-         neofetch
-       fi
+        # run neofetch the first time a console is started
+        LIVE_COUNTER=$(ps a | awk '{print $2}' | grep -vi -e "tty*" -e "?" | uniq | wc -l);
+        if [ $LIVE_COUNTER -eq 1 ]; then
+          neofetch
+        fi
      '';
      history = {
        extended = true;
