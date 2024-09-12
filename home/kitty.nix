@@ -6,6 +6,7 @@
     settings = {
       font_family = "Hack Nerd Font";
       enable_audio_bell = false;
+      hide_window_decorations = true;
     };
   };
 }
