@@ -15,7 +15,12 @@
        ll = "eza -l";
        tree = "eza --tree";
        cat = "bat";
-       g = "git";
+       ga = "git add -A";
+       gs = "git status";
+       gd = "git diff";
+       gc = "git commit";
+       gcm = "git commit -m";
+       gp = "git push";
      };
      completionInit = "autoload -U compinit && compinit -i";
      initExtra = ''
