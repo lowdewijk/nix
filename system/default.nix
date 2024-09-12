@@ -53,6 +53,10 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.extraGSettingsOverrides =  ''
+    [org.gnome.desktop.sound]
+    event-sounds=false
+  ''; 
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -74,11 +78,11 @@
 
     # Disable the annoying system bell
     # Every item in this attrset becomes a separate drop-in file in /etc/pipewire/pipewire.conf.d
-    extraConfig.pipewire = {
-      "99-disable-bell" = {
-        "context.properties"= {
+    extraConfig = {
+      pipewire."99-silent-bell.conf" = {
+        "context.properties" = {
           "module.x11.bell" = false;
-        };
+        }; 
       };
     };
   };
