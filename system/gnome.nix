@@ -7,6 +7,7 @@
      gnomeExtensions.caffeine
   ];
 
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -17,8 +18,36 @@
     extraGSettingsOverrides =  ''
       [org.gnome.desktop.sound]
       event-sounds=false
+
+      [org.gnome.settings-daemon.plugins.color] 
+      night-light-enabled=true
+      night-light-temperature=4000
+      
+      [org.gnome.desktop.background]
+      picture-uri="file://${./wallpapers/nixos-wallpaper-catppuccin.png}"
     ''; 
   };
+
+  # remove a bunch of gnome packages that I never use
+  environment.gnome.excludePackages = with pkgs; [
+    gedit
+    gnome-music
+    gnome-terminal
+    gnome-contacts
+    gnome-calendar
+    gnome-screenshot
+    gnome-characters
+    gnome-calculator
+    gnome-maps
+    gnome-weather
+    gnome-clocks
+    gnome-logs
+    gnome-control-center
+    gnome-system-monitor
+    gnome-font-viewer
+    gnome-disk-utility
+  ];
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
