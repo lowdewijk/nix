@@ -5,6 +5,7 @@
     [ 
       ./hardware-configuration.nix
       ./packages.nix
+      ./gnome.nix
       ./1password.nix
       ./fonts.nix
       ./nvidia.nix
@@ -17,12 +18,26 @@
     EDITOR = "nvim";
   };
 
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    extraEntries = ''
+menuentry 'Ubuntu' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-44571930-b3e4-49ab-bf7d-6a2f8ec23ce6' {
+  recordfail
+  load_video
+  gfxmode $linux_gfx_mode
+  insmod gzio
+  if [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi
+  insmod part_gpt
+  insmod ext2
+  search --no-floppy --fs-uuid --set=root 652c86eb-e785-49cc-8c28-6aceb1a69699
+  linux /vmlinuz-6.8.0-40-generic root=/dev/mapper/vgubuntu-root ro  quiet splash $vt_handoff
+  initrd /initrd.img-6.8.0-40-generic
+}
+    '';
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -46,49 +61,6 @@
     LC_TELEPHONE = "nl_NL.UTF-8";
     LC_TIME = "nl_NL.UTF-8";
   };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.gnome.extraGSettingsOverrides =  ''
-    [org.gnome.desktop.sound]
-    event-sounds=false
-  ''; 
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-
-    # Disable the annoying system bell
-    # Every item in this attrset becomes a separate drop-in file in /etc/pipewire/pipewire.conf.d
-    extraConfig = {
-      pipewire."99-silent-bell.conf" = {
-        "context.properties" = {
-          "module.x11.bell" = false;
-        }; 
-      };
-    };
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lobo = {

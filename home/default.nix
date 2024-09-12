@@ -11,9 +11,7 @@
     ./tmux.nix
     ./bat.nix
     ./fzf.nix
-    ./hyprland.nix
-    ./waybar.nix
-    ./rofi.nix
+    ./gnome.nix
   ];
 
   home.username = "lobo";

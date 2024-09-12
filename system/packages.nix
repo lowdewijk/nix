@@ -3,6 +3,7 @@ let
   desktopPackages = with pkgs; [
     firefox
     zotero
+    gimp
   ];
   shellPackages = with pkgs; [
     git
