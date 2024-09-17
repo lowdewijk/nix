@@ -13,6 +13,8 @@ let
     direnv
 
     firefox
+    whatsapp-for-linux
+
     neofetch
     xsel
 
