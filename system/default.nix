@@ -9,6 +9,7 @@
       ./1password.nix
       ./fonts.nix
       ./nvidia.nix
+      ./nix-ld.nix
     ];
 
   # Enable flake support
