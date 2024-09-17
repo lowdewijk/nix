@@ -5,12 +5,14 @@
     [ 
       ./hardware-configuration.nix
       ./packages.nix
-      ./gnome.nix
+      ./kde-plasma6.nix
       ./1password.nix
       ./fonts.nix
       ./nvidia.nix
       ./nix-ld.nix
     ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Enable flake support
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
