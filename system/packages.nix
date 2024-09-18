@@ -4,51 +4,47 @@ let
     firefox
     zotero
     gimp
+    whatsapp-for-linux
+    vlc
+    mattermost-desktop
   ];
   shellPackages = with pkgs; [
-    git
-    gcc
     neovim
+    git
     wget
+    eza
     direnv
-
-    firefox
-    whatsapp-for-linux
+    
+    # used by neovim
+    tree-sitter
+    lua5_1
+    luarocks
 
     neofetch
-    xsel
-
+    xsel # used by neovim and tmux
+    xclip # used by zsh-system-clipboard
+    
     # archives
     zip
     xz
     unzip
     p7zip
-
+    
     # utils
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq
-    eza # A modern replacement for ‘ls’
-
+    
     # misc
     cowsay
     file
     which
-
-    # nix related
-    #
-    # it provides the command `nom` works just like `nix`
-    # with more details log output
-    nix-output-monitor
-
+    
     btop  # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
-
+    
     lsof # list open files
-
-    # system tools
-    sysstat
   ];
 in { 
   environment.systemPackages = shellPackages ++ desktopPackages;

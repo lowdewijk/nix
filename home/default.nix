@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./packages.nix
     ./extra-dotfiles.nix
     ./ssh.nix
     ./git.nix
@@ -12,7 +11,6 @@
     ./bat.nix
     ./fzf.nix
     ./fonts.nix
-    ./gnome.nix
   ];
 
   home.username = "lobo";
