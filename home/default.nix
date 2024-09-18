@@ -2,15 +2,16 @@
 
 {
   imports = [
+    ./packages.nix
+    ./extra-dotfiles.nix
     ./ssh.nix
     ./git.nix
     ./zsh.nix
     ./starship.nix
-    ./kitty.nix
-    ./neovim
     ./tmux.nix
     ./bat.nix
     ./fzf.nix
+    ./fonts.nix
     ./gnome.nix
   ];
 
