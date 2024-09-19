@@ -3,7 +3,7 @@
 {
   imports = [
     ./extra-dotfiles.nix
-    ./ssh.nix
+    ./ssh
     ./git.nix
     ./zsh.nix
     ./starship.nix
