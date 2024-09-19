@@ -29,9 +29,15 @@ in {
       { 
         plugin = catppuccin;
         extraConfig = ''
+        # bottom right show the current working dir followed by the current command
         set -g @catppuccin_status_modules_right "directory application"
+        # bottom left show only the windows
         set -g @catppuccin_status_modules_left "null"
+        
+        # set current running command to bottom right module
+        set -g @catppuccin_application_text "#{pane_current_command}"
 
+        # use window names for window texts on the bottom left
         set -g @catppuccin_window_default_text "#{window_name}"
         set -g @catppuccin_window_current_text "#{window_name}" 
         '';
