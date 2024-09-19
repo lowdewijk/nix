@@ -26,7 +26,16 @@ in {
     plugins = with pkgs.tmuxPlugins; [
       yank
       vim-tmux-navigator
-      catppuccin
+      { 
+        plugin = catppuccin;
+        extraConfig = ''
+        set -g @catppuccin_status_modules_right "directory application"
+        set -g @catppuccin_status_modules_left "null"
+
+        set -g @catppuccin_window_default_text "#{window_name}"
+        set -g @catppuccin_window_current_text "#{window_name}" 
+        '';
+      }
     ];
     disableConfirmationPrompt = true;
     # Start windows and panes at 1, not 0
@@ -64,7 +73,6 @@ in {
       # use the name of the window in the windows overview left-bottom 
       # (it is very odd that this is not the default, but the default it the name of
       # of the current working path of the active pane)
-      set -g @catppuccin_window_default_text "#W"
     '';
   };
 }

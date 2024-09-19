@@ -1,6 +1,7 @@
 { pkgs, ...}:
 let 
   desktopPackages = with pkgs; [
+    kitty
     firefox
     zotero
     gimp

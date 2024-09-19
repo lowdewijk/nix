@@ -22,6 +22,7 @@
        gc = "git commit";
        gcm = "git commit -m";
        gp = "git push";
+       rcp = "rsync --info=progress2";
      };
      completionInit = "autoload -U compinit && compinit -i";
      initExtra = ''
