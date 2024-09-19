@@ -28,10 +28,15 @@ in {
       vim-tmux-navigator
       catppuccin
     ];
+    disableConfirmationPrompt = true;
+    # Start windows and panes at 1, not 0
+    baseIndex = 1;
     extraConfig = ''
+      # allow ME to rename (kind of confusing this flag)
+      set-option -g allow-rename off
+
       # for great colors
       set-option -a terminal-features 'xterm-256color:RGB'
-      # set-option -a terminal-overrides 'xterm-256color:Tc'
 
       # reload config file (change file location to your the tmux.conf you want to use)
       bind r source-file ~/.config/tmux/tmux.conf
@@ -49,16 +54,17 @@ in {
       bind c new-window -c "#{pane_current_path}"
       unbind p
 
-      # Start windows and panes at 1, not 0
-      set -g base-index 1
-      setw -g pane-base-index 1
-
       # Popup (toggles on ALT-SHIFT-M)
       # Got this from https://willhbr.net/2023/02/07/dismissable-popup-shell-in-tmux/
       bind -n M-A display-popup -E ${show_popup}/bin/show_popup "#{pane_current_path}"
       bind -T popup M-A detach
       # This lets us do scrollback and search within the popup
       bind -T popup C-[ copy-mode
+
+      # use the name of the window in the windows overview left-bottom 
+      # (it is very odd that this is not the default, but the default it the name of
+      # of the current working path of the active pane)
+      set -g @catppuccin_window_default_text "#W"
     '';
   };
 }
