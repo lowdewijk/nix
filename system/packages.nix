@@ -44,6 +44,9 @@ let
     btop  # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
+
+    pciutils # for inspecting hardware
+    glxinfo # for checking whether X-server is running hardware or software rendering
     
     lsof # list open files
   ];
