@@ -15,7 +15,6 @@ let
     wget
     eza
     direnv
-
     aichat
     
     # used by neovim

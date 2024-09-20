@@ -30,10 +30,13 @@ in {
         plugin = catppuccin;
         extraConfig = ''
         # bottom right show the current working dir followed by the current command
-        set -g @catppuccin_status_modules_right "directory application"
+        set -g @catppuccin_status_modules_right "directory application date_time"
         # bottom left show only the windows
         set -g @catppuccin_status_modules_left "null"
-        
+       
+        # I just need to know that I am not making it too late :)
+        set -g @catppuccin_date_time_text "%H:%M"
+
         # set current running command to bottom right module
         set -g @catppuccin_application_text "#{pane_current_command}"
 
