@@ -11,9 +11,14 @@
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-ld, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, nix-ld, plasma-manager, ... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       specialArgs = inputs;
@@ -29,6 +34,7 @@
 	    imports = [
 	      ./home
 	      inputs.catppuccin.homeManagerModules.catppuccin
+              plasma-manager.homeManagerModules.plasma-manager
             ];
           };
 	  home-manager.extraSpecialArgs = {

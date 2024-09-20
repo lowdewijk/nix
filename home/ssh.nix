@@ -7,10 +7,10 @@
 
     # Use the 1Password SSH agent for all hosts
     extraConfig = ''
-      Include $HOME/.config/extra_ssh/extra_ssh_config.secret
-
       Host *
           IdentityAgent ~/.1password/agent.sock
-    '' + (builtins.readFile ./extra_ssh_config.secret);
+    '' + 
+      # automatically populated by nixos-rebuild.sh using 1assword-cli
+      (builtins.readFile ./secret/extra_ssh_config.secret);
   };
 }

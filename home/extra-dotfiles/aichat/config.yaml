@@ -1,0 +1,4 @@
+model: openai:gpt-4o
+clients:
+- type: openai
+  api_key: null # run aichat with `op run -- aichat`

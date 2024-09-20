@@ -10,7 +10,9 @@
       ./fonts.nix
       ./nvidia.nix
       ./nix-ld.nix
-      ./secret/wireguard.nix
+
+      # automatically populated in nixos-rebuild.sh by 1password
+      ./secret/wireguard.nix 
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -72,6 +74,7 @@ menuentry 'Ubuntu' --class ubuntu --class gnu-linux --class gnu --class os $menu
     shell = pkgs.zsh;
   };
 
+  # sets the defaul shell to zsh
   programs.zsh.enable = true;
 
   # Allow unfree packages

@@ -3,7 +3,7 @@
 {
   imports = [
     ./extra-dotfiles.nix
-    ./ssh
+    ./ssh.nix
     ./git.nix
     ./zsh.nix
     ./starship.nix
@@ -11,6 +11,7 @@
     ./bat.nix
     ./fzf.nix
     ./fonts.nix
+    ./plasma.nix
   ];
 
   home.username = "lobo";

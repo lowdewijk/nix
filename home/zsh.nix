@@ -23,13 +23,17 @@
        gcm = "git commit -m";
        gp = "git push";
        rcp = "rsync --info=progress2";
+
+       # ask chatgpt a question
+       # populates environment variables with 1password
+       q = "OPENAI_API_KEY=op://Personal/OpenAI/api-keys/terminal-api-key op run -- aichat"; 
      };
      completionInit = "autoload -U compinit && compinit -i";
      initExtra = ''
         # so tmux knows that it should start in this shell 
         export SHELL=$(which zsh)
 
-        # remove annoying message when * result in no match
+        # remove API_annoying message when * result in no match
         setopt +o nomatch
 
         # setup starship and direnv

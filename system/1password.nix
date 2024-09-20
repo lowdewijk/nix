@@ -10,4 +10,5 @@
     # Certain features, including CLI integration and system authentication support, require enabling PolKit integration
     polkitPolicyOwners = [ "lobo" ];
   };
+
 }
