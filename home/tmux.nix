@@ -72,6 +72,9 @@ in {
       bind c new-window -c "#{pane_current_path}"
       unbind p
 
+      # Setup 'v' to begin selectin as in vim
+      bind -T copy-mode-vi v send -X begin-selection
+
       # Popup (toggles on ALT-SHIFT-M)
       # Got this from https://willhbr.net/2023/02/07/dismissable-popup-shell-in-tmux/
       bind -n M-A display-popup -E ${show_popup}/bin/show_popup "#{pane_current_path}"
