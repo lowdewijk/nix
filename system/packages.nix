@@ -16,6 +16,9 @@ let
     eza
     direnv
     aichat
+    matterhorn
+    devenv
+    fd # used by telescope
     
     # used by neovim
     tree-sitter
