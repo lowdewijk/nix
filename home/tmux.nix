@@ -57,7 +57,7 @@ in {
       set-option -a terminal-features 'xterm-256color:RGB'
 
       # reload config file (change file location to your the tmux.conf you want to use)
-      bind r source-file ~/.config/tmux/tmux.conf
+      bind r { source-file ~/.config/tmux/tmux.conf; display-message "tmux config reloaded" }
 
       # Allow scrolling with mouse in panes
       set-option -g mouse on
@@ -72,8 +72,9 @@ in {
       bind c new-window -c "#{pane_current_path}"
       unbind p
 
-      # Setup 'v' to begin selectin as in vim
-      bind -T copy-mode-vi v send -X begin-selection
+      # Fix visual mode
+      bind -T copy-mode-vi v send -X begin-selection # 'v' to begin selection as in vim
+      bind -T copy-mode-vi Escape send-keys -X cancel # escape to quit visual mode
 
       # Popup (toggles on ALT-SHIFT-M)
       # Got this from https://willhbr.net/2023/02/07/dismissable-popup-shell-in-tmux/
