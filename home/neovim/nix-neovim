@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
-cp ~/.config/nvim/lazy.lock ~/nixos/home/neovim/
-cp -rf ~/.config/nvim/lua/myconfig ~/nixos/home/neovim/lua/myconfig
+cp ~/.config/nvim/lazy-lock.json ~/nixos/home/neovim/
+cp -rf ~/.config/nvim/lua/myconfig ~/nixos/home/neovim/lua/
+
+BAK_DIR=~/.config/nvim.bak/
+if [ -d $BAK_DIR ]; then
+  rm -rf ~/.config/nvim
+  mv $BAK_DIR ~/.config/nvim
+  echo "Neovim config restored to home-manager state."
+else
+  echo "ERROR: Neovim config could not be restored to the home-manager state. Missing directory: $BAK_DIR"
+  echo "Advice: remove ~/.config/nvim and rerun home-manager."
+fi
 
