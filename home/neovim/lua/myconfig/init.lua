@@ -1,5 +1,4 @@
 require('myconfig/globalopts')
-require('myconfig/globalkeybinds')
 require('myconfig/globalautocmds')
 
 --------------------
@@ -40,3 +39,5 @@ require("lazy").setup({
     },
   },
 })
+
+require('myconfig/globalkeybinds')
