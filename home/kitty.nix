@@ -1,3 +1,10 @@
+{ pkgs, ...}:
+
+{ 
+  programs.kitty = {
+    enable = true;
+    extraConfig = ''
+
 # vim:ft=kitty
 
 enable_audio_bell no
@@ -83,4 +90,6 @@ color14 #94E2D5
 # white
 color7  #BAC2DE
 color15 #A6ADC8
-
+'';
+  };
+}

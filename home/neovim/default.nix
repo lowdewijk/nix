@@ -6,6 +6,8 @@
     vimPlugins.LazyVim
   ];
 
+  home.file."bla".text = "foobar";
+
   home.file.".config/nvim/init.lua".text = ''
     -- Add lazy to neovim's run time path
     vim.opt.rtp:append("${pkgs.vimPlugins.LazyVim}")

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./extra-dotfiles.nix
+    ./kitty.nix
     ./ssh.nix
     ./git.nix
     ./zsh.nix
@@ -12,6 +12,7 @@
     ./fzf.nix
     ./fonts.nix
     ./plasma.nix
+    ./aichat.nix
     ./neovim
   ];
 
