@@ -3,14 +3,14 @@
 {
   home.packages = with pkgs; [
     neovim
-    vimPlugins.LazyVim
+    vimPlugins.lazy-nvim
   ];
 
   home.file."bla".text = "foobar";
 
   home.file.".config/nvim/init.lua".text = ''
     -- Add lazy to neovim's run time path
-    vim.opt.rtp:append("${pkgs.vimPlugins.LazyVim}")
+    vim.opt.rtp:append("${pkgs.vimPlugins.lazy-nvim}")
     require("myconfig")
   '';
 
