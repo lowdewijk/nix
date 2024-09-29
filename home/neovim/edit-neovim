@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+BAK_DIR=~/.config/nvim.bak/
+if [ -d $BAK_DIR ]; then
+  echo "Still editing neovim config! ($BAK_DIR detected)"
+  exit 1
+fi
+
 replace_symlink() {
     local link="$1"
     target=$(readlink "$link")
@@ -23,7 +29,7 @@ replace_symlinks() {
   done
 }
 
-cp -r ~/.config/nvim ~/.config/nvim.bak
+cp -r ~/.config/nvim $BAK_DIR
 replace_symlink ~/.config/nvim/lazy-lock.json
 replace_symlinks ~/.config/nvim/lua/myconfig
 cd ~/.config/nvim/lua/myconfig
