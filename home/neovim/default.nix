@@ -1,12 +1,15 @@
 { pkgs, ... }:
 
-{
+let
+  edit-neovim = pkgs.writeScriptBin "edit-neovim" (builtins.readFile ./edit-neovim);
+  nix-neovim = pkgs.writeScriptBin "nix-neovim" (builtins.readFile ./nix-neovim);
+in {
   home.packages = with pkgs; [
     neovim
     vimPlugins.lazy-nvim
+    edit-neovim
+    nix-neovim
   ];
-
-  home.file."bla".text = "foobar";
 
   home.file.".config/nvim/init.lua".text = ''
     -- Add lazy to neovim's run time path

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Function to replace symlinks with actual files
+replace_symlinks() {
+  local dir="$1"
+  
+  # Recursively find symlinks in the specified directory
+  find "$dir" -type l | while read -r link; do
+    target=$(readlink "$link") # Get the target of the symlink
+    
+    if [ -f "$target" ]; then
+      cp --remove-destination "$target" "$link"
+      echo "Replaced symlink $link with the target file."
+    else
+      echo "Target file $target does not exist or is not a regular file for symlink $link."
+    fi
+  done
+}
+
+replace_symlinks ~/.config/nvim
+cd ~/.config/nvim/lua/myconfig
+nvim init.lua
+

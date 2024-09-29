@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cp ~/.config/nvim/lazy.lock ~/nixos/home/neovim/
+cp -rf ~/.config/nvim/lua/myconfig ~/nixos/home/neovim/lua/myconfig
+
