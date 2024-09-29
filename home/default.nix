@@ -12,6 +12,7 @@
     ./fzf.nix
     ./fonts.nix
     ./plasma.nix
+    ./neovim
   ];
 
   home.username = "lobo";

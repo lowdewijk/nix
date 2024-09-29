@@ -10,6 +10,8 @@
      autocd = true;
 
      shellAliases = {
+       switch = "~/nixos/nixos-rebuild.sh switch";
+
        v = "nvim";
        l = "eza -l";
        ls = "eza";
