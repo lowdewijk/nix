@@ -1,5 +1,7 @@
-require('myconfig/globalopts')
-require('myconfig/globalautocmds')
+-- Set <space> as the leader key
+-- This needs to happen before lazy plugins load
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 --------------------
 -- BOOTSTRAP LAZY --
@@ -39,4 +41,7 @@ require("lazy").setup({
   },
 })
 
-require('myconfig/globalkeybinds')
+require('myconfig/opts')
+require('myconfig/autocmds')
+require('myconfig/keybinds')
+require('myconfig/lspservers')

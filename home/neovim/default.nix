@@ -4,18 +4,31 @@ let
   edit-neovim = pkgs.writeScriptBin "edit-neovim" (builtins.readFile ./edit-neovim);
   nix-neovim = pkgs.writeScriptBin "nix-neovim" (builtins.readFile ./nix-neovim);
 in {
-  home.packages = with pkgs; [
-    neovim
-    vimPlugins.lazy-nvim
+  home.packages =  [
     edit-neovim
     nix-neovim
   ];
 
-  home.file.".config/nvim/init.lua".text = ''
-    -- Add lazy to neovim's run time path
-    vim.opt.rtp:append("${pkgs.vimPlugins.lazy-nvim}")
-    require("myconfig")
-  '';
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+    viAlias = true;
+    extraPackages = with pkgs; [
+      # Lua LSP
+      lua5_1
+      lua-language-server
+      luarocks
+      stylua
+      
+      # Nix LSP
+      alejandra
+      nixd
+    ];
+    plugins = [ pkgs.vimPlugins.lazy-nvim ];
+    extraLuaConfig = ''require("myconfig")'';
+  };
 
   home.file.".config/nvim/lazy-lock.json".source = ./lazy-lock.json;
 
