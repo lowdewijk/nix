@@ -19,6 +19,9 @@ let
     matterhorn
     devenv
     fd # used by telescope
+
+    # used by treesitter
+    gcc
     
     # used by neovim
     tree-sitter
