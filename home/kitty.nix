@@ -10,17 +10,20 @@
 enable_audio_bell no
 font_family Hack Nerd Font
 hide_window_decorations yes
-shell tmux
 term xterm-256color
 
+## Reattach to tmux (or create a new tmux session) if tmux exists
+shell zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
+
 ## Keyboard shortcuts
-clear_all_shortcuts yes # clear all default shortcuts
-map ctrl+shift+equal change_font_size all +2.0
-map ctrl+shift+plus change_font_size all +2.0
-map ctrl+shift+minus change_font_size all -2.0
+clear_all_shortcuts yes
+map ctrl+shift+equal change_font_size all +1.0
+map ctrl+shift+plus change_font_size all +1.0
+map ctrl+shift+minus change_font_size all -1.0
 map ctrl+shift+0 change_font_size all 0
 map ctrl+shift+c copy_to_clipboard
 map ctrl+shift+v paste_from_clipboard
+map ctrl+shift+h open_url_with_hints
 
 ## name:     Catppuccin-Mocha
 ## author:   Pocco81 (https://github.com/Pocco81)
