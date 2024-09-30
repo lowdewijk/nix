@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-cp ~/.config/nvim/lazy-lock.json ~/nixos/home/neovim/
-cp -rf ~/.config/nvim/lua/myconfig ~/nixos/home/neovim/lua/
 
 BAK_DIR=~/.config/nvim.bak/
 if [ -d $BAK_DIR ]; then
+  cp ~/.config/nvim/lazy-lock.json ~/nixos/home/neovim/
+  cp -rf ~/.config/nvim/lua/myconfig ~/nixos/home/neovim/lua/
+
   rm -rf ~/.config/nvim
   mv $BAK_DIR ~/.config/nvim
   echo "Neovim config restored to home-manager state."
