@@ -20,6 +20,7 @@ vim.opt.inccommand = "split"
 -- Smart tabs and prefer two spaces
 vim.opt.smarttab = true
 vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
 
 -- Enable relative line numbers
 vim.opt.relativenumber = false
