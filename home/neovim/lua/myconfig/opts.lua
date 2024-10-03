@@ -39,4 +39,4 @@ vim.o.undofile = true
 vim.o.updatetime = 250
 
 -- Wait 300ms for action after mapped key sequence
-vim.o.timeoutlen = 300 
+vim.o.timeoutlen = 1000
