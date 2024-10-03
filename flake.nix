@@ -16,10 +16,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    gitRepoSync = { 
+      url = "github:oddity-ai/git-repo-sync/nixify";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-ld, plasma-manager, ... }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
+  outputs = { nixpkgs, home-manager, nix-ld, plasma-manager, ... }@inputs: {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = inputs;
       modules = [

@@ -15,6 +15,28 @@
         "type": "github"
       }
     },
+    "gitRepoSync": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1727967885,
+        "narHash": "sha256-VLN1IQCjPiF2U10l7tITcg4o8dGTjY7WXBFVpVrb0Pk=",
+        "owner": "oddity-ai",
+        "repo": "git-repo-sync",
+        "rev": "14b10ebf5110b0ee6bb5aace4e987e37a1985304",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oddity-ai",
+        "ref": "nixify",
+        "repo": "git-repo-sync",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -113,11 +135,33 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
+        "gitRepoSync": "gitRepoSync",
         "home-manager": "home-manager",
         "nix-ld": "nix-ld",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "plasma-manager": "plasma-manager"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "gitRepoSync",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1727922550,
+        "narHash": "sha256-pJoN5Qd83coaoEJmpkxw+cuh89IJORvLm8qyw3GMLIQ=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "5e3eee4bc42a2504653bedfe95bceda9a1e85ae7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     }
   },
