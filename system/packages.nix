@@ -1,4 +1,4 @@
-{ pkgs, gitRepoSync,  ...}:
+{ pkgs, git-repo-sync,  ...}:
 let 
   desktopPackages = with pkgs; [
     kitty
@@ -20,7 +20,7 @@ let
     devenv
     fd # used by telescope
 
-    gitRepoSync.packages.x86_64-linux.default
+    git-repo-sync
 
     # used by treesitter
     gcc

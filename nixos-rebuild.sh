@@ -15,15 +15,9 @@ if [ $# -eq 0 ]; then
   exit 1
 fi
 
-BAK_DIR=~/.config/nvim.bak/
-if [ -d $BAK_DIR ]; then
-  echo "Still editing neovim config! ($BAK_DIR detected)"
-  echo "Please run `nix-neovim` to continue."
-  exit 2
-fi
-
 echo "Copying nix files from $SCRIPT_DIR to /etc/nixos..."
 sudo cp -f $SCRIPT_DIR/flake.nix /etc/nixos
+sudo cp -f $SCRIPT_DIR/globals.nix /etc/nixos
 sudo cp -f $SCRIPT_DIR/flake.lock /etc/nixos
 sudo rm -rf /etc/nixos/system
 sudo cp -rf $SCRIPT_DIR/system /etc/nixos

@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs-unstable, ... }:
+{ globals, ... }:
 
 {
   imports = [
@@ -16,8 +16,8 @@
     ./neovim
   ];
 
-  home.username = "lobo";
-  home.homeDirectory = "/home/lobo";
+  home.username = globals.username;
+  home.homeDirectory = "/home/${globals.username}";
 
   catppuccin.flavor = "mocha";
 

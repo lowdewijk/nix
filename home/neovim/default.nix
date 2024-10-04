@@ -1,14 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, globals, config, ... }:
 
-let
-  edit-neovim = pkgs.writeScriptBin "edit-neovim" (builtins.readFile ./edit-neovim);
-  nix-neovim = pkgs.writeScriptBin "nix-neovim" (builtins.readFile ./nix-neovim);
-in {
-  home.packages =  [
-    edit-neovim
-    nix-neovim
-  ];
-
+{
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -30,10 +22,9 @@ in {
     extraLuaConfig = ''require("myconfig")'';
   };
 
-  home.file.".config/nvim/lazy-lock.json".source = ./lazy-lock.json;
+  home.file.".config/nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink (/. + "${globals.nixos_git_root}/home/neovim/lazy.lock");
 
   home.file.".config/nvim/lua" = {
-    source = ./lua;
-    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink (/. + "${globals.nixos_git_root}/home/neovim/lua");
   };
 }
