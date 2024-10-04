@@ -1,24 +1,25 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      ./packages.nix
-      ./kde-plasma6.nix
-      ./1password.nix
-      ./fonts.nix
-      ./nvidia.nix
-      ./nix-ld.nix
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./packages.nix
+    ./kde-plasma6.nix
+    ./1password.nix
+    ./fonts.nix
+    ./nvidia.nix
+    ./nix-ld.nix
 
-      # automatically populated in nixos-rebuild.sh by 1password
-      ./secret/wireguard.nix 
-    ];
+    # automatically populated in nixos-rebuild.sh by 1password
+    ./secret/wireguard.nix
+  ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Enable flake support
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   environment.variables = {
     EDITOR = "nvim";
@@ -30,16 +31,16 @@
     device = "nodev";
     efiSupport = true;
     extraEntries = ''
-menuentry 'Ubuntu' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-44571930-b3e4-49ab-bf7d-6a2f8ec23ce6' {
-  gfxmode $linux_gfx_mode
-  insmod gzio
-  if [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi
-  insmod part_gpt
-  insmod ext2
-  search --no-floppy --fs-uuid --set=root 652c86eb-e785-49cc-8c28-6aceb1a69699
-  linux /vmlinuz-6.8.0-40-generic root=/dev/mapper/vgubuntu-root ro  quiet splash $vt_handoff
-  initrd /initrd.img-6.8.0-40-generic
-}
+      menuentry 'Ubuntu' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-44571930-b3e4-49ab-bf7d-6a2f8ec23ce6' {
+        gfxmode $linux_gfx_mode
+        insmod gzio
+        if [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi
+        insmod part_gpt
+        insmod ext2
+        search --no-floppy --fs-uuid --set=root 652c86eb-e785-49cc-8c28-6aceb1a69699
+        linux /vmlinuz-6.8.0-40-generic root=/dev/mapper/vgubuntu-root ro  quiet splash $vt_handoff
+        initrd /initrd.img-6.8.0-40-generic
+      }
     '';
   };
 
@@ -70,7 +71,7 @@ menuentry 'Ubuntu' --class ubuntu --class gnu-linux --class gnu --class os $menu
   users.users.lobo = {
     isNormalUser = true;
     description = "lobo";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
   };
 
@@ -87,5 +88,4 @@ menuentry 'Ubuntu' --class ubuntu --class gnu-linux --class gnu --class os $menu
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

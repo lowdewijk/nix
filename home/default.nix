@@ -1,6 +1,4 @@
-{ globals, ... }:
-
-{
+{globals, ...}: {
   imports = [
     ./kitty.nix
     ./ssh.nix

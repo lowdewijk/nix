@@ -1,6 +1,8 @@
-{ config, pkgs, ...}:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # starship - a customizable prompt for any shell
   programs.starship = {
     enable = true;

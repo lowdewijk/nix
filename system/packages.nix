@@ -1,5 +1,8 @@
-{ pkgs, git-repo-sync,  ...}:
-let 
+{
+  pkgs,
+  git-repo-sync,
+  ...
+}: let
   desktopPackages = with pkgs; [
     kitty
     firefox
@@ -24,7 +27,7 @@ let
 
     # used by treesitter
     gcc
-    
+
     # used by neovim
     tree-sitter
     lua5_1
@@ -33,32 +36,32 @@ let
     neofetch
     xsel # used by neovim and tmux
     xclip # used by zsh-system-clipboard
-    
+
     # archives
     zip
     xz
     unzip
     p7zip
-    
+
     # utils
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq
-    
+
     # misc
     cowsay
     file
     which
-    
-    btop  # replacement of htop/nmon
+
+    btop # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
 
     pciutils # for inspecting hardware
     glxinfo # for checking whether X-server is running hardware or software rendering
-    
+
     lsof # list open files
   ];
-in { 
+in {
   environment.systemPackages = shellPackages ++ desktopPackages;
 }

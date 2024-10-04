@@ -1,6 +1,4 @@
-{ pkgs, ...}:
-
-let 
+{pkgs, ...}: let
   # Got this from https://willhbr.net/2023/02/07/dismissable-popup-shell-in-tmux/
   show_popup = pkgs.writeShellScriptBin "show_popup" ''
     #!/bin/bash
@@ -26,23 +24,23 @@ in {
     plugins = with pkgs.tmuxPlugins; [
       yank
       vim-tmux-navigator
-      { 
+      {
         plugin = catppuccin;
         extraConfig = ''
-        # bottom right show the current working dir followed by the current command
-        set -g @catppuccin_status_modules_right "directory application date_time"
-        # bottom left show only the windows
-        set -g @catppuccin_status_modules_left "null"
-       
-        # I just need to know that I am not making it too late :)
-        set -g @catppuccin_date_time_text "%H:%M"
+          # bottom right show the current working dir followed by the current command
+          set -g @catppuccin_status_modules_right "directory application date_time"
+          # bottom left show only the windows
+          set -g @catppuccin_status_modules_left "null"
 
-        # set current running command to bottom right module
-        set -g @catppuccin_application_text "#{pane_current_command}"
+          # I just need to know that I am not making it too late :)
+          set -g @catppuccin_date_time_text "%H:%M"
 
-        # use window names for window texts on the bottom left
-        set -g @catppuccin_window_default_text "#{window_name}"
-        set -g @catppuccin_window_current_text "#{window_name}" 
+          # set current running command to bottom right module
+          set -g @catppuccin_application_text "#{pane_current_command}"
+
+          # use window names for window texts on the bottom left
+          set -g @catppuccin_window_default_text "#{window_name}"
+          set -g @catppuccin_window_current_text "#{window_name}"
         '';
       }
     ];
@@ -83,7 +81,7 @@ in {
       # This lets us do scrollback and search within the popup
       bind -T popup C-[ copy-mode
 
-      # use the name of the window in the windows overview left-bottom 
+      # use the name of the window in the windows overview left-bottom
       # (it is very odd that this is not the default, but the default it the name of
       # of the current working path of the active pane)
     '';

@@ -1,6 +1,5 @@
-{ pkgs, ...}:
-{
-  # configure x11 
+{pkgs, ...}: {
+  # configure x11
   services.xserver = {
     enable = true;
     xkb = {
@@ -10,7 +9,7 @@
   };
 
   # https://www.reddit.com/r/NixOS/comments/1d4l6ak/plasma_6_stuck_on_black_screen_wayland_and_nvidia/
-  boot.kernelParams = [    
+  boot.kernelParams = [
     "nvidia-drm.fbdev=1"
   ];
 

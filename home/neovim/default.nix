@@ -1,6 +1,9 @@
-{ pkgs, globals, config, ... }:
-
-let 
+{
+  pkgs,
+  globals,
+  config,
+  ...
+}: let
   mkGitSymlink = git_path: config.lib.file.mkOutOfStoreSymlink (/. + "${globals.nixos_git_root}/${git_path}");
 in {
   programs.neovim = {
@@ -15,12 +18,12 @@ in {
       lua-language-server
       luarocks
       stylua
-      
+
       # Nix LSP
       alejandra
       nixd
     ];
-    plugins = [ pkgs.vimPlugins.lazy-nvim ];
+    plugins = [pkgs.vimPlugins.lazy-nvim];
     extraLuaConfig = ''require("myconfig")'';
   };
 

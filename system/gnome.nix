@@ -1,12 +1,9 @@
-{ pkgs, ...}:
-
-{
-   environment.systemPackages = with pkgs; [
-     gnome-tweaks
-     gnomeExtensions.open-bar
-     gnomeExtensions.caffeine
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    gnome-tweaks
+    gnomeExtensions.open-bar
+    gnomeExtensions.caffeine
   ];
-
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -15,17 +12,17 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome = {
     enable = true;
-    extraGSettingsOverrides =  ''
+    extraGSettingsOverrides = ''
       [org.gnome.desktop.sound]
       event-sounds=false
 
-      [org.gnome.settings-daemon.plugins.color] 
+      [org.gnome.settings-daemon.plugins.color]
       night-light-enabled=true
       night-light-temperature=4000
-      
+
       [org.gnome.desktop.background]
       picture-uri="file://${./wallpapers/nixos-wallpaper-catppuccin.png}"
-    ''; 
+    '';
   };
 
   # remove a bunch of gnome packages that I never use
@@ -47,7 +44,6 @@
     gnome-font-viewer
     gnome-disk-utility
   ];
-
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -83,7 +79,7 @@
       pipewire."99-silent-bell.conf" = {
         "context.properties" = {
           "module.x11.bell" = false;
-        }; 
+        };
       };
     };
   };
