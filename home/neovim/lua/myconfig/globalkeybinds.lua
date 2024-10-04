@@ -9,8 +9,8 @@ local all_modes = { "n", "i", "v", "s", "c" }
 -- Be aware that this isn't perfect and sometimes a restart is needed
 vim.keymap.set("n", "<Leader>r", function()
   -- unload myconfig packages
-  for name,_ in pairs(package.loaded) do
-    if name:match('^myconfig') then
+  for name, _ in pairs(package.loaded) do
+    if name:match("^myconfig") then
       package.loaded[name] = nil
     end
   end
@@ -32,13 +32,13 @@ vim.keymap.set("n", '<Leader>"', function()
 end, { desc = "Split vertically" })
 
 -- Telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<C-s-e>', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-vim.keymap.set('n', '<leader>fc', "<cmd>Telescope neoclip<cr>", { desc = 'Telescope help tags' })
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<C-s-e>", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+vim.keymap.set("n", "<leader>fc", "<cmd>Telescope neoclip<cr>", { desc = "Telescope help tags" })
 
 -- Neotree
-vim.keymap.set('n', '<C-e>', '<cmd>Neotree toggle<cr>', { desc = 'Toggle file explorer' })
+vim.keymap.set("n", "<C-e>", "<cmd>Neotree toggle<cr>", { desc = "Toggle file explorer" })

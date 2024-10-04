@@ -41,7 +41,7 @@ require("lazy").setup({
   },
 })
 
-require('myconfig/opts')
-require('myconfig/autocmds')
-require('myconfig/keybinds')
-require('myconfig/lspservers')
+require("myconfig/opts")
+require("myconfig/autocmds")
+require("myconfig/keybinds")
+require("myconfig/lspservers")

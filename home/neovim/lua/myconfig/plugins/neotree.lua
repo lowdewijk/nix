@@ -9,7 +9,7 @@ return {
   config = function()
     require("neo-tree").setup({
       -- do not keep neotree around if there are no other buffers open
-      close_if_last_window = true;
+      close_if_last_window = true,
     })
   end,
 }
