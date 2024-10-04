@@ -15,14 +15,14 @@ in {
     extraPackages = with pkgs; [
       # Lua LSP
       lua5_1
-      lua-language-server
+      lua-language-server # LSP
       luarocks
-      stylua
+      stylua # formatter
 
-      # Nix LSP
-      alejandra
-      nixd
-    ];
+      # Nix 
+      alejandra #formatter
+      nixd # LSP
+    ]; 
     plugins = [pkgs.vimPlugins.lazy-nvim];
     extraLuaConfig = ''require("myconfig")'';
   };
