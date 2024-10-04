@@ -74,3 +74,8 @@ require("lsp-zero").extend_lspconfig({
 vim.keymap.set("n", "<leader>f", function()
   require("conform").format({ async = false })
 end, { desc = "Format current buffer" })
+
+-- Notify
+vim.keymap.set("", "<Esc>", function()
+  require("notify").dismiss()
+end, { silent = true })

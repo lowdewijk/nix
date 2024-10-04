@@ -1,3 +1,6 @@
+-- 24 bit color please
+vim.opt.termguicolors = true
+
 -- Nerd font
 vim.g.have_nerd_font = true
 

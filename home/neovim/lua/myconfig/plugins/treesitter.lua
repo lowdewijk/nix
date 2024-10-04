@@ -15,6 +15,7 @@ return {
         "css",
         "markdown",
         "markdown_inline",
+        "json",
         "bash",
         "lua",
         "vim",
