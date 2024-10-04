@@ -69,3 +69,6 @@ require('lsp-zero').extend_lspconfig({
   lsp_attach = lsp_attach,
   capabilities = require('cmp_nvim_lsp').default_capabilities()
 })
+
+-- Formatting
+vim.keymap.set('n', '<leader>f', '<cmd>Neoformat<cr>', { desc = 'Toggle file explorer' })
