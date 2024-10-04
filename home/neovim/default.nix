@@ -22,6 +22,10 @@ in {
       # Nix 
       alejandra #formatter
       nixd # LSP
+
+      # Python
+      nodejs # required by pyright
+      pyright
     ]; 
     plugins = [pkgs.vimPlugins.lazy-nvim];
     extraLuaConfig = ''require("myconfig")'';
