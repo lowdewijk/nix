@@ -1,4 +1,3 @@
--- 24 bit color please
 vim.opt.termguicolors = true
 
 -- Nerd font
@@ -25,7 +24,7 @@ vim.opt.smarttab = true
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
--- Enable relative line numbers
+-- Relative line numbers
 vim.opt.relativenumber = false
 
 -- They tell me about tabs vs spaces and help me
