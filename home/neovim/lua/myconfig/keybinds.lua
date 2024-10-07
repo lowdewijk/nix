@@ -76,6 +76,5 @@ vim.keymap.set("n", "<leader>f", function()
 end, { desc = "Format current buffer" })
 
 -- Notify
-vim.keymap.set("", "<Esc>", function()
-  require("notify").dismiss()
-end, { silent = true })
+-- Additionally to the normal escape behavior, clear the search messages (noh) and clear the notifications
+vim.keymap.set("", "<Esc>", "<ESC>:noh<CR>:lua require('notify').dismiss()<CR>", { silent = true })
