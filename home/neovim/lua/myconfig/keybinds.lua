@@ -18,6 +18,10 @@ end, { desc = "Reload neovim config" })
 vim.keymap.set(all_modes, "<C-s>", function()
   vim.cmd.write()
 end, { desc = "Save current file" })
+vim.keymap.set(all_modes, "<C-s-s>", function()
+  vim.cmd("wa")
+  vim.notify("All buffers saved!", vim.log.levels.INFO)
+end, { desc = "Save all files" })
 
 --Splitting panes keymaps
 vim.keymap.set("n", "<Leader>%", function()
