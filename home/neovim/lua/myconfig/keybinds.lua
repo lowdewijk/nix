@@ -3,7 +3,7 @@ local all_modes = { "n", "i", "v", "s", "c" }
 
 -- Reload neovim config keymap
 -- Be aware that this isn't perfect and sometimes a restart is needed
-vim.keymap.set("n", "<Leader>r", function()
+vim.keymap.set("n", "<Leader>R", function()
   -- unload myconfig packages
   for name, _ in pairs(package.loaded) do
     if name:match("^myconfig") then
@@ -75,8 +75,13 @@ require("lsp-zero").extend_lspconfig({
 })
 
 -- Formatting
-vim.keymap.set("n", "<leader>f", function()
-  require("conform").format({ async = false })
+vim.keymap.set("n", "<leader>F", function()
+  local formatted = require("conform").format({ async = false })
+  if formatted then
+    vim.notify("Formatted!", vim.log.INFO)
+  else
+    vim.notify("Formatter not found", "error")
+  end
 end, { desc = "Format current buffer" })
 
 -- Notify
