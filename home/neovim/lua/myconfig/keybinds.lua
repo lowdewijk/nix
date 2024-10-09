@@ -93,6 +93,8 @@ vim.keymap.set("n", "<leader>C", function()
   local copilot = require("copilot.suggestion")
   local auto_trigger = copilot.auto_trigger
   auto_trigger = not auto_trigger
+
+  -- toggle global as well as on the local buffer
   copilot.auto_trigger = auto_trigger
   vim.b.copilot_suggestion_auto_trigger = auto_trigger
 

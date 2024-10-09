@@ -81,9 +81,8 @@ in {
       # This lets us do scrollback and search within the popup
       bind -T popup C-[ copy-mode
 
-      # use the name of the window in the windows overview left-bottom
-      # (it is very odd that this is not the default, but the default it the name of
-      # of the current working path of the active pane)
+      # position the status bar on top (so  it isn't in the way of neovim's statusbar)
+      set-option -g status-position top
     '';
   };
 }
