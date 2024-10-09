@@ -87,3 +87,18 @@ end, { desc = "Format current buffer" })
 -- Notify
 -- Additionally to the normal escape behavior, clear the search messages (noh) and clear the notifications
 vim.keymap.set("", "<Esc>", "<ESC>:noh<CR>:lua require('notify').dismiss()<CR>", { silent = true })
+
+-- Copilot
+vim.keymap.set("n", "<leader>C", function()
+  local copilot = require("copilot.suggestion")
+  local auto_trigger = copilot.auto_trigger
+  auto_trigger = not auto_trigger
+  copilot.auto_trigger = auto_trigger
+  vim.b.copilot_suggestion_auto_trigger = auto_trigger
+
+  if auto_trigger then
+    vim.notify("Copilot auto-suggestion on!", vim.log.INFO)
+  else
+    vim.notify("Copilot auto-suggestion off!", vim.log.INFO)
+  end
+end, { desc = "Toggle copilot auto-suggestion" })
