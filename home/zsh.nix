@@ -62,42 +62,46 @@
       # Don't use nano
       EDITOR = "nvim";
     };
-    antidote = {
-      enable = true;
-      plugins = [
-        "zsh-users/zsh-syntax-highlighting"
-        "zsh-users/zsh-autosuggestions"
-        "nix-community/zsh-nix-shell"
-        "kutsan/zsh-system-clipboard"
-        "agkozak/zsh-z"
-        "Tarrasch/zsh-bd"
-      ];
-    };
-    # plugins = [
-    #   {
-    #     name = "zsh-nix-shell";
-    #     src = pkgs.zsh-nix-shell;
-    #     # name of the file needs to map to what is sourced in ~/.zhsrc
-    #     file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
-    #   }
-    #   {
-    #     name = "system-clipboard";
-    #     src = pkgs.zsh-system-clipboard;
-    #     # name of the file needs to map to what is sourced in ~/.zhsrc
-    #     file = "share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh";
-    #   }
-    #   {
-    #     name = "you-should-use";
-    #     src = pkgs.zsh-you-should-use;
-    #     # name of the file needs to map to what is sourced in ~/.zhsrc
-    #     file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
-    #   }
-    #   {
-    #     name = "bd";
-    #     src = pkgs.zsh-bd;
-    #     # name of the file needs to map to what is sourced in ~/.zhsrc
-    #     file = "share/zsh-bd/bd.plugin.zsh";
-    #   }
-    # ];
+    plugins = [
+      {
+        name = "zsh-nix-shell";
+        src = pkgs.zsh-nix-shell;
+        # name of the file needs to map to what is sourced in ~/.zhsrc
+        file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
+      }
+      {
+        name = "nix-zsh-completions";
+        src = pkgs.nix-zsh-completions;
+        file = "share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
+      }
+      {
+        name = "zsh-autosuggestions";
+        src = pkgs.zsh-autosuggestions;
+        file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
+      }
+      {
+        name = "zsh-z";
+        src = pkgs.zsh-z;
+        file = "share/zsh-z/zsh-z.plugin.zsh";
+      }
+      {
+        name = "system-clipboard";
+        src = pkgs.zsh-system-clipboard;
+        # name of the file needs to map to what is sourced in ~/.zhsrc
+        file = "share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh";
+      }
+      {
+        name = "you-should-use";
+        src = pkgs.zsh-you-should-use;
+        # name of the file needs to map to what is sourced in ~/.zhsrc
+        file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
+      }
+      {
+        name = "bd";
+        src = pkgs.zsh-bd;
+        # name of the file needs to map to what is sourced in ~/.zhsrc
+        file = "share/zsh-bd/bd.plugin.zsh";
+      }
+    ];
   };
 }
