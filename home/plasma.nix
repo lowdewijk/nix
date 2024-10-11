@@ -1,10 +1,14 @@
-{
+{...}: let
+  wallpaper = ./wallpapers/nixos-wallpaper-catppuccin.png;
+in {
   programs.zsh.shellAliases = {
     logout = "qdbus org.kde.Shutdown /Shutdown org.kde.Shutdown.logout";
   };
 
   programs.plasma = {
     enable = true;
+
+    overrideConfig = true;
 
     workspace = {
       lookAndFeel = "Scratchy";
@@ -13,7 +17,7 @@
         size = 30;
       };
       iconTheme = "McMojave-circle";
-      wallpaper = ../wallpapers/nixos-wallpaper-catppuccin.png;
+      inherit wallpaper;
     };
 
     fonts = {
@@ -25,24 +29,53 @@
 
     startup.startupScript = {
       # start 1password to tray, so it can connect with the 1password cli and ssh agent
-      _1password.text = ''1password --silent'';
+      _1password = {
+        text = ''1password --silent > /dev/null 2>&1 &'';
+        # we run this script last, because somehow it messes up the other startup scripts
+        # this solution works, but it is not ideal
+        priority = 100;
+      };
+    };
+
+    input = {
+      keyboard = {
+        model = "pc105";
+        options = [
+          "altwin:meta_win"
+          "caps:disabled"
+        ];
+      };
     };
 
     panels = [
       {
         location = "top";
         floating = false;
-        hiding = "autohide";
         widgets = [
           {
-            iconTasks = {};
+            name = "org.kde.plasma.kickoff";
+            config.General.icon = "nix-snowflake-white";
+          }
+          {
+            name = "org.kde.plasma.icontasks";
+            config = {
+              General.launchers = [
+                "applications:kitty.desktop"
+                "applications:firefox.desktop"
+              ];
+            };
           }
           "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.systemmonitor.memory"
+          {
+            name = "org.kde.plasma.systemmonitor.cpucore";
+            config.Appearance.chartFace = "org.kde.ksysguard.linechart";
+            config.Appearance.title = "cpu does zoom";
+          }
           {
             systemTray.items = {
               shown = [
                 "org.kde.plasma.battery"
-                "org.kde.plasma.bluetooth"
                 "org.kde.plasma.volume"
                 "org.kde.plasma.networkmanagement"
               ];
@@ -78,6 +111,23 @@
           # `apply` defaults to "apply-initially"
           maximizehoriz = true;
           maximizevert = true;
+        };
+      }
+      {
+        description = "Kitty always fullscreen";
+        match = {
+          window-class = {
+            value = "kitty";
+            type = "exact";
+            match-whole = false;
+          };
+          window-types = ["normal"];
+        };
+        apply = {
+          fullscreen = {
+            value = true;
+            apply = "force";
+          };
         };
       }
     ];
@@ -267,18 +317,18 @@
       "kwin"."Window One Screen to the Left" = [];
       "kwin"."Window One Screen to the Right" = [];
       "kwin"."Window Operations Menu" = "Alt+F3";
-      "kwin"."Window Pack Down" = "Meta+Down";
-      "kwin"."Window Pack Left" = "Meta+Left";
-      "kwin"."Window Pack Right" = "Meta+Right";
-      "kwin"."Window Pack Up" = "Meta+Up";
-      "kwin"."Window Quick Tile Bottom" = "";
-      "kwin"."Window Quick Tile Bottom Left" = [];
-      "kwin"."Window Quick Tile Bottom Right" = [];
-      "kwin"."Window Quick Tile Left" = "";
-      "kwin"."Window Quick Tile Right" = "";
-      "kwin"."Window Quick Tile Top" = "";
-      "kwin"."Window Quick Tile Top Left" = [];
-      "kwin"."Window Quick Tile Top Right" = [];
+      "kwin"."Window Pack Down" = "";
+      "kwin"."Window Pack Left" = "";
+      "kwin"."Window Pack Right" = "";
+      "kwin"."Window Pack Up" = "";
+      "kwin"."Window Quick Tile Bottom" = "Meta+Down";
+      "kwin"."Window Quick Tile Bottom Left" = "Meta+Left+Down";
+      "kwin"."Window Quick Tile Bottom Right" = "Meta+Right+Down";
+      "kwin"."Window Quick Tile Left" = "Meta+Left";
+      "kwin"."Window Quick Tile Right" = "Meta+Right";
+      "kwin"."Window Quick Tile Top" = "Meta+Up";
+      "kwin"."Window Quick Tile Top Left" = "Meta+Left+Up";
+      "kwin"."Window Quick Tile Top Right" = "Meta+Right+Up";
       "kwin"."Window Raise" = [];
       "kwin"."Window Resize" = [];
       "kwin"."Window Shade" = [];
@@ -332,7 +382,7 @@
       "org.kde.konsole.desktop"."NewWindow" = [];
       "org.kde.konsole.desktop"."_launch" = "";
       "org.kde.krunner.desktop"."RunClipboard" = "";
-      "org.kde.krunner.desktop"."_launch" = "Meta+Space";
+      "org.kde.krunner.desktop"."_launch" = "Alt+Space";
       "org.kde.plasma.emojier.desktop"."_launch" = "";
       "org.kde.spectacle.desktop"."ActiveWindowScreenShot" = "Meta+Print";
       "org.kde.spectacle.desktop"."CurrentMonitorScreenShot" = [];
@@ -389,23 +439,8 @@
       "systemsettings.desktop"."screenlocker" = [];
     };
 
-    #
-    # Some low-level settings:
-    #
     configFile = {
       baloofilerc."Basic Settings"."Indexing-Enabled" = false;
-      kwinrc."org.kde.kdecoration2".ButtonsOnLeft = "SF";
-      kwinrc.Desktops.Number = {
-        value = 8;
-        # Forces kde to not change this value (even through the settings app).
-        immutable = true;
-      };
-      kscreenlockerrc = {
-        Greeter.WallpaperPlugin = "org.kde.potd";
-        # To use nested groups use / as a separator. In the below example,
-        # Provider will be added to [Greeter][Wallpaper][org.kde.potd][General].
-        "Greeter/Wallpaper/org.kde.potd/General".Provider = "bing";
-      };
     };
   };
 }

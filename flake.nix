@@ -17,7 +17,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     git-repo-sync = {
-      url = "github:oddity-ai/git-repo-sync/nixify";
+      url = "github:oddity-ai/git-repo-sync";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

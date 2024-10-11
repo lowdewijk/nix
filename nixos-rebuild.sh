@@ -23,8 +23,6 @@ sudo rm -rf /etc/nixos/system
 sudo cp -rf $SCRIPT_DIR/system /etc/nixos
 sudo rm -rf /etc/nixos/home
 sudo cp -rf $SCRIPT_DIR/home /etc/nixos
-sudo rm -rf /etc/nixos/wallpapers
-sudo cp -rf $SCRIPT_DIR/wallpapers /etc/nixos
 
 # Adding secrets to nixos from 1password
 # These files will be automatically cleaned once the script finished (see cleanup)
