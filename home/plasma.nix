@@ -30,7 +30,7 @@
 
     panels = [
       {
-        location = "left";
+        location = "top";
         floating = false;
         hiding = "autohide";
         widgets = [
@@ -42,6 +42,7 @@
             systemTray.items = {
               shown = [
                 "org.kde.plasma.battery"
+                "org.kde.plasma.bluetooth"
                 "org.kde.plasma.volume"
                 "org.kde.plasma.networkmanagement"
               ];
@@ -154,13 +155,13 @@
       "kmix"."mic_mute" = ["Microphone Mute" "Meta+Volume Mute"];
       "kmix"."mute" = "Volume Mute";
       "ksmserver"."Halt Without Confirmation" = [];
-      "ksmserver"."Lock Session" = ["Meta+L" "Screensaver"];
+      "ksmserver"."Lock Session" = ["Meta+Ctrl+l" "Screensaver"];
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
       "ksmserver"."Log Out Without Confirmation" = [];
       "ksmserver"."Reboot" = [];
-      "ksmserver"."Reboot Without Confirmation" = [];
+      "ksmserver"."Reboot Without Confirmation`" = [];
       "ksmserver"."Shut Down" = [];
-      "kwin"."Activate Window Demanding Attention" = "Meta+Ctrl+A";
+      "kwin"."Activate Window Demanding Attention" = "";
       "kwin"."Cycle Overview" = [];
       "kwin"."Cycle Overview Opposite" = [];
       "kwin"."Decrease Opacity" = [];
@@ -245,7 +246,7 @@
       "kwin"."Window Above Other Windows" = [];
       "kwin"."Window Below Other Windows" = [];
       "kwin"."Window Close" = "Alt+F4";
-      "kwin"."Window Fullscreen" = [];
+      "kwin"."Window Fullscreen" = "Meta+Enter";
       "kwin"."Window Grow Horizontal" = [];
       "kwin"."Window Grow Vertical" = [];
       "kwin"."Window Lower" = [];
@@ -266,10 +267,10 @@
       "kwin"."Window One Screen to the Left" = [];
       "kwin"."Window One Screen to the Right" = [];
       "kwin"."Window Operations Menu" = "Alt+F3";
-      "kwin"."Window Pack Down" = [];
-      "kwin"."Window Pack Left" = [];
-      "kwin"."Window Pack Right" = [];
-      "kwin"."Window Pack Up" = [];
+      "kwin"."Window Pack Down" = "Meta+Down";
+      "kwin"."Window Pack Left" = "Meta+Left";
+      "kwin"."Window Pack Right" = "Meta+Right";
+      "kwin"."Window Pack Up" = "Meta+Up";
       "kwin"."Window Quick Tile Bottom" = "";
       "kwin"."Window Quick Tile Bottom Left" = [];
       "kwin"."Window Quick Tile Bottom Right" = [];
@@ -331,7 +332,7 @@
       "org.kde.konsole.desktop"."NewWindow" = [];
       "org.kde.konsole.desktop"."_launch" = "";
       "org.kde.krunner.desktop"."RunClipboard" = "";
-      "org.kde.krunner.desktop"."_launch" = [];
+      "org.kde.krunner.desktop"."_launch" = "Meta+Space";
       "org.kde.plasma.emojier.desktop"."_launch" = "";
       "org.kde.spectacle.desktop"."ActiveWindowScreenShot" = "Meta+Print";
       "org.kde.spectacle.desktop"."CurrentMonitorScreenShot" = [];
