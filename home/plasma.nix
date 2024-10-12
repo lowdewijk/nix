@@ -8,8 +8,6 @@ in {
   programs.plasma = {
     enable = true;
 
-    overrideConfig = true;
-
     workspace = {
       lookAndFeel = "Scratchy";
       cursor = {
@@ -30,7 +28,7 @@ in {
     startup.startupScript = {
       # start 1password to tray, so it can connect with the 1password cli and ssh agent
       _1password = {
-        text = ''1password --silent > /dev/null 2>&1 &'';
+        text = ''setsid 1password --silent > /dev/null 2>&1'';
         # we run this script last, because somehow it messes up the other startup scripts
         # this solution works, but it is not ideal
         priority = 100;
