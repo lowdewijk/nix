@@ -17,6 +17,9 @@ in {
     # see ./lua/myconfig/formatters.lua and ./lua/myconfig/lspservers.lua
     # for making them known to neovim
     extraPackages = with pkgs; [
+      tree-sitter
+      gcc # treesitter needs gcc
+
       # Lua LSP
       lua5_1
       lua-language-server # LSP

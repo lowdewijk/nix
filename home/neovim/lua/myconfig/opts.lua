@@ -6,9 +6,6 @@ vim.g.have_nerd_font = true
 -- Enable mouse mode in 'a'll modes
 vim.opt.mouse = "a"
 
--- Sync clipboard between OS and Neovim.
-vim.opt.clipboard = "unnamedplus"
-
 -- Highlight cursor line
 vim.opt.cursorline = true
 
@@ -25,7 +22,7 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 -- Relative line numbers
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 -- They tell me about tabs vs spaces and help me
 vim.opt.list = true

@@ -1,6 +1,27 @@
 -- some helpers
 local all_modes = { "n", "i", "v", "s", "c" }
 
+-- Clipboard and registers
+-- delete single character without copying into register
+vim.keymap.set("n", "x", '"_x')
+
+-- keep last yanked when pasting in visual mode
+vim.keymap.set("v", "p", '"_dP')
+
+-- yank and paste from system clipboard
+vim.keymap.set({ "n", "v", "x" }, "<leader>y", function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('"+y', true, false, true), "n", false)
+  vim.notify("Yanked to clipboard!")
+end, { noremap = true, silent = true, desc = "Yank to clipboard" })
+vim.keymap.set({ "n", "v", "x" }, "<leader>yy", function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('"+yy', true, false, true), "n", false)
+  vim.notify("Yanked line to clipboard!")
+end, { noremap = true, silent = true, desc = "Yank line to clipboard" })
+vim.keymap.set({ "n", "v", "x" }, "<leader>p", function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('"+p', true, false, true), "n", false)
+  vim.notify("Paste from clipboard!")
+end, { noremap = true, silent = true, desc = "Paste from clipboard" })
+
 -- Reload neovim config keymap
 -- Be aware that this isn't perfect and sometimes a restart is needed
 vim.keymap.set("n", "<Leader>R", function()
