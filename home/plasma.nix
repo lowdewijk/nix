@@ -166,7 +166,7 @@ in {
         mode = "times";
         temperature = {
           day = 6500;
-          night = 4500;
+          night = 3200;
         };
         time = {
           morning = "07:00";

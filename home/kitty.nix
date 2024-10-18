@@ -23,6 +23,9 @@
       map ctrl+shift+v paste_from_clipboard
       map ctrl+shift+h open_url_with_hints
 
+      background_image ${./wallpapers/terminal-wallpaper.png}
+      background_image_layout scaled
+
       ## name:     Catppuccin-Mocha
       ## author:   Pocco81 (https://github.com/Pocco81)
       ## license:  MIT
