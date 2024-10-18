@@ -22,20 +22,9 @@
     matterhorn
     devenv
     fd # used by telescope
+    neofetch
 
     git-repo-sync
-
-    # used by treesitter
-    gcc
-
-    # used by neovim
-    tree-sitter
-    lua5_1
-    luarocks
-
-    neofetch
-    xsel # used by neovim and tmux
-    xclip # used by zsh-system-clipboard
 
     # archives
     zip

@@ -23,8 +23,6 @@
       gcm = "git commit -m";
       gp = "git push";
       cpv = "rsync --info=progress2 --human-readable --no-inc-recursive";
-      toclip = "xsel --clipboard";
-      fromclip = "xsel";
 
       # ask chatgpt a question
       # populates environment variables with 1password

@@ -1,9 +1,15 @@
-{...}: let
+{pkgs, ...}: let
   wallpaper = ./wallpapers/nixos-wallpaper-catppuccin.png;
 in {
   programs.zsh.shellAliases = {
     logout = "qdbus org.kde.Shutdown /Shutdown org.kde.Shutdown.logout";
+    toclip = "wl-copy";
+    fromclip = "wl-paste";
   };
+
+  home.packages = [
+    pkgs.wl-clipboard
+  ];
 
   programs.plasma = {
     enable = true;
@@ -48,7 +54,8 @@ in {
     panels = [
       {
         location = "top";
-        floating = false;
+        floating = true;
+        height = 38;
         widgets = [
           {
             name = "org.kde.plasma.kickoff";
@@ -133,10 +140,6 @@ in {
     powerdevil = {
       AC = {
         powerButtonAction = "lockScreen";
-        autoSuspend = {
-          action = "shutDown";
-          idleTimeout = 1000;
-        };
         turnOffDisplay = {
           idleTimeout = 1000;
           idleTimeoutWhenLocked = "immediately";
