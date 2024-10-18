@@ -105,6 +105,11 @@ vim.keymap.set("n", "<leader>F", function()
   end
 end, { desc = "Format current buffer" })
 
+-- Diagnostics
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
+vim.keymap.set("n", "g]", vim.diagnostic.goto_next)
+vim.keymap.set("n", "g[", vim.diagnostic.goto_prev)
+
 -- Notify
 -- Additionally to the normal escape behavior, clear the search messages (noh) and clear the notifications
 vim.keymap.set("", "<Esc>", "<ESC>:noh<CR>:lua require('notify').dismiss()<CR>", { silent = true })
