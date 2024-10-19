@@ -8,8 +8,6 @@
     ];
   };
 
-  hardware.opengl.enable = true;
-
   hardware = {
     graphics.enable = true;
 
@@ -19,7 +17,7 @@
       open = false;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       powerManagement = {
-        enable = false;
+        enable = true;
         finegrained = false;
       };
     };
