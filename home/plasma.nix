@@ -42,9 +42,10 @@
     input = {
       keyboard = {
         model = "pc105";
+        numlockOnStartup = "on";
         options = [
           "altwin:meta_win"
-          "caps:disabled"
+          "caps:escape"
         ];
       };
     };
