@@ -147,10 +147,10 @@ in {
       };
       battery = {
         powerButtonAction = "sleep";
-        whenSleepingEnter = "standbyThenHibernate";
+        whenSleepingEnter = "standby";
       };
       lowBattery = {
-        whenLaptopLidClosed = "hibernate";
+        whenLaptopLidClosed = "sleep";
       };
     };
 
