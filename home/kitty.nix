@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   programs.kitty = {
     enable = true;
     extraConfig = ''
@@ -25,6 +25,8 @@
 
       background_image ${./wallpapers/terminal-wallpaper.png}
       background_image_layout scaled
+
+      confirm_os_window_close 0
 
       ## name:     Catppuccin-Mocha
       ## author:   Pocco81 (https://github.com/Pocco81)
