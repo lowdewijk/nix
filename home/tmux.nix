@@ -43,6 +43,24 @@ in {
           set -g @catppuccin_window_current_text "#{window_name}"
         '';
       }
+      {
+        plugin = resurrect; # Used by tmux-continuum
+
+        extraConfig = ''
+          set -g @resurrect-capture-pane-contents 'on'
+          set -g @resurrect-pane-contents-area 'visible'
+          set -g @resurrect-strategy-nvim 'session'
+          set -g @resurrect-processes '~nvim'
+        '';
+      }
+      {
+        plugin = continuum;
+        extraConfig = ''
+          set -g @continuum-boot 'on'
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '1';
+        '';
+      }
     ];
     disableConfirmationPrompt = true;
     # Start windows and panes at 1, not 0

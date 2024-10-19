@@ -1,4 +1,8 @@
 {globals, ...}: {
+  home.username = globals.username;
+  home.homeDirectory = "/home/${globals.username}";
+  catppuccin.flavor = "mocha";
+
   imports = [
     ./kitty.nix
     ./ssh.nix
@@ -13,11 +17,6 @@
     ./aichat.nix
     ./neovim
   ];
-
-  home.username = globals.username;
-  home.homeDirectory = "/home/${globals.username}";
-
-  catppuccin.flavor = "mocha";
 
   # never change this
   home.stateVersion = "24.05";

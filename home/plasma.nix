@@ -1,6 +1,4 @@
-{pkgs, ...}: let
-  wallpaper = ./wallpapers/nixos-wallpaper-catppuccin.png;
-in {
+{pkgs, ...}: {
   programs.zsh.shellAliases = {
     logout = "qdbus org.kde.Shutdown /Shutdown org.kde.Shutdown.logout";
     toclip = "wl-copy";
@@ -21,7 +19,7 @@ in {
         size = 30;
       };
       iconTheme = "McMojave-circle";
-      inherit wallpaper;
+      wallpaper = ./wallpapers/wp1.png;
     };
 
     fonts = {
