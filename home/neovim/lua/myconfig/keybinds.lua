@@ -68,7 +68,7 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope neoclip<cr>", { desc = "Telescope help tags" })
 
 -- Neotree
-vim.keymap.set("n", "<C-e>", "<cmd>Neotree toggle<cr>", { desc = "Toggle file explorer" })
+vim.keymap.set("n", "<C-e>", "<cmd>Neotree toggle reveal<cr>", { desc = "Toggle file explorer" })
 
 -- Lsp
 

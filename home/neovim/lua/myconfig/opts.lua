@@ -39,10 +39,3 @@ vim.o.updatetime = 250
 
 -- Wait timeout for action after mapped key sequence
 vim.o.timeoutlen = 1000
-
-vim.cmd([[
-  highlight Normal guibg=none
-  highlight NonText guibg=none
-  highlight Normal ctermbg=none
-  highlight NonText ctermbg=none
-]])

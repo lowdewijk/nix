@@ -4,7 +4,10 @@ return {
   priority = 1000,
   lazy = false,
   config = function()
-    vim.g.catppuccin_flavour = "mocha"
+    require("catppuccin").setup({
+      flavour = "mocha",
+      transparent_background = true,
+    })
     vim.cmd("colorscheme catppuccin")
   end,
 }
