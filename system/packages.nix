@@ -8,7 +8,7 @@
     firefox
     zotero
     gimp
-    whatsapp-for-linux
+    zapzap
     vlc
     mattermost-desktop
   ];
