@@ -8,7 +8,6 @@
     ./packages.nix
     ./kde-plasma6.nix
     ./1password.nix
-    ./fonts.nix
     ./nvidia.nix
     ./nix-ld.nix
 
