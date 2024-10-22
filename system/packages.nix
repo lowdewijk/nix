@@ -11,6 +11,7 @@
     zapzap
     vlc
     mattermost-desktop
+    todoist-electron
   ];
   shellPackages = with pkgs; [
     neovim
