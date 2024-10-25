@@ -1,6 +1,8 @@
 -- some helpers
 local all_modes = { "n", "i", "v", "s", "c" }
 
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select entire buffer" })
+
 -- Clipboard and registers
 -- delete single character without copying into register
 vim.keymap.set("n", "x", '"_x')

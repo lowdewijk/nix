@@ -31,8 +31,10 @@ in {
       nixd # LSP
 
       # Python
-      nodejs # required by pyright
+      nodejs # required by pyright and prettier
       pyright
+
+      nodePackages.prettier
     ];
 
     # the only plugin that I need is lazy, because lazy will load the rest of the plugins

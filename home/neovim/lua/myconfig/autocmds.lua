@@ -12,6 +12,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function(args)
-    require("conform").format({ bufnr = args.buf })
+    local neoconf = require("neoconf")
+    local formatOnSave = neoconf.get("format-on-save") or true
+    if formatOnSave then
+      require("conform").format({ bufnr = args.buf })
+    end
   end,
 })
