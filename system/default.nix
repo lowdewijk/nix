@@ -41,6 +41,7 @@
         initrd /initrd.img-6.8.0-40-generic
       }
     '';
+    configurationLimit = 16;
   };
 
   networking.hostName = "nixos"; # Define your hostname.
