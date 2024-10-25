@@ -11,10 +11,17 @@
       switch = "~/nixos/nixos-rebuild.sh switch";
 
       v = "nvim";
+
       l = "eza -l --icons";
       ls = "eza";
       ll = "eza -l --icons";
-      tree = "eza --tree";
+      la = "eza -a --icons";
+      lla = "eza -al --icons";
+      lt = "eza -tree --icons";
+      ltl = "eza -tree -l --icons";
+
+      cd = "z";
+
       cat = "bat";
       ga = "git add -A";
       gs = "git status";
