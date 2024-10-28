@@ -18,7 +18,6 @@
     git
     wget
     eza
-    direnv
     aichat
     matterhorn
     devenv

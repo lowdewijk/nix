@@ -10,6 +10,7 @@
     ./zsh.nix
     ./starship.nix
     ./tmux.nix
+    ./direnv.nix
     ./bat.nix
     ./fzf.nix
     ./fonts.nix
