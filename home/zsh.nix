@@ -20,8 +20,6 @@
       lt = "eza -tree --icons";
       ltl = "eza -tree -l --icons";
 
-      cd = "z";
-
       cat = "bat";
       ga = "git add -A";
       gs = "git status";
