@@ -53,6 +53,10 @@
         neofetch
       fi
 
+      # makes backward behave the way you want it with respect to line breaks
+      # https://unix.stackexchange.com/questions/206853/setting-backspace-2-in-zsh-with-vi-bindings
+      bindkey -v '^?' backward-delete-char
+
       # run extra zshrc that is not managed by this project
       if [ -f "$HOME/.extra_zshrc" ]; then
         source "$HOME/.extra_zshrc"
