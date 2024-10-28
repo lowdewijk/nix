@@ -78,17 +78,19 @@ vim.keymap.set("n", "<C-e>", "<cmd>Neotree toggle reveal<cr>", { desc = "Toggle 
 -- if there is a language server active in the file
 local lsp_attach = function(_, bufnr)
   local opts = { buffer = bufnr }
-
-  vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-  vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-  vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-  vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-  vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-  vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-  vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
   vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
   vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
   vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+
+  -- use telescope for these commands
+  local ts = require("telescope.builtin")
+  vim.keymap.set("n", "gs", ts.lsp_document_symbols, {})
+  vim.keymap.set("n", "gw", ts.lsp_workspace_symbols, {})
+  vim.keymap.set("n", "gr", ts.lsp_references, {})
+  vim.keymap.set("n", "gd", ts.lsp_definitions, {})
+  vim.keymap.set("n", "gi", ts.lsp_implementations, {})
+  vim.keymap.set("n", "gt", ts.lsp_type_definitions, {})
 end
 
 require("lsp-zero").extend_lspconfig({
@@ -108,7 +110,8 @@ vim.keymap.set("n", "<leader>F", function()
 end, { desc = "Format current buffer" })
 
 -- Diagnostics
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
+local ts = require("telescope.builtin")
+vim.keymap.set("n", "<leader>q", ts.diagnostics, { desc = "Open diagnostic quickfix list" })
 vim.keymap.set("n", "g]", vim.diagnostic.goto_next)
 vim.keymap.set("n", "g[", vim.diagnostic.goto_prev)
 
