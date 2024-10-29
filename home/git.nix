@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  globals,
+  ...
+}: {
   programs.git = {
     enable = true;
-    userName = "Lodewijk Bogaards";
-    userEmail = "lodewijk.bogaards@gmail.com";
+    userName = globals.fullName;
+    userEmail = globals.email;
 
     package = pkgs.gitFull;
 

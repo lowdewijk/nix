@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  globals,
   ...
 }: {
   imports = [
@@ -68,9 +69,9 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.lobo = {
+  users.users.${globals.username} = {
     isNormalUser = true;
-    description = "lobo";
+    description = globals.username;
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
   };
@@ -80,6 +81,11 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # add myself as a trusted-user so devenv can manage its cache
+  nix.extraOptions = ''
+    trusted-users = root ${globals.username}
+  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
