@@ -27,6 +27,7 @@
       gc = "git commit";
       gcm = "git commit -m";
       gp = "git push";
+      gl = "git log";
       cpv = "rsync --info=progress2 --human-readable --no-inc-recursive";
 
       # ask chatgpt a question
