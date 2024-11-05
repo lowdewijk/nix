@@ -78,15 +78,11 @@ in {
       # Allow scrolling with mouse in panes
       set-option -g mouse on
 
-      # Bind new keys for splitting
+      # Bind new keys for splitting and open them on the current path
       unbind %
       unbind '"'
       bind % split-window -v -c "#{pane_current_path}"
       bind '"' split-window -h -c "#{pane_current_path}"
-
-      # Open new window on same path as current pane
-      bind c new-window -c "#{pane_current_path}"
-      unbind p
 
       # Fix visual mode
       bind -T copy-mode-vi v send -X begin-selection # 'v' to begin selection as in vim
