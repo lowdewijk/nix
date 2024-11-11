@@ -6,5 +6,6 @@ require("conform").setup({
     typescript = { "prettier" },
     javascriptreact = { "prettier" },
     javascript = { "prettier" },
+    python = { "ruff_format" },
   },
 })

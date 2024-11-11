@@ -33,6 +33,7 @@ in {
       # Python
       nodejs # required by pyright and prettier
       pyright
+      ruff
 
       nodePackages.prettier
     ];
