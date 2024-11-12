@@ -1,19 +1,19 @@
-{pkgs, ...}: let
-  # Got this from https://willhbr.net/2023/02/07/dismissable-popup-shell-in-tmux/
-  show_popup = pkgs.writeShellScriptBin "show_popup" ''
-    #!/bin/bash
-    session="_popup_$(tmux display -p '#S')"
-
-    if ! tmux has -t "$session" 2> /dev/null; then
-      session_id="$(tmux new-session -dP -s "$session" -F '#{session_id}' -c $1)"
-      tmux set-option -s -t "$session_id" key-table popup
-      tmux set-option -s -t "$session_id" status off
-      tmux set-option -s -t "$session_id" prefix None
-      session="$session_id"
-    fi
-
-    exec tmux attach -t "$session" -c $1 > /dev/null
-  '';
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  floax = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "floax";
+    version = "1.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "omerxx";
+      repo = "tmux-floax";
+      rev = "864ceb9372cb496eda704a40bb080846d3883634";
+      sha256 = "sha256-vG8UmqYXk4pCvOjoSBTtYb8iffdImmtgsLwgevTu8pI=";
+    };
+  };
 in {
   programs.tmux = {
     enable = true;
@@ -61,6 +61,13 @@ in {
           set -g @continuum-save-interval '1';
         '';
       }
+      {
+        plugin = floax;
+        extraConfig = ''
+          set -g @floax-bind '-n M-p'
+          set -g @floax-border-color 'blue'
+        '';
+      }
     ];
     disableConfirmationPrompt = true;
     # Start windows and panes at 1, not 0
@@ -87,13 +94,6 @@ in {
       # Fix visual mode
       bind -T copy-mode-vi v send -X begin-selection # 'v' to begin selection as in vim
       bind -T copy-mode-vi Escape send-keys -X cancel # escape to quit visual mode
-
-      # Popup (toggles on ALT-SHIFT-M)
-      # Got this from https://willhbr.net/2023/02/07/dismissable-popup-shell-in-tmux/
-      bind -n M-A display-popup -E ${show_popup}/bin/show_popup "#{pane_current_path}"
-      bind -T popup M-A detach
-      # This lets us do scrollback and search within the popup
-      bind -T popup C-[ copy-mode
 
       # position the status bar on top (so  it isn't in the way of neovim's statusbar)
       set-option -g status-position top
