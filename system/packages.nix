@@ -12,6 +12,9 @@
     vlc
     mattermost-desktop
     todoist-electron
+    discord
+    chromium
+    spotify
   ];
   shellPackages = with pkgs; [
     neovim
@@ -38,7 +41,6 @@
     yq-go # yaml processor https://github.com/mikefarah/yq
 
     # misc
-    cowsay
     file
     which
 
