@@ -10,11 +10,13 @@
     ./1password.nix
     ./nvidia.nix
     ./nix-ld.nix
+    ./docker.nix
 
     # automatically populated in nixos-rebuild.sh by 1password
     ./secret/wireguard.nix
   ];
 
+  # Which linux kernel to use
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Enable flake support
