@@ -6,6 +6,6 @@ return {
   },
   lazy = false,
   config = function()
-    require("refactoring").setup()
+    require("refactoring").setup({})
   end,
 }
