@@ -12,6 +12,8 @@
       # and this fixes it :shrug:
       nix_shell = {
         symbol = "Nix ";
+        impure_msg = "";
+        pure_msg = "";
       };
     };
   };
