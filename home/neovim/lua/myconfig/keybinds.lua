@@ -39,12 +39,9 @@ vim.keymap.set("n", "<Leader>R", function()
 end, { desc = "Reload neovim config" })
 
 vim.keymap.set(all_modes, "<C-s>", function()
-  vim.cmd.write()
-end, { desc = "Save current file" })
-vim.keymap.set(all_modes, "<leader>S", function()
   vim.cmd("wa")
   vim.notify("All buffers saved!", vim.log.levels.INFO)
-end, { desc = "Save all files" })
+end, { desc = "Save all buffers" })
 
 --Splitting panes keymaps
 vim.keymap.set("n", "<Leader>%", function()
@@ -139,3 +136,9 @@ end, { desc = "Toggle copilot auto-suggestion" })
 
 -- Lsp import (only works for pyright right now)
 vim.keymap.set("n", "<leader>a", require("lspimport").import, { noremap = true })
+
+-- Refactoring
+require("telescope").load_extension("refactoring")
+vim.keymap.set({ "n", "x" }, "<leader>rr", function()
+  require("telescope").extensions.refactoring.refactors()
+end)
