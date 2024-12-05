@@ -29,3 +29,21 @@ require("lspconfig")["lua_ls"].setup({
 require("lspconfig")["nixd"].setup({})
 
 require("lspconfig")["pyright"].setup({})
+
+require("lspconfig")["rust_analyzer"].setup({
+  settings = {
+    ["rust-analyzer"] = {
+      -- by default enable all features in LSP
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+        features = "all",
+      },
+      -- clippy
+      check = {
+        command = "clippy",
+      },
+    },
+  },
+})
