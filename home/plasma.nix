@@ -388,7 +388,7 @@
       "org.kde.spectacle.desktop"."CurrentMonitorScreenShot" = [];
       "org.kde.spectacle.desktop"."FullScreenScreenShot" = ["Print" "Shift+Print"];
       "org.kde.spectacle.desktop"."OpenWithoutScreenshot" = [];
-      "org.kde.spectacle.desktop"."RectangularRegionScreenShot" = [];
+      "org.kde.spectacle.desktop"."RectangularRegionScreenShot" = ["Alt+Print"];
       "org.kde.spectacle.desktop"."WindowUnderCursorScreenShot" = "";
       "org.kde.spectacle.desktop"."_launch" = [];
       "org_kde_powerdevil"."Decrease Keyboard Brightness" = "Keyboard Brightness Down";
