@@ -142,3 +142,6 @@ require("telescope").load_extension("refactoring")
 vim.keymap.set({ "n", "x" }, "<leader>rr", function()
   require("telescope").extensions.refactoring.refactors()
 end)
+
+-- Themery
+vim.keymap.set("n", "<leader>t", "<cmd>Themery<CR>", opts)
