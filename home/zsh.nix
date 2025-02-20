@@ -71,6 +71,8 @@
 
       # Don't use nano
       EDITOR = "nvim";
+
+      NIXPKGS_ALLOW_UNFREE = 1;
     };
     plugins = [
       {
