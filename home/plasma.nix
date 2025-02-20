@@ -441,6 +441,11 @@
 
     configFile = {
       baloofilerc."Basic Settings"."Indexing-Enabled" = false;
+
+      # these can be found in ~/.config/kdeglobals
+      kdeglobals = {
+        Sounds.Enable = false;
+      };
     };
   };
 }
