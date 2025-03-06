@@ -1,7 +1,6 @@
 {globals, ...}: {
   home.username = globals.username;
   home.homeDirectory = "/home/${globals.username}";
-  catppuccin.flavor = "mocha";
 
   imports = [
     ./kitty.nix
@@ -17,6 +16,8 @@
     ./plasma.nix
     ./aichat.nix
     ./neovim
+    ./fonts.nix
+    ./catppuccin.nix
   ];
 
   # never change this

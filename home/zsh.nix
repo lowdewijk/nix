@@ -97,12 +97,6 @@
         file = "share/zsh-z/zsh-z.plugin.zsh";
       }
       {
-        name = "system-clipboard";
-        src = pkgs.zsh-system-clipboard;
-        # name of the file needs to map to what is sourced in ~/.zhsrc
-        file = "share/zsh/zsh-system-clipboard/zsh-system-clipboard.zsh";
-      }
-      {
         name = "you-should-use";
         src = pkgs.zsh-you-should-use;
         # name of the file needs to map to what is sourced in ~/.zhsrc
