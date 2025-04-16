@@ -43,6 +43,7 @@
     # misc
     file
     which
+    ncdu # inspect diskspace
 
     btop # replacement of htop/nmon
     iotop # io monitoring
