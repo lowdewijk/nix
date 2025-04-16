@@ -28,7 +28,15 @@ require("lspconfig")["lua_ls"].setup({
 
 require("lspconfig")["nixd"].setup({})
 
-require("lspconfig")["pyright"].setup({})
+require("lspconfig")["pyright"].setup({
+  settings = {
+    python = {
+      analysis = {
+        diagnosticMode = "workspace",
+      },
+    },
+  },
+})
 
 require("lspconfig")["rust_analyzer"].setup({
   settings = {
