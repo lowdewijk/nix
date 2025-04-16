@@ -28,8 +28,6 @@ sudo cp -rf $SCRIPT_DIR/home /etc/nixos
 # These files will be automatically cleaned once the script finished (see cleanup)
 sudo mkdir -p /etc/nixos/home/secret
 sudo mkdir -p /etc/nixos/system/secret
-op read op://Personal/wireguard.nix/notesPlain | sudo tee /etc/nixos/system/secret/wireguard.nix > /dev/null
-op read op://Personal/extra_ssh_config.secret/notesPlain | sudo tee /etc/nixos/home/secret/extra_ssh_config.secret > /dev/null
 
 echo "Running rebuild..."
 sudo nixos-rebuild $@

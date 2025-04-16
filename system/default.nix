@@ -12,9 +12,6 @@
     ./nix-ld.nix
     ./docker.nix
     ./tailscale.nix
-
-    # automatically populated in nixos-rebuild.sh by 1password
-    ./secret/wireguard.nix
   ];
 
   # Which linux kernel to use
