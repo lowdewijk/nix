@@ -109,9 +109,26 @@ end, { desc = "Format current buffer" })
 
 -- Diagnostics
 local ts = require("telescope.builtin")
-vim.keymap.set("n", "<leader>q", ts.diagnostics, { desc = "Open diagnostic quickfix list" })
-vim.keymap.set("n", "g]", vim.diagnostic.goto_next)
-vim.keymap.set("n", "g[", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "<leader>qa", ts.diagnostics, { desc = "Open diagnostic quickfix list" })
+vim.keymap.set("n", "<leader>q", function()
+  ts.diagnostics({
+    severity = vim.diagnostic.severity.ERROR,
+    bufnr = nil, -- `nil` means search *all* buffers (workspace)
+  })
+end, { desc = "Telescope: workspace errors only" })
+vim.keymap.set("n", "g]", function()
+  vim.diagnostic.goto_next({
+    severity = vim.diagnostic.severity.ERROR,
+    wrap = false,
+  })
+end, { desc = "Next error" })
+
+vim.keymap.set("n", "g[", function()
+  vim.diagnostic.goto_prev({
+    severity = vim.diagnostic.severity.ERROR,
+    wrap = false,
+  })
+end, { desc = "Previous error" })
 
 -- Notify
 -- Additionally to the normal escape behavior, clear the search messages (noh) and clear the notifications
