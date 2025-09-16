@@ -4,7 +4,6 @@
 
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    syntaxHighlighting.catppuccin.enable = true;
     autocd = true;
 
     shellAliases = {
@@ -35,7 +34,7 @@
       q = "OPENAI_API_KEY=op://Personal/OpenAI/api-keys/terminal-api-key op run -- aichat";
     };
     completionInit = "autoload -U compinit && compinit -i";
-    initExtra = ''
+    initContent = ''
       # so tmux knows that it should start in this shell
       export SHELL=$(which zsh)
 

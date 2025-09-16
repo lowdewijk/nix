@@ -7,7 +7,6 @@ in {
     historyWidgetOptions = [
       "--layout reverse"
     ];
-    catppuccin.enable = true;
     tmux.enableShellIntegration = true;
 
     # CTRL-T opttions

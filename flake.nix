@@ -51,8 +51,8 @@
           home-manager.users.${globals.username} = {
             imports = [
               ./home
-              inputs.catppuccin.homeManagerModules.catppuccin
-              plasma-manager.homeManagerModules.plasma-manager
+              inputs.catppuccin.homeModules.catppuccin
+              plasma-manager.homeModules.plasma-manager
             ];
           };
           home-manager.extraSpecialArgs = specialArgs;

@@ -15,6 +15,8 @@
     discord
     chromium
     spotify
+    signal-desktop
+    zed-editor
   ];
   shellPackages = with pkgs; [
     neovim
@@ -22,11 +24,11 @@
     wget
     eza
     aichat
-    matterhorn
     devenv
     fd # used by telescope
     neofetch
     ffmpeg
+    sshfs
 
     git-repo-sync
 

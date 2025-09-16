@@ -3,7 +3,6 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    catppuccin.enable = true;
     settings = {
       add_newline = false;
       line_break.disabled = true;
@@ -14,6 +13,9 @@
         symbol = "Nix ";
         impure_msg = "";
         pure_msg = "";
+      };
+      aws = {
+        disabled = true;
       };
     };
   };
