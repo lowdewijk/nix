@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
             on_exit = function(job, return_val)
               if return_val == 0 then
                 if run.success_msg ~= nil then
-                  vim.notify(run.success_msg)
+                  vim.notify(string.format("%s: %s", command_name, run.success_msg))
                 else
                   vim.notify(string.format("Run on save finished: %s", vim.inspect(job:result())))
                 end

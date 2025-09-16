@@ -24,6 +24,9 @@ vim.keymap.set({ "n", "v", "x" }, "<leader>p", function()
   vim.notify("Paste from clipboard!")
 end, { noremap = true, silent = true, desc = "Paste from clipboard" })
 
+-- Reload file
+vim.keymap.set("n", "<leader>r", "<cmd>e!<cr>", { desc = "Reload current buffer from disk" })
+
 -- Reload neovim config keymap
 -- Be aware that this isn't perfect and sometimes a restart is needed
 vim.keymap.set("n", "<Leader>R", function()
