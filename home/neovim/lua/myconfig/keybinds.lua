@@ -154,9 +154,6 @@ vim.keymap.set("n", "<leader>C", function()
   end
 end, { desc = "Toggle copilot auto-suggestion" })
 
--- Lsp import (only works for pyright right now)
-vim.keymap.set("n", "<leader>a", require("lspimport").import, { noremap = true })
-
 -- Refactoring
 require("telescope").load_extension("refactoring")
 vim.keymap.set({ "n", "x" }, "<leader>rr", function()
