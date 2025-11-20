@@ -52,6 +52,7 @@
     xz
     unzip
     p7zip
+    slack
   ];
 in {
   environment.systemPackages = shellPackages ++ desktopPackages;
