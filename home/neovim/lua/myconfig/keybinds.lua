@@ -140,19 +140,34 @@ vim.keymap.set("", "<Esc>", "<ESC>:noh<CR>:lua require('notify').dismiss()<CR>",
 -- Copilot
 vim.keymap.set("n", "<leader>C", function()
   local copilot = require("copilot.suggestion")
-  local auto_trigger = copilot.auto_trigger
-  auto_trigger = not auto_trigger
+  local auto_trigger = not (vim.g.copilot_auto_trigger or false)
 
-  -- toggle global as well as on the local buffer
+  -- set global
+  vim.g.copilot_auto_trigger = auto_trigger
   copilot.auto_trigger = auto_trigger
+
+  -- sync with current buffer
   vim.b.copilot_suggestion_auto_trigger = auto_trigger
 
   if auto_trigger then
-    vim.notify("Copilot auto-suggestion on!", vim.log.INFO)
+    vim.notify("Copilot auto-suggestion ON (global)", vim.log.levels.INFO)
   else
-    vim.notify("Copilot auto-suggestion off!", vim.log.INFO)
+    vim.notify("Copilot auto-suggestion OFF (global)", vim.log.levels.INFO)
   end
-end, { desc = "Toggle copilot auto-suggestion" })
+end, { desc = "Toggle Copilot auto-suggestion globally" })
+
+vim.keymap.set("n", "<leader>co", function()
+  vim.cmd("CopilotChatOpen")
+end, { desc = "CopilotChatOpen" })
+
+-- ensure new buffers follow the global setting
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    if vim.g.copilot_auto_trigger ~= nil then
+      vim.b.copilot_suggestion_auto_trigger = vim.g.copilot_auto_trigger
+    end
+  end,
+})
 
 -- Refactoring
 require("telescope").load_extension("refactoring")
