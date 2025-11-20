@@ -10,11 +10,14 @@
       # somehow the nix symbol messes up the spacing on my zsh
       # and this fixes it :shrug:
       nix_shell = {
-        symbol = "Nix ";
+        format = "via [$symbol]($style)";
         impure_msg = "";
         pure_msg = "";
       };
       aws = {
+        disabled = true;
+      };
+      python = {
         disabled = true;
       };
     };
