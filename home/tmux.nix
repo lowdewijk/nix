@@ -3,18 +3,7 @@
   config,
   lib,
   ...
-}: let
-  floax = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "floax";
-    version = "1.0";
-    src = pkgs.fetchFromGitHub {
-      owner = "omerxx";
-      repo = "tmux-floax";
-      rev = "864ceb9372cb496eda704a40bb080846d3883634";
-      sha256 = "sha256-vG8UmqYXk4pCvOjoSBTtYb8iffdImmtgsLwgevTu8pI=";
-    };
-  };
-in {
+}: {
   programs.tmux = {
     enable = true;
     prefix = "C-Space";
@@ -62,7 +51,7 @@ in {
         '';
       }
       {
-        plugin = floax;
+        plugin = tmux-floax;
         extraConfig = ''
           set -g @floax-bind '-n M-p'
           set -g @floax-border-color 'blue'
