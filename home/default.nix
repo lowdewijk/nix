@@ -18,6 +18,7 @@
     ./neovim
     ./fonts.nix
     ./catppuccin.nix
+    ./mpv.nix
   ];
 
   # never change this
