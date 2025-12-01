@@ -28,15 +28,17 @@ require("lspconfig")["lua_ls"].setup({
 
 require("lspconfig")["nixd"].setup({})
 
-require("lspconfig")["pyright"].setup({
-  settings = {
-    python = {
-      analysis = {
-        diagnosticMode = "workspace",
+if vim.fn.executable("pyright") == 1 then
+  require("lspconfig")["pyright"].setup({
+    settings = {
+      python = {
+        analysis = {
+          diagnosticMode = "workspace",
+        },
       },
     },
-  },
-})
+  })
+end
 
 require("lspconfig")["rust_analyzer"].setup({
   settings = {

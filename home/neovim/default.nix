@@ -31,10 +31,9 @@ in {
       nixd # LSP
 
       # Python
-      nodejs # required by pyright and prettier
-      pyright
       ruff
 
+      nodejs # required by prettier
       nodePackages.prettier
     ];
 
