@@ -44,7 +44,6 @@
     iotop # io monitoring
     iftop # network monitoring
     pciutils # for inspecting hardware
-    glxinfo # for checking whether X-server is running hardware or software rendering
     lsof # list open files
     calc # calculate on the command line
     # archives
