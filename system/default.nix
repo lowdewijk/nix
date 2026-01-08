@@ -44,10 +44,11 @@
     configurationLimit = 2;
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "lobonixwork";
+    networkmanager.enable = true;
+    firewall.enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";

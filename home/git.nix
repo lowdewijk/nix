@@ -3,23 +3,27 @@
   globals,
   ...
 }: {
+  # Install and setup delta (https://github.com/dandavison/delta)
+  programs.delta = {
+    enable = true;
+    options = {
+      # See available themes with `delta --list-syntax-themes`
+      syntax-theme = "Solarized (dark)";
+    };
+    enableGitIntegration = true;
+  };
+
   programs.git = {
     enable = true;
-    userName = globals.fullName;
-    userEmail = globals.email;
 
     package = pkgs.gitFull;
 
-    # Install and setup delta (https://github.com/dandavison/delta)
-    delta = {
-      enable = true;
-      options = {
-        # See available themes with `delta --list-syntax-themes`
-        syntax-theme = "Solarized (dark)";
+    settings = {
+      user = {
+        name = globals.fullName;
+        email = globals.email;
       };
-    };
 
-    extraConfig = {
       init = {
         defaultBranch = "main";
       };
@@ -76,15 +80,5 @@
       "*.swp"
       ".direnv/"
     ];
-    aliases = {
-      s = "status";
-      a = "add";
-      A = "add -A .";
-      d = "diff";
-      p = "push";
-      unadd = "reset HEAD --";
-      c = "commit";
-      last = "log -1 HEAD";
-    };
   };
 }
