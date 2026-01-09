@@ -45,7 +45,7 @@
   };
 
   networking = {
-    hostName = "lobonixwork";
+    hostName = globals.hostName;
     networkmanager.enable = true;
     firewall.enable = true;
   };

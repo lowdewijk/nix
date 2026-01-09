@@ -38,7 +38,7 @@
       inherit globals;
     };
   in {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.${globals.hostName} = nixpkgs.lib.nixosSystem {
       specialArgs = specialArgs;
       modules = [
         ./system
