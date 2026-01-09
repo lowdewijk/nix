@@ -16,38 +16,23 @@
       {
         plugin = catppuccin;
         extraConfig = ''
-          # bottom right show the current working dir followed by the current command
-          set -g @catppuccin_status_modules_right "directory application date_time"
-          # bottom left show only the windows
-          set -g @catppuccin_status_modules_left "null"
+          # Catppuccin status line (official catppuccin/tmux)
+          set -g status-left-length 100
+          set -g status-right-length 100
+
+          # left: nothing (windows will still show via window-status)
+          set -g status-left ""
+
+          # right: directory, current command, time
+          set -g status-right "#{E:@catppuccin_status_directory}#{E:@catppuccin_status_application}#{E:@catppuccin_status_date_time}"
 
           # I just need to know that I am not making it too late :)
           set -g @catppuccin_date_time_text "%H:%M"
 
-          # set current running command to bottom right module
+          # set current running command to right module
           set -g @catppuccin_application_text "#{pane_current_command}"
 
-          # use window names for window texts on the bottom left
-          set -g @catppuccin_window_default_text "#{window_name}"
-          set -g @catppuccin_window_current_text "#{window_name}"
-        '';
-      }
-      {
-        plugin = resurrect; # Used by tmux-continuum
-
-        extraConfig = ''
-          set -g @resurrect-capture-pane-contents 'on'
-          set -g @resurrect-pane-contents-area 'visible'
-          set -g @resurrect-strategy-nvim 'session'
-          set -g @resurrect-processes '~nvim'
-        '';
-      }
-      {
-        plugin = continuum;
-        extraConfig = ''
-          set -g @continuum-boot 'on'
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '1';
+          set -g @catppuccin_window_text "#{window_name}"
         '';
       }
       {
