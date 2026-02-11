@@ -27,7 +27,7 @@
       gcm = "git commit -m";
       gp = "git push";
       gl = "git log";
-      cpv = "rsync --info=progress2 --human-readable --no-inc-recursive";
+      cpv = "rsync --info=progress2 --no-inc-recursive -ah";
 
       # ask chatgpt a question
       # populates environment variables with 1password

@@ -46,6 +46,7 @@
     pciutils # for inspecting hardware
     lsof # list open files
     calc # calculate on the command line
+    bc # more calcuate on the command line tooling
     # archives
     zip
     xz

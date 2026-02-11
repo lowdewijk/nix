@@ -305,7 +305,7 @@
       "kwin"."Window Maximize Vertical" = [];
       "kwin"."Window Minimize" = "Meta+PgDown";
       "kwin"."Window Move" = [];
-      "kwin"."Window Move Center" = [];
+      "kwin"."Window Move Center" = "Meta+Shift+c";
       "kwin"."Window No Border" = "";
       "kwin"."Window On All Desktops" = [];
       "kwin"."Window One Desktop Down" = "";

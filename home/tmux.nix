@@ -71,6 +71,9 @@
 
       # position the status bar on top (so  it isn't in the way of neovim's statusbar)
       set-option -g status-position top
+
+      # Make buffer size bigger (default = 2000)
+      set-option -g history-limit 5000
     '';
   };
 }
