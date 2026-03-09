@@ -19,6 +19,9 @@
     zed-editor
   ];
   shellPackages = with pkgs; [
+    dnslookup
+    dig
+    codex
     neovim
     git
     wget
