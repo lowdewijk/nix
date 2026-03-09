@@ -32,32 +32,37 @@
   } @ inputs: let
     system = "x86_64-linux";
     globals = import ./globals.nix;
-    specialArgs = {
-      # these variables will be available to all modules
-      git-repo-sync = git-repo-sync.packages.${system}.default;
-      inherit globals;
-    };
+    mkSystem = globalsKey: let
+      hostGlobals = globals.${globalsKey};
+      specialArgs = {
+        # these variables will be available to all modules
+        git-repo-sync = git-repo-sync.packages.${system}.default;
+        globals = hostGlobals;
+        hostName = globalsKey;
+      };
+    in
+      nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        modules = [
+          ./system
+          inputs.catppuccin.nixosModules.catppuccin
+          nix-ld.nixosModules.nix-ld
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = false;
+            home-manager.users.${hostGlobals.username} = {
+              imports = [
+                ./home
+                inputs.catppuccin.homeModules.catppuccin
+                plasma-manager.homeModules.plasma-manager
+              ];
+            };
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+        ];
+      };
   in {
-    nixosConfigurations.${globals.hostName} = nixpkgs.lib.nixosSystem {
-      specialArgs = specialArgs;
-      modules = [
-        ./system
-        inputs.catppuccin.nixosModules.catppuccin
-        nix-ld.nixosModules.nix-ld
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = false;
-          home-manager.users.${globals.username} = {
-            imports = [
-              ./home
-              inputs.catppuccin.homeModules.catppuccin
-              plasma-manager.homeModules.plasma-manager
-            ];
-          };
-          home-manager.extraSpecialArgs = specialArgs;
-        }
-      ];
-    };
+    nixosConfigurations = nixpkgs.lib.genAttrs (builtins.attrNames globals) mkSystem;
   };
 }

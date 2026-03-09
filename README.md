@@ -12,6 +12,25 @@ Current setup:
 
 Everything styled with Catppuccin.
 
+## After a fresh GUI install
+
+1) Clone this repo to `~/nixos` (or update `globals.nix` if you use a different path).
+2) Copy the new machine's hardware config:
+
+```bash
+sudo cp /etc/nixos/hardware-configuration.nix ~/nixos/hardware/asus-laptop.nix
+```
+
+3) Update host/user details in `globals.nix`.
+4) Rebuild from the repo:
+
+```bash
+cd ~/nixos
+./nixos-rebuild.sh switch --flake .#<hostName>
+```
+
+5) Reboot.
+
 
 ## What to do when /boot is full
 

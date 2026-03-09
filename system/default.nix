@@ -1,10 +1,11 @@
 {
   pkgs,
   globals,
+  hostName,
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
+    globals.hardwareConfig
     ./packages.nix
     ./kde-plasma6.nix
     ./1password.nix
@@ -45,7 +46,7 @@
   };
 
   networking = {
-    hostName = globals.hostName;
+    hostName = hostName;
     networkmanager.enable = true;
     firewall.enable = true;
   };
