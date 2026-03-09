@@ -6,7 +6,7 @@
     nixos_git_root = "/home/lobo/nixos";
     hardwareConfig = ./hardware/asus-laptop.nix;
   };
-  "hp-laptop" = {
+  "nixos" = {
     username = "lobo";
     email = "lodewijk.bogaards@gmail.com";
     fullName = "Lodewijk Bogaards";
