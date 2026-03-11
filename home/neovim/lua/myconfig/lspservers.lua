@@ -1,4 +1,4 @@
-require("lspconfig")["lua_ls"].setup({
+vim.lsp.config("lua_ls", {
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
@@ -26,10 +26,13 @@ require("lspconfig")["lua_ls"].setup({
   },
 })
 
-require("lspconfig")["nixd"].setup({})
+vim.lsp.enable("lua_ls")
+
+vim.lsp.config("nixd", {})
+vim.lsp.enable("nixd")
 
 if vim.fn.executable("pyright") == 1 then
-  require("lspconfig")["pyright"].setup({
+  vim.lsp.config("pyright", {
     settings = {
       python = {
         analysis = {
@@ -38,9 +41,10 @@ if vim.fn.executable("pyright") == 1 then
       },
     },
   })
+  vim.lsp.enable("pyright")
 end
 
-require("lspconfig")["rust_analyzer"].setup({
+vim.lsp.config("rust_analyzer", {
   settings = {
     ["rust-analyzer"] = {
       -- by default enable all features in LSP
@@ -57,3 +61,4 @@ require("lspconfig")["rust_analyzer"].setup({
     },
   },
 })
+vim.lsp.enable("rust_analyzer")

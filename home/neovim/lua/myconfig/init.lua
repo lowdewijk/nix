@@ -3,6 +3,15 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Compatibility shim for plugins expecting the old treesitter API.
+if vim.treesitter and vim.treesitter.language then
+  if not vim.treesitter.language.ft_to_lang and vim.treesitter.language.get_lang then
+    vim.treesitter.language.ft_to_lang = function(ft)
+      return vim.treesitter.language.get_lang(ft)
+    end
+  end
+end
+
 --------------------
 -- BOOTSTRAP LAZY --
 --------------------
