@@ -18,18 +18,21 @@ Everything styled with Catppuccin.
 2) Copy the new machine's hardware config:
 
 ```bash
-sudo cp /etc/nixos/hardware-configuration.nix ~/nixos/hardware/asus-laptop.nix
+sudo cp /etc/nixos/hardware-configuration.nix ~/nixos/hardware/mynewshiny-laptop.nix
 ```
 
-3) Update host/user details in `globals.nix`.
+3) Update host details in `globals.nix` to match the hardware and other config to the current hostname.
 4) Rebuild from the repo:
 
 ```bash
 cd ~/nixos
-./nixos-rebuild.sh switch --flake .#<hostName>
+./nixos-rebuild.sh switch --flake 
 ```
 
 5) Reboot.
+6) Change the remote of this repo to ssh.
+6) Enable SSH agent on 1Password
+7) Install 1Password on Firefox manually
 
 
 ## What to do when /boot is full

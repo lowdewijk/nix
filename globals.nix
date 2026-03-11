@@ -10,7 +10,7 @@
     username = "lobo";
     email = "lodewijk.bogaards@gmail.com";
     fullName = "Lodewijk Bogaards";
-    nixos_git_root = "/home/lobo/nixos";
+    nixos_git_root = "/home/lobo/nix";
     hardwareConfig = ./hardware/hp-laptop.nix;
   };
 }
