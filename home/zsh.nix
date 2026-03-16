@@ -45,12 +45,6 @@
       eval "$(starship init zsh)"
       eval "$(direnv hook zsh)"
 
-      # run neofetch the first time a console is started
-      LIVE_COUNTER=$(ps a | awk '{print $2}' | grep -vi -e "tty*" -e "?" | uniq | wc -l);
-      if [ $LIVE_COUNTER -eq 1 ]; then
-        neofetch
-      fi
-
       # makes backward behave the way you want it with respect to line breaks
       # https://unix.stackexchange.com/questions/206853/setting-backspace-2-in-zsh-with-vi-bindings
       bindkey -v '^?' backward-delete-char

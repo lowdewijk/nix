@@ -29,7 +29,6 @@
     aichat # prompt LLM on the command line
     devenv
     fd # used by telescope
-    neofetch
     ffmpeg
     sshfs # mount ssh disks
     nethogs # see what's eating up bandwidth

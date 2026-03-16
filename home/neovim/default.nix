@@ -42,7 +42,7 @@ in {
     plugins = [pkgs.vimPlugins.lazy-nvim];
 
     # see ./lua/myconfig/init.lua
-    extraLuaConfig = ''require("myconfig")'';
+    initLua = ''require("myconfig")'';
   };
 
   # symlink my git repo into the neovim conifg

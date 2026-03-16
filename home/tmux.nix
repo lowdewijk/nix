@@ -69,6 +69,10 @@
       bind -T copy-mode-vi v send -X begin-selection # 'v' to begin selection as in vim
       bind -T copy-mode-vi Escape send-keys -X cancel # escape to quit visual mode
 
+      # hotkey to create and delete sessions
+      bind C new-session
+      bind X confirm-before -p "Kill this session? (y/n)" kill-session
+
       # position the status bar on top (so  it isn't in the way of neovim's statusbar)
       set-option -g status-position top
 

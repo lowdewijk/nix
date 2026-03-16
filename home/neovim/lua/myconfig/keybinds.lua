@@ -30,19 +30,17 @@ vim.keymap.set("n", "<leader>r", function()
   vim.notify("All buffers reloaded from disk", vim.log.levels.INFO)
 end, { desc = "Reload all buffers from disk" })
 
--- Reload neovim config keymap
--- Be aware that this isn't perfect and sometimes a restart is needed
+-- Reload buffers and restart LSP (helps pyright pick up changes)
 vim.keymap.set("n", "<Leader>R", function()
-  -- unload myconfig packages
-  for name, _ in pairs(package.loaded) do
-    if name:match("^myconfig") then
-      package.loaded[name] = nil
-    end
+  vim.cmd("silent! bufdo e!")
+
+  local ok = pcall(vim.cmd, "LspRestart")
+  if not ok then
+    vim.notify("LspRestart not available", vim.log.levels.WARN)
   end
 
-  dofile(vim.env.MYVIMRC)
-  vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
-end, { desc = "Reload neovim config" })
+  vim.notify("All buffers reloaded from disk", vim.log.levels.INFO)
+end, { desc = "Reload buffers + restart LSP" })
 
 vim.keymap.set(all_modes, "<C-s>", function()
   vim.cmd("wa")
