@@ -9,7 +9,6 @@
     ./packages.nix
     ./kde-plasma6.nix
     ./1password.nix
-    ./nvidia.nix
     ./nix-ld.nix
     ./docker.nix
     ./tailscale.nix
