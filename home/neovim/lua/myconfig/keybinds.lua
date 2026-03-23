@@ -1,6 +1,55 @@
 -- some helpers
 local all_modes = { "n", "i", "v", "s", "c" }
 
+local function reload_listed_buffers(opts)
+  opts = opts or {}
+
+  local current_win = vim.api.nvim_get_current_win()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local current_view = vim.fn.winsaveview()
+  local reloaded = 0
+  local skipped_modified = 0
+
+  for _, info in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+    if info.changed == 1 then
+      skipped_modified = skipped_modified + 1
+    elseif info.name ~= "" then
+      local winid = vim.fn.bufwinid(info.bufnr)
+
+      if winid ~= -1 then
+        vim.api.nvim_win_call(winid, function()
+          vim.cmd("silent! keepalt keepjumps edit!")
+        end)
+        reloaded = reloaded + 1
+      else
+        vim.cmd(("silent! checktime %d"):format(info.bufnr))
+        reloaded = reloaded + 1
+      end
+    end
+  end
+
+  if vim.api.nvim_win_is_valid(current_win) then
+    vim.api.nvim_set_current_win(current_win)
+  end
+
+  if vim.api.nvim_buf_is_valid(current_buf) and vim.api.nvim_get_current_buf() == current_buf then
+    vim.fn.winrestview(current_view)
+  end
+
+  if opts.restart_lsp then
+    local ok = pcall(vim.cmd, "LspRestart")
+    if not ok then
+      vim.notify("LspRestart not available", vim.log.levels.WARN)
+    end
+  end
+
+  local message = ("Reloaded %d buffer(s) from disk"):format(reloaded)
+  if skipped_modified > 0 then
+    message = ("%s, skipped %d modified"):format(message, skipped_modified)
+  end
+  vim.notify(message, vim.log.levels.INFO)
+end
+
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select entire buffer" })
 
 -- Clipboard and registers
@@ -26,22 +75,10 @@ end, { noremap = true, silent = true, desc = "Paste from clipboard" })
 
 -- Reload buffers
 vim.keymap.set("n", "<leader>r", function()
-  vim.cmd("silent! bufdo e!")
-  vim.notify("All buffers reloaded from disk", vim.log.levels.INFO)
+  reload_listed_buffers()
 end, { desc = "Reload all buffers from disk" })
 
--- Reload buffers and restart LSP (helps pyright pick up changes)
-vim.keymap.set("n", "<Leader>R", function()
-  vim.cmd("silent! bufdo e!")
-
-  local ok = pcall(vim.cmd, "LspRestart")
-  if not ok then
-    vim.notify("LspRestart not available", vim.log.levels.WARN)
-  end
-
-  vim.notify("All buffers reloaded from disk", vim.log.levels.INFO)
-end, { desc = "Reload buffers + restart LSP" })
-
+-- Save all files
 vim.keymap.set(all_modes, "<C-s>", function()
   vim.cmd("wa")
   vim.notify("All buffers saved!", vim.log.levels.INFO)
