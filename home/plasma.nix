@@ -118,7 +118,7 @@
         };
       }
       {
-        description = "Kitty always fullscreen";
+        description = "Kitty always maximized";
         match = {
           window-class = {
             value = "kitty";
@@ -128,10 +128,8 @@
           window-types = ["normal"];
         };
         apply = {
-          fullscreen = {
-            value = true;
-            apply = "force";
-          };
+          maximizehoriz = true;
+          maximizevert = true;
         };
       }
     ];

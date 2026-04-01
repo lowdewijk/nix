@@ -32,6 +32,12 @@
       # ask chatgpt a question
       # populates environment variables with 1password
       q = "OPENAI_API_KEY=op://Personal/OpenAI/api-keys/terminal-api-key op run -- aichat";
+
+      tm = "ssh oddity@training-megaset";
+      t1 = "ssh oddity@training-1";
+      t2 = "ssh oddity@training-2";
+      t3 = "ssh oddity@training-3";
+      t4 = "ssh oddity@training-4";
     };
     completionInit = "autoload -U compinit && compinit -i";
     initContent = ''
