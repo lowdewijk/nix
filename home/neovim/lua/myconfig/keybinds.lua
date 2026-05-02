@@ -50,6 +50,76 @@ local function reload_listed_buffers(opts)
   vim.notify(message, vim.log.levels.INFO)
 end
 
+local function build_codex_prompt_context(context)
+  local path = context.relative_path
+  if path == "" then
+    path = context.path
+  end
+  if path == "" then
+    path = "[No Name]"
+  end
+
+  local cursor_line = context.cursor_pos[1]
+  local cursor_col = context.cursor_pos[2] + 1
+  local selection = "none"
+
+  if context.is_visual then
+    selection = ("%d:%d-%d:%d"):format(context.start_line, context.start_col, context.end_line, context.end_col)
+  end
+
+  return table.concat({
+    "<editor_context>",
+    ("file=%s"):format(path),
+    ("cursor=%d:%d"):format(cursor_line, cursor_col),
+    ("selection=%s"):format(selection),
+    "</editor_context>",
+  }, "\n")
+end
+
+local function open_codex_cli_prompt(opts)
+  opts = opts or {}
+
+  local input = require("codecompanion.interactions.shared.input")
+  local cli = require("codecompanion.interactions.cli")
+  local config = require("codecompanion.config")
+  local context_utils = require("codecompanion.utils.context")
+
+  local context = context_utils.get(vim.api.nvim_get_current_buf(), opts.args)
+
+  input.open({
+    title = " " .. config.display.input.title .. " ",
+    on_submit = function(text, submit_opts)
+      local prompt = build_codex_prompt_context(context)
+
+      if text ~= "" then
+        prompt = ("%s\n\n%s"):format(prompt, text)
+      end
+
+      local formatted = cli.resolve_editor_context(prompt, context)
+      if not submit_opts.bang and not formatted:match("\n$") then
+        formatted = formatted .. "\n"
+      end
+
+      local instance = cli.find_by_agent("codex") or cli.create({ agent = "codex" })
+
+      if not instance then
+        vim.notify("Could not create Codex CLI instance", vim.log.levels.ERROR)
+        return
+      end
+
+      if not instance.ui:is_visible() then
+        instance.ui:open()
+      end
+
+      instance:send(formatted, { submit = submit_opts.bang })
+
+      if not submit_opts.bang then
+        instance:focus()
+      end
+    end,
+  })
+end
+
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select entire buffer" })
 
 -- Clipboard and registers
@@ -175,15 +245,24 @@ end, { desc = "Previous error" })
 -- Additionally to the normal escape behavior, clear the search messages (noh) and clear the notifications
 vim.keymap.set("", "<Esc>", "<ESC>:noh<CR>:lua require('notify').dismiss()<CR>", { silent = true })
 
-vim.keymap.set({ "n", "v" }, "<leader>ca", function()
-  vim.cmd("CodeCompanionActions")
-end, { desc = "CodeCompanion actions" })
+vim.keymap.set("n", "<leader>cc", function()
+  open_codex_cli_prompt()
+end, { desc = "Open Codex CLI" })
 
-vim.keymap.set("n", "<leader>co", function()
-  vim.cmd("CodeCompanionChat Toggle")
-end, { desc = "Toggle CodeCompanion chat" })
+vim.keymap.set("v", "<leader>cc", function()
+  open_codex_cli_prompt({ args = { range = 2 } })
+end, { desc = "Prompt Codex CLI with selection" })
 
-vim.keymap.set("v", "<leader>cs", "<cmd>CodeCompanionChat Add<CR>", { desc = "Send selection to CodeCompanion chat" })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "codecompanion_cli",
+  callback = function(event)
+    vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], {
+      buffer = event.buf,
+      silent = true,
+      desc = "Exit terminal mode in CodeCompanion CLI",
+    })
+  end,
+})
 
 -- Refactoring
 require("telescope").load_extension("refactoring")
