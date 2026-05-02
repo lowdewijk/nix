@@ -58,6 +58,7 @@
     unzip
     p7zip
     slack
+    dvc
   ];
 in {
   environment.systemPackages = shellPackages ++ desktopPackages;
