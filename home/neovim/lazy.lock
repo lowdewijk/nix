@@ -1,11 +1,10 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "ecea24a9a067c6f176b8e13eb11251c739caf055" },
   "LuaSnip": { "branch": "master", "commit": "dae4f5aaa3574bd0c2b9dd20fb9542a02c10471c" },
   "alpha-nvim": { "branch": "main", "commit": "a9d8fb72213c8b461e791409e7feabb74eb6ce73" },
   "catppuccin": { "branch": "main", "commit": "12c004cde3f36cb1d57242f1e6aac46b09a0e5b4" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "cbc7b02bb99fae35cb42f514762b89b5126651ef" },
+  "codecompanion.nvim": { "branch": "main", "commit": "f70759ee8b63b46ea0cf158dc22daa2a5e9c6319" },
   "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
-  "copilot.lua": { "branch": "master", "commit": "575646d22e4a80758935e92f7be7e210c1ceb5bc" },
   "lsp-zero.nvim": { "branch": "v4.x", "commit": "d388e2b71834c826e61a3eba48caec53d7602510" },
   "lualine-macro-recording.nvim": { "branch": "main", "commit": "e2dcf63ba74e6111b53e1520a4f8a17a3d7427a1" },
   "lualine.nvim": { "branch": "master", "commit": "47f91c416daef12db467145e16bed5bbfe00add8" },

@@ -17,11 +17,13 @@
     spotify
     signal-desktop
     zed-editor
+    scribus
   ];
   shellPackages = with pkgs; [
     dnslookup
     dig
     codex
+    codex-acp
     neovim
     git
     wget

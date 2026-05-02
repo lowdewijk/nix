@@ -33,6 +33,7 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
+vim.o.autoread = true
 
 -- Decrease update time for snappiness
 vim.o.updatetime = 250

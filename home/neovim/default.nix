@@ -13,6 +13,9 @@ in {
     vimdiffAlias = true;
     viAlias = true;
 
+    withRuby = false;
+    withPython3 = false;
+
     # these packages will only be available to neovim
     # see ./lua/myconfig/formatters.lua and ./lua/myconfig/lspservers.lua
     # for making them known to neovim
@@ -33,8 +36,7 @@ in {
       # Python
       ruff
 
-      nodejs # required by prettier
-      nodePackages.prettier
+      prettier
     ];
 
     # the only plugin that I need is lazy, because lazy will load the rest of the plugins
