@@ -183,6 +183,8 @@ vim.keymap.set("n", "<leader>co", function()
   vim.cmd("CodeCompanionChat Toggle")
 end, { desc = "Toggle CodeCompanion chat" })
 
+vim.keymap.set("v", "<leader>cs", "<cmd>CodeCompanionChat Add<CR>", { desc = "Send selection to CodeCompanion chat" })
+
 -- Refactoring
 require("telescope").load_extension("refactoring")
 vim.keymap.set({ "n", "x" }, "<leader>rr", function()
