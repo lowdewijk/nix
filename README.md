@@ -34,6 +34,31 @@ cd ~/nixos
 6) Enable SSH agent on 1Password
 7) Install 1Password on Firefox manually
 
+## Google Drive mount
+
+This config includes a user service that mounts Google Drive at `~/GoogleDrive/veganfuture` with `rclone`.
+
+After rebuilding, authenticate `rclone` once:
+
+```bash
+rclone config
+```
+
+Create a remote named `veganfuture-gdrive`, pick `drive` as the storage type, and complete the Google login flow.
+
+Then start the mount without waiting for the next login:
+
+```bash
+systemctl --user daemon-reload
+systemctl --user start google-drive-mount.service
+```
+
+Check status with:
+
+```bash
+systemctl --user status google-drive-mount.service
+```
+
 
 ## What to do when /boot is full
 

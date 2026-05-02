@@ -30,6 +30,7 @@
     devenv
     fd # used by telescope
     ffmpeg
+    rclone
     sshfs # mount ssh disks
     nethogs # see what's eating up bandwidth
     htop # better top

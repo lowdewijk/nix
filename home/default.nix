@@ -3,6 +3,7 @@
   home.homeDirectory = "/home/${globals.username}";
 
   imports = [
+    ./google-drive.nix
     ./kitty.nix
     ./ssh.nix
     ./git.nix
