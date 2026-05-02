@@ -15,6 +15,7 @@
     ./fzf.nix
     ./fonts.nix
     ./plasma.nix
+    ./niri.nix
     ./aichat.nix
     ./neovim
     ./fonts.nix

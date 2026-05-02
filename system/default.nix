@@ -8,6 +8,7 @@
     globals.hardwareConfig
     ./packages.nix
     ./kde-plasma6.nix
+    ./niri.nix
     ./1password.nix
     ./nix-ld.nix
     ./docker.nix
