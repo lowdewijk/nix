@@ -5,6 +5,7 @@
   imports = [
     ./google-drive.nix
     ./kitty.nix
+    ./alacritty.nix
     ./ssh.nix
     ./git.nix
     ./zsh.nix

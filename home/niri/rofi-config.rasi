@@ -1,0 +1,78 @@
+configuration {
+  modi: "drun,run,window";
+  show-icons: true;
+  icon-theme: "Papirus-Dark";
+  display-drun: "apps";
+  display-run: "run";
+  display-window: "windows";
+  drun-display-format: "{name}";
+  font: "Hack Nerd Font 12";
+}
+
+* {
+  bg: #1e1e2e;
+  bg-alt: #313244;
+  fg: #cdd6f4;
+  selected: #89b4fa;
+  selected-fg: #1e1e2e;
+  urgent: #f38ba8;
+  border: #45475a;
+}
+
+window {
+  width: 42%;
+  location: north;
+  y-offset: 10%;
+  border: 2px;
+  border-color: @border;
+  border-radius: 18px;
+  background-color: @bg;
+  padding: 18px;
+}
+
+mainbox {
+  spacing: 12px;
+  children: [inputbar, listview];
+}
+
+inputbar {
+  background-color: @bg-alt;
+  border-radius: 12px;
+  padding: 10px 14px;
+  children: [prompt, entry];
+}
+
+prompt {
+  text-color: @selected;
+  margin: 0 10px 0 0;
+}
+
+entry {
+  text-color: @fg;
+  placeholder: "Search";
+  placeholder-color: #7f849c;
+}
+
+listview {
+  columns: 1;
+  lines: 10;
+  fixed-height: false;
+  scrollbar: false;
+  spacing: 6px;
+}
+
+element {
+  padding: 10px 12px;
+  border-radius: 12px;
+  text-color: @fg;
+  background-color: transparent;
+}
+
+element selected {
+  background-color: @selected;
+  text-color: @selected-fg;
+}
+
+element urgent {
+  text-color: @urgent;
+}
