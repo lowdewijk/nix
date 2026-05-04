@@ -1,6 +1,39 @@
 -- some helpers
 local all_modes = { "n", "i", "v", "s", "c" }
 
+local function tmux_navigate(direction)
+  vim.cmd("TmuxNavigate" .. direction)
+end
+
+local function tmux_navigate_terminal(direction)
+  local keys = vim.api.nvim_replace_termcodes([[<C-\><C-n>]], true, false, true)
+  vim.api.nvim_feedkeys(keys, "n", false)
+  tmux_navigate(direction)
+end
+
+local function set_codecompanion_navigation_keymaps(bufnr)
+  for lhs, direction in pairs({
+    ["<C-h>"] = "Left",
+    ["<C-j>"] = "Down",
+    ["<C-k>"] = "Up",
+    ["<C-l>"] = "Right",
+  }) do
+    vim.keymap.set({ "n", "i" }, lhs, function()
+      tmux_navigate(direction)
+    end, {
+      buffer = bufnr,
+      desc = "Navigate to " .. direction:lower() .. " pane",
+    })
+
+    vim.keymap.set("t", lhs, function()
+      tmux_navigate_terminal(direction)
+    end, {
+      buffer = bufnr,
+      desc = "Navigate to " .. direction:lower() .. " pane",
+    })
+  end
+end
+
 local function reload_listed_buffers(opts)
   opts = opts or {}
 
@@ -163,10 +196,24 @@ vim.keymap.set("n", '<Leader>"', function()
 end, { desc = "Split vertically" })
 
 -- Vim tmux navigator
-vim.keymap.set(all_modes, "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Navigate to left pane" })
-vim.keymap.set(all_modes, "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Navigate to pane below" })
-vim.keymap.set(all_modes, "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Navigate to pane above" })
-vim.keymap.set(all_modes, "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Navigate to right pane" })
+for lhs, direction in pairs({
+  ["<C-h>"] = "Left",
+  ["<C-j>"] = "Down",
+  ["<C-k>"] = "Up",
+  ["<C-l>"] = "Right",
+}) do
+  vim.keymap.set({ "n", "v", "s" }, lhs, function()
+    tmux_navigate(direction)
+  end, { desc = "Navigate to " .. direction:lower() .. " pane" })
+
+  vim.keymap.set("i", lhs, function()
+    tmux_navigate(direction)
+  end, { desc = "Navigate to " .. direction:lower() .. " pane" })
+
+  vim.keymap.set("t", lhs, function()
+    tmux_navigate_terminal(direction)
+  end, { desc = "Navigate to " .. direction:lower() .. " pane" })
+end
 
 -- Telescope
 local builtin = require("telescope.builtin")
@@ -254,8 +301,10 @@ vim.keymap.set("v", "<leader>cc", function()
 end, { desc = "Prompt Codex CLI with selection" })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "codecompanion_cli",
+  pattern = { "codecompanion_cli", "codecompanion_input" },
   callback = function(event)
+    set_codecompanion_navigation_keymaps(event.buf)
+
     vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], {
       buffer = event.buf,
       silent = true,
