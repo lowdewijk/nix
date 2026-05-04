@@ -5,6 +5,7 @@
 }: let
   desktopPackages = with pkgs; [
     kitty
+    alacritty
     firefox
     zotero
     gimp
@@ -23,7 +24,6 @@
     dnslookup
     dig
     codex
-    codex-acp
     neovim
     git
     wget
