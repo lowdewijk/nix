@@ -18,6 +18,8 @@
 
     package = pkgs.gitFull;
 
+    signing.format = "openpgp";
+
     settings = {
       user = {
         name = globals.fullName;
