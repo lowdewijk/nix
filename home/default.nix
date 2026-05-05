@@ -21,6 +21,7 @@
     ./neovim
     ./catppuccin.nix
     ./mpv.nix
+    ./noctalia.nix
   ];
 
   # never change this

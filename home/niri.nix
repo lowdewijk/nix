@@ -62,7 +62,6 @@
   '';
 in {
   home.packages = with pkgs; [
-    waybar
     rofi
     alacrittyHere
   ];
