@@ -19,12 +19,12 @@ input {
 layout {
     gaps 16
     border {
-        width 2
-        active-color "#89b4fa"
+        width 1
         inactive-color "#45475a"
+        urgent-color "#f38ba8"
     }
 
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.55; }
 
     preset-column-widths {
         proportion 0.33333
@@ -34,21 +34,34 @@ layout {
 }
 
 prefer-no-csd
+
+window-rule {
+    geometry-corner-radius 1
+    clip-to-geometry true
+}
+
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 spawn-at-startup "waybar"
 
 binds {
-    Mod+Return { spawn "alacritty"; }
+    Mod+Return { 
+      // Start alacritty and reuse the CWD of the current alacritty
+      // see niri.nix for the niri-alacritty-here script
+      spawn "niri-alacritty-here";
+    }
     Mod+D { spawn "rofi" "-show" "drun"; }
     Mod+Q { close-window; }
     Mod+Shift+E { quit; }
     Mod+F { fullscreen-window; }
+    Mod+Shift+F { maximize-column; }
+    Mod+O { toggle-overview; }
     Mod+Space { toggle-column-tabbed-display; }
+    Print { screenshot; }
 
     Mod+H { focus-column-left; }
-    Mod+J { focus-window-down; }
-    Mod+K { focus-window-up; }
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
     Mod+L { focus-column-right; }
 
     Mod+Shift+H { move-column-left; }
