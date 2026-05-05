@@ -30,7 +30,7 @@
     enable = true;
     device = "nodev";
     efiSupport = true;
-    configurationLimit = 8;
+    configurationLimit = 16;
   };
 
   networking = {
