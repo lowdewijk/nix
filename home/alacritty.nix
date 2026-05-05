@@ -1,12 +1,35 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: let
+  font = "Hack Nerd Font";
+in {
+  home.packages = [
+    pkgs.alacritty.terminfo
+  ];
+  home.sessionVariables.TERMINFO_DIRS = "${config.home.homeDirectory}/.nix-profile/share/terminfo";
   programs.alacritty = {
     enable = true;
     settings = {
-      env.TERM = "xterm-256color";
-
       font = {
-        normal.family = "Hack Nerd Font";
-        size = 11;
+        normal = {
+          family = font;
+          style = "Regular";
+        };
+        bold = {
+          family = font;
+          style = "Bold";
+        };
+        italic = {
+          family = font;
+          style = "Italic";
+        };
+        bold_italic = {
+          family = font;
+          style = "Bold Italic";
+        };
+        size = 10.0;
       };
 
       window = {

@@ -19,7 +19,6 @@
     ./niri.nix
     ./aichat.nix
     ./neovim
-    ./fonts.nix
     ./catppuccin.nix
     ./mpv.nix
   ];

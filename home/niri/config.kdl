@@ -39,7 +39,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 spawn-at-startup "waybar"
 
 binds {
-    Mod+Return { spawn "kitty"; }
+    Mod+Return { spawn "alacritty"; }
     Mod+D { spawn "rofi" "-show" "drun"; }
     Mod+Q { close-window; }
     Mod+Shift+E { quit; }
