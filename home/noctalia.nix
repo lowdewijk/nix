@@ -85,16 +85,6 @@ in {
               id = "Launcher";
             }
             {
-              id = "Clock";
-              formatHorizontal = "HH:mm ddd, MMM dd";
-              formatVertical = "HH mm";
-              useMonospacedFont = true;
-              usePrimaryColor = false;
-            }
-            {
-              id = "SystemMonitor";
-            }
-            {
               id = "ActiveWindow";
             }
             {
@@ -117,6 +107,13 @@ in {
             }
             {
               id = "Volume";
+            }
+            {
+              id = "Clock";
+              formatHorizontal = "HH:mm ddd, MMM dd";
+              formatVertical = "HH mm";
+              useMonospacedFont = true;
+              usePrimaryColor = false;
             }
             {
               id = "ControlCenter";
@@ -229,7 +226,7 @@ in {
         firstDayOfWeek = -1;
         hideWeatherTimezone = false;
         hideWeatherCityName = false;
-        autoLocate = true;
+        autoLocate = false;
       };
 
       calendar = {
