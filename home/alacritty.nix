@@ -4,6 +4,7 @@
   ...
 }: let
   font = "Hack Nerd Font";
+  palette = import ./catppuccin-mocha-palette.nix;
 in {
   home.packages = [
     pkgs.alacritty.terminfo
@@ -73,40 +74,40 @@ in {
 
       colors = {
         primary = {
-          background = "#1E1E2E";
-          foreground = "#CDD6F4";
+          background = palette.base;
+          foreground = palette.text;
         };
 
         cursor = {
-          cursor = "#F5E0DC";
-          text = "#1E1E2E";
+          cursor = palette.rosewater;
+          text = palette.base;
         };
 
         selection = {
-          background = "#F5E0DC";
-          text = "#1E1E2E";
+          background = palette.rosewater;
+          text = palette.base;
         };
 
         normal = {
-          black = "#45475A";
-          red = "#F38BA8";
-          green = "#A6E3A1";
-          yellow = "#F9E2AF";
-          blue = "#89B4FA";
-          magenta = "#F5C2E7";
-          cyan = "#94E2D5";
-          white = "#BAC2DE";
+          black = palette.surface1;
+          red = palette.red;
+          green = palette.green;
+          yellow = palette.yellow;
+          blue = palette.blue;
+          magenta = palette.pink;
+          cyan = palette.teal;
+          white = palette.subtext1;
         };
 
         bright = {
-          black = "#585B70";
-          red = "#F38BA8";
-          green = "#A6E3A1";
-          yellow = "#F9E2AF";
-          blue = "#89B4FA";
-          magenta = "#F5C2E7";
-          cyan = "#94E2D5";
-          white = "#A6ADC8";
+          black = palette.surface2;
+          red = palette.red;
+          green = palette.green;
+          yellow = palette.yellow;
+          blue = palette.blue;
+          magenta = palette.pink;
+          cyan = palette.teal;
+          white = palette.subtext0;
         };
       };
     };

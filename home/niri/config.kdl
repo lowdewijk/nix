@@ -52,7 +52,7 @@ layer-rule {
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "noctalia-shell"
 
 binds {
     Mod+Return { 
@@ -60,10 +60,11 @@ binds {
       // see niri.nix for the niri-alacritty-here script
       spawn "niri-alacritty-here";
     }
+    Mod+B { spawn "firefox"; }
     Mod+D { spawn "rofi" "-show" "drun"; }
-    Mod+S { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
-    Mod+W { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
-    Mod+Comma { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+    Mod+W { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
+    Mod+Comma { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
     Mod+Escape { spawn "loginctl" "lock-session"; }
     Mod+Q { close-window; }
     Mod+Shift+E { quit; }

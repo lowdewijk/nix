@@ -6,7 +6,6 @@
   desktopPackages = with pkgs; [
     kitty
     alacritty
-    firefox
     zotero
     gimp
     zapzap

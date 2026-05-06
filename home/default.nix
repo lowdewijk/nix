@@ -22,6 +22,7 @@
     ./catppuccin.nix
     ./mpv.nix
     ./noctalia.nix
+    ./firefox.nix
   ];
 
   # never change this
