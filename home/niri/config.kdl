@@ -62,15 +62,15 @@ binds {
     }
     Mod+B { spawn "firefox"; }
     Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+E { spawn "loginctl" "lock-session"; }
+    Mod+E { spawn "swaylock"; }
     Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
     Mod+W { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
     Mod+Comma { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
-    Mod+Escape { spawn "loginctl" "lock-session"; }
+    Mod+Escape { spawn "swaylock"; }
     Mod+Q { close-window; }
     Mod+Shift+E { quit; }
     Mod+F { fullscreen-window; }
-    Mod+Shift+F { maximize-column; }
+    Mod+M { maximize-column; }
     Mod+O { toggle-overview; }
     Mod+Space { toggle-column-tabbed-display; }
     Print { screenshot; }

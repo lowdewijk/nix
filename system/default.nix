@@ -7,6 +7,7 @@
   imports = [
     globals.hardwareConfig
     ./packages.nix
+    ./sddm.nix
     ./kde-plasma6.nix
     ./niri.nix
     ./1password.nix

@@ -63,6 +63,7 @@
 in {
   home.packages = with pkgs; [
     alacrittyHere
+    swaylock
   ];
 
   home.file.".config/niri/config.kdl".source = mkGitSymlink "/home/niri/config.kdl";
