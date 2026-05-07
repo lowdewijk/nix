@@ -306,7 +306,7 @@ in {
         position = "center";
         pinnedApps = [ ];
         sortByMostUsed = true;
-        terminalCommand = "alacritty -e";
+        terminalCommand = "ghostty -e";
         customLaunchPrefixEnabled = false;
         customLaunchPrefix = "";
         viewMode = "list";

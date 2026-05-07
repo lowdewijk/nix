@@ -53,20 +53,21 @@ layer-rule {
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 spawn-at-startup "noctalia-shell"
+spawn-at-startup "niri-start-1password"
 
 binds {
     Mod+Return { 
-      // Start alacritty and reuse the CWD of the current alacritty
-      // see niri.nix for the niri-alacritty-here script
-      spawn "niri-alacritty-here";
+      // Start Ghostty and reuse the CWD of the current Ghostty
+      // see niri.nix for the niri-ghostty-here script
+      spawn "niri-ghostty-here";
     }
     Mod+B { spawn "firefox"; }
     Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+E { spawn "swaylock"; }
+    Mod+E { spawn "niri-ghostty-here" "-e" "yazi"; }
     Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
     Mod+W { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
     Mod+Comma { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
-    Mod+Escape { spawn "swaylock"; }
+    Mod+Escape { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
     Mod+Q { close-window; }
     Mod+Shift+E { quit; }
     Mod+F { fullscreen-window; }

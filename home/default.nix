@@ -5,7 +5,7 @@
   imports = [
     ./google-drive.nix
     ./kitty.nix
-    ./alacritty.nix
+    ./ghostty.nix
     ./ssh.nix
     ./git.nix
     ./zsh.nix
@@ -14,6 +14,8 @@
     ./direnv.nix
     ./bat.nix
     ./fzf.nix
+    ./yazi.nix
+    ./xdg-mimeapps.nix
     ./fonts.nix
     ./plasma.nix
     ./niri.nix
