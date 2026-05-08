@@ -293,7 +293,17 @@ end, { desc = "Previous error" })
 vim.keymap.set("", "<Esc>", "<ESC>:noh<CR>:lua require('notify').dismiss()<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>cc", function()
-  open_codex_cli_prompt()
+  local cli = require("codecompanion.interactions.cli")
+  local instance = cli.find_by_agent("codex") or cli.create({ agent = "codex" })
+
+  if not instance then
+    vim.notify("Could not create Codex CLI instance", vim.log.levels.ERROR)
+    return
+  end
+
+  if not instance.ui:is_visible() then
+    instance.ui:open()
+  end
 end, { desc = "Open Codex CLI" })
 
 vim.keymap.set("v", "<leader>cc", function()

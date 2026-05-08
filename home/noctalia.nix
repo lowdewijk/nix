@@ -57,7 +57,7 @@ in {
       bar = {
         barType = "floating";
         position = "top";
-        monitors = [ ];
+        monitors = [];
         density = "compact";
         showOutline = false;
         showCapsule = true;
@@ -109,6 +109,9 @@ in {
               id = "Volume";
             }
             {
+              id = "Battery";
+            }
+            {
               id = "Clock";
               formatHorizontal = "HH:mm ddd, MMM dd";
               formatVertical = "HH mm";
@@ -132,7 +135,7 @@ in {
         rightClickAction = "controlCenter";
         rightClickFollowMouse = true;
         rightClickCommand = "";
-        screenOverrides = [ ];
+        screenOverrides = [];
         nightLight = {
           enabled = false;
           forced = false;
@@ -178,20 +181,20 @@ in {
         clockStyle = "custom";
         clockFormat = "hh\n mm";
         passwordChars = false;
-        lockScreenMonitors = [ ];
+        lockScreenMonitors = [];
         lockScreenBlur = 0;
         lockScreenTint = 0;
         keybinds = {
-          keyUp = [ "Up" ];
-          keyDown = [ "Down" ];
-          keyLeft = [ "Left" ];
-          keyRight = [ "Right" ];
+          keyUp = ["Up"];
+          keyDown = ["Down"];
+          keyLeft = ["Left"];
+          keyRight = ["Right"];
           keyEnter = [
             "Return"
             "Enter"
           ];
-          keyEscape = [ "Esc" ];
-          keyRemove = [ "Del" ];
+          keyEscape = ["Esc"];
+          keyRemove = ["Del"];
         };
         reverseScroll = false;
         smoothScrollEnabled = true;
@@ -250,7 +253,7 @@ in {
         enabled = true;
         overviewEnabled = false;
         directory = "";
-        monitorDirectories = [ ];
+        monitorDirectories = [];
         enableMultiMonitorDirectories = false;
         showHiddenFiles = false;
         viewMode = "single";
@@ -291,7 +294,7 @@ in {
         wallhavenResolutionWidth = "";
         wallhavenResolutionHeight = "";
         sortOrder = "name";
-        favorites = [ ];
+        favorites = [];
       };
 
       appLauncher = {
@@ -304,7 +307,7 @@ in {
         clipboardWatchTextCommand = "wl-paste --type text --watch cliphist store";
         clipboardWatchImageCommand = "wl-paste --type image --watch cliphist store";
         position = "center";
-        pinnedApps = [ ];
+        pinnedApps = [];
         sortByMostUsed = true;
         terminalCommand = "ghostty -e";
         customLaunchPrefixEnabled = false;
@@ -421,8 +424,8 @@ in {
         floatingRatio = 1;
         size = 1;
         onlySameOutput = true;
-        monitors = [ ];
-        pinnedApps = [ ];
+        monitors = [];
+        pinnedApps = [];
         colorizeIcons = false;
         showLauncherIcon = false;
         launcherPosition = "end";
@@ -506,7 +509,7 @@ in {
         enabled = true;
         enableMarkdown = false;
         density = "default";
-        monitors = [ ];
+        monitors = [];
         location = "top_right";
         overlayLayer = true;
         backgroundOpacity = 1;
@@ -545,7 +548,7 @@ in {
           1
           2
         ];
-        monitors = [ ];
+        monitors = [];
       };
 
       audio = {
@@ -554,7 +557,7 @@ in {
         spectrumFrameRate = 30;
         visualizerType = "linear";
         spectrumMirrored = true;
-        mprisBlacklist = [ ];
+        mprisBlacklist = [];
         preferredPlayer = "";
         volumeFeedback = false;
         volumeFeedbackSoundFile = "";
@@ -564,7 +567,7 @@ in {
         brightnessStep = 5;
         enforceMinimum = true;
         enableDdcSupport = false;
-        backlightDeviceMappings = [ ];
+        backlightDeviceMappings = [];
       };
 
       colorSchemes = {
@@ -641,7 +644,7 @@ in {
         overviewEnabled = true;
         gridSnap = false;
         gridSnapScale = false;
-        monitorWidgets = [ ];
+        monitorWidgets = [];
       };
     };
   };

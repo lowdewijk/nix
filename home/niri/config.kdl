@@ -76,6 +76,26 @@ binds {
     Mod+Space { toggle-column-tabbed-display; }
     Print { screenshot; }
 
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "noctalia-shell" "ipc" "call" "volume" "increase";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "noctalia-shell" "ipc" "call" "volume" "decrease";
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput";
+    }
+    XF86AudioMicMute allow-when-locked=true {
+        spawn "noctalia-shell" "ipc" "call" "volume" "muteInput";
+    }
+
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn "noctalia-shell" "ipc" "call" "brightness" "increase";
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn "noctalia-shell" "ipc" "call" "brightness" "decrease";
+    }
+
     Mod+H { focus-column-left; }
     Mod+J { focus-window-or-workspace-down; }
     Mod+K { focus-window-or-workspace-up; }
