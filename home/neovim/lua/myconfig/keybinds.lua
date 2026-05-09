@@ -69,13 +69,6 @@ local function reload_listed_buffers(opts)
     vim.fn.winrestview(current_view)
   end
 
-  if opts.restart_lsp then
-    local ok = pcall(vim.cmd, "LspRestart")
-    if not ok then
-      vim.notify("LspRestart not available", vim.log.levels.WARN)
-    end
-  end
-
   local message = ("Reloaded %d buffer(s) from disk"):format(reloaded)
   if skipped_modified > 0 then
     message = ("%s, skipped %d modified"):format(message, skipped_modified)
@@ -238,6 +231,9 @@ local lsp_attach = function(_, bufnr)
   vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
   vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
   vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+  vim.keymap.set("n", "<leader>L", function()
+    vim.cmd("lsp restart")
+  end, vim.tbl_extend("force", opts, { desc = "Restart LSP" }))
 
   -- use telescope for these commands
   local ts = require("telescope.builtin")
