@@ -299,7 +299,7 @@ in {
       };
 
       appLauncher = {
-        enableClipboardHistory = false;
+        enableClipboardHistory = true;
         autoPasteClipboard = false;
         enableClipPreview = true;
         clipboardWrapText = true;
@@ -417,7 +417,7 @@ in {
       };
 
       dock = {
-        enabled = true;
+        enabled = false;
         position = "bottom";
         displayMode = "auto_hide";
         dockType = "floating";
@@ -461,7 +461,7 @@ in {
 
       sessionMenu = {
         enableCountdown = true;
-        countdownDuration = 10000;
+        countdownDuration = 3000;
         position = "center";
         showHeader = true;
         showKeybinds = true;
@@ -576,8 +576,8 @@ in {
         predefinedScheme = "Catppuccin-Mocha";
         darkMode = true;
         schedulingMode = "off";
-        manualSunrise = "06:30";
-        manualSunset = "18:30";
+        manualSunrise = "07:30";
+        manualSunset = "19:00";
         generationMethod = "tonal-spot";
         monitorForColors = "";
         syncGsettings = true;

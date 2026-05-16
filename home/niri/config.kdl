@@ -56,14 +56,10 @@ spawn-at-startup "noctalia-shell"
 spawn-at-startup "niri-start-1password"
 
 binds {
-    Mod+Return { 
-      // Start Ghostty and reuse the CWD of the current Ghostty
-      // see niri.nix for the niri-ghostty-here script
-      spawn "niri-ghostty-here";
-    }
+    Mod+Return { spawn "ghostty"; }
     Mod+B { spawn "firefox"; }
     Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+E { spawn "niri-ghostty-here" "-e" "yazi"; }
+    Mod+E { spawn "ghostty" "-e" "yazi"; }
     Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
     Mod+W { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
     Mod+Comma { spawn "niri-name-workspace"; }

@@ -54,7 +54,7 @@
 
       # Load AI API keys from 1Password for interactive tools.
       if command -v op >/dev/null 2>&1; then
-        export OPENAI_API_KEY="$(op read 'op://Personal/OpenAI/api-keys/terminal-api-key' 2>/dev/null || true)"
+        export OPENAI_API_KEY="$(op read 'op://Personal/OpenAI/terminal-api-key' 2>/dev/null || true)"
         export CODEX_API_KEY="$OPENAI_API_KEY"
       fi
 

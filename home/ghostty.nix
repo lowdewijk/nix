@@ -2,9 +2,24 @@
   font = "Hack Nerd Font";
   palette = import ./catppuccin-mocha-palette.nix;
 in {
+  # This makes ctrl+shift+[ open Neovim with the current screen
+  xdg.desktopEntries.nvim = {
+    name = "Neovim";
+    exec = "${pkgs.ghostty}/bin/ghostty -e ${pkgs.neovim}/bin/nvim %f";
+    mimeType = ["text/plain"];
+    terminal = false;
+  };
+
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = ["nvim.desktop"];
+  };
+
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
+
+    clearDefaultKeybinds = true;
+
     settings = {
       "font-family" = font;
       "font-size" = 10;
@@ -12,6 +27,7 @@ in {
       "window-decoration" = "none";
       "window-theme" = "ghostty";
       "confirm-close-surface" = false;
+      "window-inherit-working-directory" = true;
 
       command = "direct:${pkgs.zsh}/bin/zsh --login";
       "shell-integration" = "zsh";
@@ -48,6 +64,7 @@ in {
         "ctrl+shift+zero=reset_font_size"
         "ctrl+shift+c=copy_to_clipboard"
         "ctrl+shift+v=paste_from_clipboard"
+        "ctrl+shift+[=write_screen_file:open,plain"
       ];
     };
   };
