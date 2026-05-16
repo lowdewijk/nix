@@ -22,12 +22,10 @@
   shellPackages = with pkgs; [
     dnslookup
     dig
-    llm-agents.codex
     neovim
     git
     wget
     eza
-    aichat # prompt LLM on the command line
     devenv
     fd # used by telescope
     ffmpeg

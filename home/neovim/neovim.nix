@@ -5,6 +5,7 @@
   ...
 }: let
   mkGitSymlink = git_path: config.lib.file.mkOutOfStoreSymlink (/. + "${globals.nixos_git_root}/${git_path}");
+  codexPackages = import ../codex/codex-packages.nix {inherit pkgs;};
 in {
   programs.neovim = {
     enable = true;
@@ -23,7 +24,7 @@ in {
       tree-sitter
       gcc # treesitter needs gcc
       gnumake # avante.nvim uses `make` to fetch/build its helper binary
-      llm-agents.codex-acp # Avante uses this ACP adapter to talk to Codex
+      codexPackages.codex-acp # Avante uses this ACP adapter to talk to Codex
 
       # Lua LSP
       lua5_1
