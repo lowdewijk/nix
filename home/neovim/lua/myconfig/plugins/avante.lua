@@ -17,19 +17,19 @@ return {
     },
   },
   opts = {
-    provider = "codex",
+    provider = "openai",
+    auto_suggestions_provider = "openai",
     behaviour = {
-      auto_approve_tool_permissions = false,
-      acp_follow_agent_locations = true,
+      auto_suggestions = true,
     },
-    acp_providers = {
-      codex = {
-        command = "codex-acp",
-        env = {
-          NODE_NO_WARNINGS = "1",
-          CODEX_API_KEY = os.getenv("CODEX_API_KEY"),
-          OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
-        },
+    mappings = {
+      suggestion = {
+        accept = "<Tab>",
+      },
+    },
+    providers = {
+      openai = {
+        model = "gpt-4o",
       },
     },
   },
