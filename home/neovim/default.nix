@@ -22,6 +22,8 @@ in {
     extraPackages = with pkgs; [
       tree-sitter
       gcc # treesitter needs gcc
+      gnumake # avante.nvim uses `make` to fetch/build its helper binary
+      llm-agents.codex-acp # Avante uses this ACP adapter to talk to Codex
 
       # Lua LSP
       lua5_1

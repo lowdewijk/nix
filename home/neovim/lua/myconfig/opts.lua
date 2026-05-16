@@ -1,4 +1,5 @@
 vim.opt.termguicolors = true
+vim.opt.laststatus = 3
 
 -- Nerd font
 vim.g.have_nerd_font = true

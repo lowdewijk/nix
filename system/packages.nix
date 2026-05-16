@@ -22,7 +22,7 @@
   shellPackages = with pkgs; [
     dnslookup
     dig
-    codex
+    llm-agents.codex
     neovim
     git
     wget

@@ -29,6 +29,9 @@
       url = "github:oddity-ai/git-repo-sync";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+    };
   };
 
   outputs = {
@@ -37,6 +40,7 @@
     nix-ld,
     plasma-manager,
     git-repo-sync,
+    llm-agents,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -53,6 +57,9 @@
       nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         modules = [
+          {
+            nixpkgs.overlays = [llm-agents.overlays.default];
+          }
           ./system
           inputs.catppuccin.nixosModules.catppuccin
           nix-ld.nixosModules.nix-ld

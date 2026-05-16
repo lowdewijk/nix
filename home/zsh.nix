@@ -32,8 +32,7 @@
       cpv = "rsync --info=progress2 --no-inc-recursive -ah";
 
       # ask chatgpt a question
-      # populates environment variables with 1password
-      q = "OPENAI_API_KEY=op://Personal/OpenAI/api-keys/terminal-api-key op run -- aichat";
+      q = "aichat";
 
       tm = "ssh oddity@training-megaset";
       t1 = "ssh oddity@training-1";
@@ -52,6 +51,12 @@
       # setup starship and direnv
       eval "$(starship init zsh)"
       eval "$(direnv hook zsh)"
+
+      # Load AI API keys from 1Password for interactive tools.
+      if command -v op >/dev/null 2>&1; then
+        export OPENAI_API_KEY="$(op read 'op://Personal/OpenAI/api-keys/terminal-api-key' 2>/dev/null || true)"
+        export CODEX_API_KEY="$OPENAI_API_KEY"
+      fi
 
       # makes backward behave the way you want it with respect to line breaks
       # https://unix.stackexchange.com/questions/206853/setting-backspace-2-in-zsh-with-vi-bindings
