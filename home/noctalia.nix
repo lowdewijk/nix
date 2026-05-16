@@ -95,7 +95,8 @@ in {
             {
               id = "Workspace";
               hideUnoccupied = false;
-              labelMode = "index";
+              labelMode = "name";
+              characterCount = 20;
             }
           ];
           right = [

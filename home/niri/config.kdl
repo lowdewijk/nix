@@ -66,9 +66,11 @@ binds {
     Mod+E { spawn "niri-ghostty-here" "-e" "yazi"; }
     Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
     Mod+W { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
-    Mod+Comma { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+    Mod+Comma { spawn "niri-name-workspace"; }
+    Mod+Shift+Comma { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
     Mod+Escape { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
     Mod+Q { close-window; }
+    Mod+Shift+Q { spawn "niri-kill-workspace"; }
     Mod+Shift+E { quit; }
     Mod+F { fullscreen-window; }
     Mod+M { maximize-column; }
