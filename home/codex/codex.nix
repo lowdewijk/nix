@@ -1,8 +1,6 @@
-{pkgs, ...}: let
-  codexPackages = import ./codex-packages.nix {inherit pkgs;};
-in {
+{pkgs, ...}: {
   home.packages = [
-    codexPackages.codex
-    codexPackages.codex-acp
+    pkgs.llm-agents.codex
+    pkgs.llm-agents.codex-acp
   ];
 }
