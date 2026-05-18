@@ -16,6 +16,14 @@ input {
     focus-follows-mouse
 }
 
+output "eDP-1" {
+    position x=0 y=0
+}
+
+output "HDMI-A-1" {
+    position x=1536 y=0
+}
+
 layout {
     gaps 16
     background-color "transparent"
