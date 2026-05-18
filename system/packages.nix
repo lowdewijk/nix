@@ -3,6 +3,16 @@
   git-repo-sync,
   ...
 }: let
+  zapzap = pkgs.symlinkJoin {
+    name = "zapzap-wayland";
+    paths = [pkgs.zapzap];
+    nativeBuildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      wrapProgram "$out/bin/zapzap" \
+        --set-default QT_QPA_PLATFORM "wayland;xcb"
+    '';
+  };
+
   desktopPackages = with pkgs; [
     kitty
     alacritty
