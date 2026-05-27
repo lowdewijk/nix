@@ -79,6 +79,7 @@ binds {
     Mod+F { fullscreen-window; }
     Mod+M { maximize-column; }
     Mod+O { toggle-overview; }
+    Mod+T { spawn "todoist-electron"; }
     Mod+Space { toggle-column-tabbed-display; }
     Print { screenshot; }
 
