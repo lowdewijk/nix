@@ -68,6 +68,7 @@ binds {
     Mod+B { spawn "firefox"; }
     Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+E { spawn "ghostty" "-e" "yazi"; }
+    Mod+N { spawn "ghostty" "--working-directory=/home/lobo/notes" "-e" "nvim"; }
     Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
     Mod+W { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
     Mod+Comma { spawn "niri-name-workspace"; }
