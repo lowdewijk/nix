@@ -66,7 +66,7 @@ spawn-at-startup "niri-start-1password"
 binds {
     Mod+Return { spawn "ghostty"; }
     Mod+B { spawn "firefox"; }
-    Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+E { spawn "ghostty" "-e" "yazi"; }
     Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
     Mod+W { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
@@ -80,7 +80,6 @@ binds {
     Mod+M { maximize-column; }
     Mod+O { toggle-overview; }
     Mod+T { spawn "todoist-electron"; }
-    Mod+Space { toggle-column-tabbed-display; }
     Print { screenshot; }
 
     XF86AudioRaiseVolume allow-when-locked=true {
