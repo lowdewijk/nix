@@ -26,8 +26,12 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/1password-x-password-manager/latest.xpi";
           installation_mode = "force_installed";
         };
-        "jid1-QoFqdK4qzUfGWQ@jetpack" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/adblock-plus/latest.xpi";
+        "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "everhour@everhour.com" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/everhour/latest.xpi";
           installation_mode = "force_installed";
         };
       };
