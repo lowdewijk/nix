@@ -31,7 +31,10 @@ vim.lsp.enable("lua_ls")
 vim.lsp.config("nixd", {})
 vim.lsp.enable("nixd")
 
-if vim.fn.executable("pyright") == 1 then
+if vim.fn.executable("pyrefly") == 1 then
+  vim.lsp.config("pyrefly", {})
+  vim.lsp.enable("pyrefly")
+elseif vim.fn.executable("pyright") == 1 then
   vim.lsp.config("pyright", {
     settings = {
       python = {

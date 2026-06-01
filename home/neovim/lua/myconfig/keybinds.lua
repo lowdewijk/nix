@@ -263,11 +263,15 @@ end, { desc = "Format current buffer" })
 
 -- Diagnostics
 local ts = require("telescope.builtin")
-vim.keymap.set("n", "<leader>qa", ts.diagnostics, { desc = "Open diagnostic quickfix list" })
+vim.keymap.set("n", "<leader>qa", function()
+  ts.diagnostics({
+    workspace = true,
+  })
+end, { desc = "Open workspace diagnostic list" })
 vim.keymap.set("n", "<leader>q", function()
   ts.diagnostics({
     severity = vim.diagnostic.severity.ERROR,
-    bufnr = nil, -- `nil` means search *all* buffers (workspace)
+    workspace = true,
   })
 end, { desc = "Telescope: workspace errors only" })
 vim.keymap.set("n", "g]", function()
