@@ -118,6 +118,15 @@
     };
   };
 
+  xdg.configFile."yazi/keymap.toml".text = ''
+    [mgr]
+
+    [[mgr.prepend_keymap]]
+    on = "i"
+    run = "spot"
+    desc = "Show file information"
+  '';
+
   home.packages = with pkgs; [
     ffmpegthumbnailer
     unar

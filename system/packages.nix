@@ -63,9 +63,11 @@
     zip
     xz
     unzip
+    unrar
     p7zip
     slack
     dvc
+    trash-cli
   ];
 in {
   environment.systemPackages = shellPackages ++ desktopPackages;
