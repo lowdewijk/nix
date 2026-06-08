@@ -113,6 +113,12 @@ binds {
     Mod+Shift+K { move-window-up; }
     Mod+Shift+L { move-column-right; }
 
+    Mod+Ctrl+Shift+H { move-workspace-to-monitor-left; }
+    Mod+Ctrl+Shift+L { move-workspace-to-monitor-right; }
+     
+    Mod+semicolon   { focus-monitor-left; }
+    Mod+apostrophe { focus-monitor-right; }
+
     Mod+Ctrl+H { set-column-width "-10%"; }
     Mod+Ctrl+L { set-column-width "+10%"; }
     Mod+Minus { set-window-height "-10%"; }
