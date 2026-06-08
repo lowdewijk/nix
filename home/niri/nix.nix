@@ -21,19 +21,23 @@
       exit 0
     fi
 
-    mapfile -t window_ids < <(
-      "$niri_bin" msg -j windows \
-        | "$jq_bin" -r --argjson workspace_id "$workspace_id" '.[] | select(.workspace_id == $workspace_id) | .id'
-    )
+    while true; do
+      window_id="$(
+        "$niri_bin" msg -j windows \
+          | "$jq_bin" -r --argjson workspace_id "$workspace_id" \
+            '.[] | select(.workspace_id == $workspace_id) | .id' \
+          | head -n1
+      )"
 
-    if [ "''${#window_ids[@]}" -eq 0 ]; then
-      exit 0
-    fi
+      if [ -z "$window_id" ] || [ "$window_id" = "null" ]; then
+        break
+      fi
 
-    for window_id in "''${window_ids[@]}"; do
       "$niri_bin" msg action focus-window --id "$window_id"
       "$niri_bin" msg action close-window
     done
+
+    "$niri_bin" msg action unset-workspace-name
   '';
   nameWorkspace = pkgs.writeShellScriptBin "niri-name-workspace" ''
     #!${pkgs.bash}/bin/bash
