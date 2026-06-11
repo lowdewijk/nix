@@ -8,7 +8,6 @@
     globals.hardwareConfig
     ./packages.nix
     ./sddm.nix
-    ./kde-plasma6.nix
     ./niri.nix
     ./1password.nix
     ./nix-ld.nix
@@ -25,6 +24,8 @@
   environment.variables = {
     EDITOR = "nvim";
   };
+
+  programs.xwayland.enable = true;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {

@@ -23,7 +23,6 @@
             map ctrl+shift+v paste_from_clipboard
             map ctrl+shift+h open_url_with_hints
 
-            background_image ${./wallpapers/terminal-wallpaper.png}
             background_image_layout scaled
       .
             confirm_os_window_close 0

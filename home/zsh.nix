@@ -30,6 +30,8 @@
       gwta = "git worktree add";
       gwtr = "git worktree remove";
       cpv = "rsync --info=progress2 --no-inc-recursive -ah";
+      toclip = "wl-copy";
+      fromclip = "wl-paste";
 
       tm = "ssh oddity@training-megaset";
       t1 = "ssh oddity@training-1";

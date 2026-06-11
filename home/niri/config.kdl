@@ -67,7 +67,7 @@ binds {
     Mod+Return { spawn "ghostty"; }
     Mod+B { spawn "firefox"; }
     Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+E { spawn "ghostty" "-e" "yazi"; }
+    Mod+E { spawn "ghostty-yazi-here"; }
     Mod+N { spawn "ghostty" "--working-directory=/home/lobo/notes" "-e" "nvim"; }
     Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
     Mod+W { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
@@ -113,11 +113,11 @@ binds {
     Mod+Shift+K { move-window-up; }
     Mod+Shift+L { move-column-right; }
 
-    Mod+Ctrl+Shift+H { move-workspace-to-monitor-left; }
-    Mod+Ctrl+Shift+L { move-workspace-to-monitor-right; }
      
     Mod+semicolon   { focus-monitor-left; }
     Mod+apostrophe { focus-monitor-right; }
+    Mod+Shift+semicolon { move-workspace-to-monitor-left; }
+    Mod+Shift+apostrophe { move-workspace-to-monitor-right; }
 
     Mod+Ctrl+H { set-column-width "-10%"; }
     Mod+Ctrl+L { set-column-width "+10%"; }

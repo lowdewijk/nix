@@ -21,7 +21,6 @@
     ./yazi.nix
     ./xdg-mimeapps.nix
     ./fonts.nix
-    ./plasma.nix
     ./niri/nix.nix
     ./neovim/neovim.nix
     ./catppuccin.nix
