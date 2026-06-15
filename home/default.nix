@@ -17,6 +17,7 @@
     ./codex/codex.nix
     ./direnv.nix
     ./bat.nix
+    ./desktop-entries.nix
     ./fzf.nix
     ./yazi.nix
     ./xdg-mimeapps.nix

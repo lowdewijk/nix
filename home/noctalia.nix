@@ -601,7 +601,7 @@ in {
         enabled = false;
         forced = false;
         autoSchedule = true;
-        nightTemp = "4000";
+        nightTemp = "2000";
         dayTemp = "6500";
         manualSunrise = "06:30";
         manualSunset = "18:30";
@@ -626,7 +626,7 @@ in {
       };
 
       idle = {
-        enabled = false;
+        enabled = true;
         screenOffTimeout = 600;
         lockTimeout = 660;
         suspendTimeout = 1800;
