@@ -66,7 +66,6 @@
     unrar
     p7zip
     slack
-    dvc
     trash-cli
   ];
 in {
