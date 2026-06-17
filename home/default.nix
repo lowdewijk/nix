@@ -1,7 +1,4 @@
-{
-  globals,
-  ...
-}: {
+{globals, ...}: {
   home.username = globals.username;
   home.homeDirectory = "/home/${globals.username}";
 
@@ -22,11 +19,11 @@
     ./yazi.nix
     ./xdg-mimeapps.nix
     ./fonts.nix
-    ./niri/nix.nix
+    ./niri/niri.nix
     ./neovim/neovim.nix
     ./catppuccin.nix
     ./mpv.nix
-    ./noctalia.nix
+    ./noctalia/noctalia.nix
     ./firefox.nix
   ];
 

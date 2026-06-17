@@ -1,5 +1,7 @@
 {
   catppuccin = {
+    enable = true;
+    autoEnable = false;
     flavor = "mocha";
     starship.enable = true;
     fzf.enable = true;

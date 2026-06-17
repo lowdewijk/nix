@@ -144,7 +144,7 @@ in {
     wl-clipboard
   ];
 
-  home.file.".config/niri/config.kdl".source = mkGitSymlink "/home/niri/config.kdl";
+  home.file.".config/niri/config.kdl".source = mkGitSymlink "/home/niri/niri-config.kdl";
   home.file.".config/waybar/config.jsonc".source = mkGitSymlink "/home/niri/waybar-config.jsonc";
   home.file.".config/waybar/style.css".source = mkGitSymlink "/home/niri/waybar-style.css";
 }

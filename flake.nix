@@ -20,15 +20,6 @@
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-    git-repo-sync = {
-      url = "github:oddity-ai/git-repo-sync";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
     };
@@ -38,8 +29,6 @@
     nixpkgs,
     home-manager,
     nix-ld,
-    plasma-manager,
-    git-repo-sync,
     llm-agents,
     ...
   } @ inputs: let
@@ -49,7 +38,6 @@
       hostGlobals = globals.${globalsKey};
       specialArgs = {
         # these variables will be available to all modules
-        git-repo-sync = git-repo-sync.packages.${system}.default;
         globals = hostGlobals;
         hostName = globalsKey;
       };
@@ -73,7 +61,6 @@
                 ./home
                 inputs.noctalia.homeModules.default
                 inputs.catppuccin.homeModules.catppuccin
-                plasma-manager.homeModules.plasma-manager
               ];
             };
             home-manager.extraSpecialArgs = specialArgs;

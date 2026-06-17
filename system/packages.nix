@@ -1,8 +1,4 @@
-{
-  pkgs,
-  git-repo-sync,
-  ...
-}: let
+{pkgs, ...}: let
   zapzap = pkgs.symlinkJoin {
     name = "zapzap-wayland";
     paths = [pkgs.zapzap];
@@ -26,7 +22,6 @@
     chromium
     spotify
     signal-desktop
-    zed-editor
     scribus
   ];
   shellPackages = with pkgs; [
@@ -44,7 +39,6 @@
     nethogs # see what's eating up bandwidth
     htop # better top
     colordiff # better diff
-    git-repo-sync
     ripgrep # recursively searches directories for a regex pattern
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq

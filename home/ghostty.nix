@@ -6,12 +6,32 @@ in {
   xdg.desktopEntries.nvim = {
     name = "Neovim";
     exec = "${pkgs.ghostty}/bin/ghostty -e ${pkgs.neovim}/bin/nvim %f";
-    mimeType = ["text/plain"];
+    mimeType = [
+      "text/plain"
+      "text/markdown"
+      "text/x-c"
+      "text/x-c++"
+      "text/x-chdr"
+      "text/x-c++hdr"
+      "text/x-java"
+      "text/x-python"
+      "text/x-rust"
+      "text/x-script.python"
+      "text/x-script.shell"
+      "text/x-shellscript"
+      "text/x-lua"
+      "text/x-nix"
+      "text/x-toml"
+      "text/x-yaml"
+      "text/x-log"
+      "application/json"
+      "application/toml"
+      "application/x-yaml"
+      "application/xml"
+      "application/javascript"
+      "application/x-sh"
+    ];
     terminal = false;
-  };
-
-  xdg.mimeApps.defaultApplications = {
-    "text/plain" = ["nvim.desktop"];
   };
 
   programs.ghostty = {

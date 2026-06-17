@@ -1,0 +1,114 @@
+[bar]
+order = ["widgets"]
+
+[bar.widgets]
+auto_hide = false
+background_opacity = 0.93
+capsule = true
+capsule_fill = "surface_variant"
+capsule_opacity = 1.0
+center = ["workspaces"]
+enabled = true
+end = ["tray", "network", "output_volume", "battery", "date", "control-center"]
+margin_edge = 4
+margin_ends = 4
+padding = 2
+position = "top"
+radius = 12
+radius_bottom_left = 12
+radius_bottom_right = 12
+radius_top_left = 12
+radius_top_right = 12
+reserve_space = true
+scale = 1.0
+shadow = true
+start = ["launcher", "active_window", "media"]
+thickness = 34
+widget_spacing = 6
+
+[location]
+address = "Amsterdam, NL"
+auto_locate = false
+
+[shell]
+font_family = "Hack Nerd Font"
+setup_wizard_enabled = false
+show_location = true
+telemetry_enabled = false
+
+[shell.animation]
+enabled = true
+speed = 1.0
+
+[shell.panel]
+borders = false
+control_center_placement = "attached"
+launcher_categories = true
+launcher_compact = false
+launcher_placement = "centered"
+launcher_session_search = true
+launcher_show_icons = true
+launcher_sort_by_usage = true
+open_near_click_control_center = false
+open_near_click_launcher = false
+open_near_click_session = false
+open_near_click_wallpaper = false
+session_placement = "attached"
+shadow = true
+transparency_mode = "solid"
+wallpaper_placement = "attached"
+
+[theme]
+builtin = "Noctalia"
+community_palette = ""
+custom_palette = "Catppuccin-Mocha"
+mode = "dark"
+source = "custom"
+wallpaper_scheme = "m3-content"
+
+[theme.templates]
+builtin_ids = []
+community_ids = []
+enable_builtin_templates = true
+enable_community_templates = true
+
+[wallpaper]
+directory = ""
+directory_dark = ""
+directory_light = ""
+enabled = true
+fill_color = ""
+fill_mode = "crop"
+per_monitor_directories = false
+transition = ["fade", "wipe", "disc", "stripes", "zoom", "honeycomb"]
+transition_duration = 1500.0
+transition_on_startup = false
+
+[wallpaper.automation]
+enabled = false
+interval_seconds = 300
+order = "random"
+recursive = true
+
+[weather]
+effects = true
+enabled = true
+unit = "metric"
+
+[widget.active_window]
+max_length = 145.0
+title_scroll = "none"
+type = "active_window"
+
+[widget.date]
+format = "{:%H:%M %a, %b %d}"
+type = "clock"
+
+[widget.media]
+max_length = 145.0
+title_scroll = "none"
+type = "media"
+
+[widget.output_volume]
+device = "output"
+type = "volume"

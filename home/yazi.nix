@@ -141,7 +141,6 @@
     chafa
     mediainfo
     mpv
-    qimgv
     wl-clipboard
   ];
 }

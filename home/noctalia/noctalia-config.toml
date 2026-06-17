@@ -1,0 +1,113 @@
+[bar]
+order = ["widgets"]
+
+[bar.widgets]
+position = "bottom"
+start = ["launcher", "active_window"]
+center = ["workspaces"]
+end = ["caffeine", "network", "output_volume", "battery", "date", "control-center"]
+auto_hide = false
+background_opacity = 0.93
+capsule = true
+capsule_fill = "surface_variant"
+capsule_opacity = 1.0
+enabled = true
+margin_edge = 4
+margin_ends = 4
+padding = 2
+radius = 12
+radius_bottom_left = 12
+radius_bottom_right = 12
+radius_top_left = 12
+radius_top_right = 12
+reserve_space = true
+scale = 1.0
+shadow = true
+thickness = 34
+widget_spacing = 6
+
+[location]
+address = "Amsterdam, NL"
+auto_locate = false
+sunset    = "20:30"
+sunrise   = "07:30"
+
+[shell]
+font_family = "Hack Nerd Font"
+setup_wizard_enabled = false
+show_location = true
+telemetry_enabled = false
+
+[shell.animation]
+enabled = true
+speed = 1.0
+
+[shell.panel]
+borders = false
+control_center_placement = "attached"
+launcher_categories = true
+launcher_compact = false
+launcher_placement = "centered"
+launcher_session_search = true
+launcher_show_icons = true
+launcher_sort_by_usage = true
+open_near_click_control_center = true
+open_near_click_launcher = false
+open_near_click_session = false
+open_near_click_wallpaper = false
+session_placement = "attached"
+wallpaper_placement = "attached"
+
+[theme]
+builtin = "Noctalia"
+community_palette = "Catppuccin Lavender"
+custom_palette = ""
+mode = "dark"
+source = "community"
+wallpaper_scheme = "m3-content"
+
+[theme.templates]
+builtin_ids = []
+community_ids = []
+enable_builtin_templates = true
+enable_community_templates = true
+
+[wallpaper.automation]
+enabled = false
+interval_seconds = 300
+order = "random"
+recursive = true
+
+[nightlight]
+enabled = true
+force =  false
+temperature_day   = 6500
+temperature_night = 3000
+
+[weather]
+effects = true
+enabled = true
+unit = "metric"
+
+[widget.active_window]
+max_length = 340
+title_scroll = "none"
+type = "active_window"
+
+[widget.date]
+format = "{:%H:%M %a, %b %d}"
+type = "clock"
+
+[widget.network]
+display_mode = "glyph"
+hide_when_no_connected_device = true
+type = "network"
+
+[widget.output_volume]
+device = "output"
+type = "volume"
+
+[widget.workspaces]
+display = "name"
+max_label_chars = 16
+

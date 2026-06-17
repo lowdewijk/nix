@@ -6,7 +6,7 @@
   home.packages = [pkgs.pywalfox-native];
 
   home.activation.installPywalfoxManifest = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    ${lib.getExe pkgs.pywalfox-native} install --browser firefox
+    ${lib.getExe pkgs.pywalfox-native} install
   '';
 
   programs.firefox = {

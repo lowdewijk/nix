@@ -60,20 +60,20 @@ layer-rule {
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-spawn-at-startup "noctalia-shell"
+spawn-at-startup "noctalia"
 spawn-at-startup "niri-start-1password"
 
 binds {
     Mod+Return { spawn "ghostty"; }
     Mod+B { spawn "firefox"; }
-    Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+Space { spawn "noctalia" "msg" "panel-open" "launcher"; }
     Mod+E { spawn "ghostty-yazi-here"; }
     Mod+N { spawn "ghostty" "--working-directory=/home/lobo/notes" "-e" "nvim"; }
-    Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
-    Mod+W { spawn "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
+    Mod+S { spawn "noctalia" "msg" "panel-open" "control-center"; }
+    Mod+W { spawn "noctalia" "msg" "panel-open" "wallpaper"; }
     Mod+Comma { spawn "niri-name-workspace"; }
-    Mod+Shift+Comma { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
-    Mod+Escape { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    Mod+Shift+Comma { spawn "noctalia" "msg" "settings-toggle"; }
+    Mod+Escape { spawn "noctalia" "msg" "session" "lock"; }
     Mod+Q { close-window; }
     Mod+Shift+Q { spawn "niri-kill-workspace"; }
     Mod+Shift+E { quit; }
@@ -84,23 +84,23 @@ binds {
     Print { screenshot; }
 
     XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "noctalia-shell" "ipc" "call" "volume" "increase";
+        spawn "noctalia" "msg" "volume-up";
     }
     XF86AudioLowerVolume allow-when-locked=true {
-        spawn "noctalia-shell" "ipc" "call" "volume" "decrease";
+        spawn "noctalia" "msg" "volume-down";
     }
     XF86AudioMute allow-when-locked=true {
-        spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput";
+        spawn "noctalia" "msg" "volume-mute";
     }
     XF86AudioMicMute allow-when-locked=true {
-        spawn "noctalia-shell" "ipc" "call" "volume" "muteInput";
+        spawn "noctalia" "msg" "mic-mute";
     }
 
     XF86MonBrightnessUp allow-when-locked=true {
-        spawn "noctalia-shell" "ipc" "call" "brightness" "increase";
+        spawn "noctalia" "msg" "brightness-up";
     }
     XF86MonBrightnessDown allow-when-locked=true {
-        spawn "noctalia-shell" "ipc" "call" "brightness" "decrease";
+        spawn "noctalia" "msg" "brightness-down";
     }
 
     Mod+H { focus-column-left; }

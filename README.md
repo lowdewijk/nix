@@ -4,13 +4,12 @@ This is my personal NixOS setup.
 
 Current setup:
 
- - Plasma
- - Kitty
- - Tmux
- - Neovim
+ - Niri + Noctalia
+ - Ghosttyy
+ - Neovim, Yazi
  - 1Password for secrets
 
-Everything styled with Catppuccin.
+Everything styled with Catppuccin-Mocha.
 
 ## After a fresh GUI install
 
