@@ -34,6 +34,16 @@
   } @ inputs: let
     system = "x86_64-linux";
     globals = import ./globals.nix;
+    localOverlay = import ./pkgs/overlay.nix;
+    mkPkgs = system:
+      import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          llm-agents.overlays.default
+          localOverlay
+        ];
+      };
     mkSystem = globalsKey: let
       hostGlobals = globals.${globalsKey};
       specialArgs = {
@@ -46,7 +56,10 @@
         specialArgs = specialArgs;
         modules = [
           {
-            nixpkgs.overlays = [llm-agents.overlays.default];
+            nixpkgs.overlays = [
+              llm-agents.overlays.default
+              localOverlay
+            ];
           }
           ./system
           inputs.catppuccin.nixosModules.catppuccin
@@ -69,5 +82,12 @@
       };
   in {
     nixosConfigurations = nixpkgs.lib.genAttrs (builtins.attrNames globals) mkSystem;
+    overlays.default = localOverlay;
+    packages.${system} = let
+      pkgs = mkPkgs system;
+    in {
+      inherit (pkgs) videoduplicatefinder-cli;
+      default = pkgs.videoduplicatefinder-cli;
+    };
   };
 }

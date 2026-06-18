@@ -9,15 +9,17 @@ if [ $# -eq 0 ]; then
 fi
 
 echo "Copying nix files from $SCRIPT_DIR to /etc/nixos..."
-sudo cp -f $SCRIPT_DIR/flake.nix /etc/nixos
-sudo cp -f $SCRIPT_DIR/globals.nix /etc/nixos
-sudo cp -f $SCRIPT_DIR/flake.lock /etc/nixos
+sudo cp -f "$SCRIPT_DIR/flake.nix" /etc/nixos
+sudo cp -f "$SCRIPT_DIR/globals.nix" /etc/nixos
+sudo cp -f "$SCRIPT_DIR/flake.lock" /etc/nixos
 sudo rm -rf /etc/nixos/hardware
-sudo cp -rf $SCRIPT_DIR/hardware /etc/nixos
+sudo cp -rf "$SCRIPT_DIR/hardware" /etc/nixos
 sudo rm -rf /etc/nixos/system
-sudo cp -rf $SCRIPT_DIR/system /etc/nixos
+sudo cp -rf "$SCRIPT_DIR/system" /etc/nixos
 sudo rm -rf /etc/nixos/home
-sudo cp -rf $SCRIPT_DIR/home /etc/nixos
+sudo cp -rf "$SCRIPT_DIR/home" /etc/nixos
+sudo rm -rf /etc/nixos/pkgs
+sudo cp -rf "$SCRIPT_DIR/pkgs" /etc/nixos
 
 echo "Running rebuild..."
 sudo nixos-rebuild $@
