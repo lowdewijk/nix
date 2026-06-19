@@ -24,8 +24,7 @@ sudo cp /etc/nixos/hardware-configuration.nix ~/nixos/hardware/mynewshiny-laptop
 4) Rebuild from the repo:
 
 ```bash
-cd ~/nixos
-./nixos-rebuild.sh switch --flake 
+sudo nixos-rebuild switch --flake /home/lobo/nix
 ```
 
 5) Reboot.

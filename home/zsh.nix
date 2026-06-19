@@ -7,7 +7,8 @@
     autocd = true;
 
     shellAliases = {
-      switch = "~/nixos/nixos-rebuild.sh switch";
+      switch = "nixos-rebuild switch --flake /home/lobo/nix#nixos";
+      boot = "onixos-rebuild boot --flake /home/lobo/nix#nixos";
 
       v = "nvim";
 

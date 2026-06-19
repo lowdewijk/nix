@@ -14,6 +14,7 @@
     ./nix-ld.nix
     ./docker.nix
     ./tailscale.nix
+    ./security.nix
   ];
 
   # Which linux kernel to use
