@@ -74,7 +74,7 @@ binds {
     Mod+Comma { spawn "niri-name-workspace"; }
     Mod+Shift+Comma { spawn "noctalia" "msg" "settings-toggle"; }
     Mod+Escape { spawn "noctalia" "msg" "session" "lock"; }
-    Mod+Q { close-window; }
+    Mod+Q repeat=false { close-window; }
     Mod+Shift+Q { spawn "niri-kill-workspace"; }
     Mod+Shift+E { quit; }
     Mod+F { fullscreen-window; }
@@ -119,10 +119,10 @@ binds {
     Mod+Shift+semicolon { move-workspace-to-monitor-left; }
     Mod+Shift+apostrophe { move-workspace-to-monitor-right; }
 
-    Mod+Ctrl+H { set-column-width "-10%"; }
-    Mod+Ctrl+L { set-column-width "+10%"; }
-    Mod+Minus { set-window-height "-10%"; }
-    Mod+Equal { set-window-height "+10%"; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
