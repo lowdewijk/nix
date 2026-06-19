@@ -1,0 +1,6 @@
+[mgr]
+
+[[mgr.prepend_keymap]]
+on = "i"
+run = "spot"
+desc = "Show file information"
