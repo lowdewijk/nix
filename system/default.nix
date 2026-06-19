@@ -8,6 +8,7 @@
     globals.hardwareConfig
     ./packages.nix
     ./sddm.nix
+    ./fonts.nix
     ./niri.nix
     ./1password.nix
     ./nix-ld.nix

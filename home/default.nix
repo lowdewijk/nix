@@ -16,9 +16,8 @@
     ./bat.nix
     ./desktop-entries.nix
     ./fzf.nix
-    ./yazi.nix
+    ./yazi/yazi.nix
     ./xdg-mimeapps.nix
-    ./fonts.nix
     ./niri/niri.nix
     ./neovim/neovim.nix
     ./catppuccin.nix
