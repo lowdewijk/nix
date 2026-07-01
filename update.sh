@@ -76,3 +76,4 @@ require_cmd nix
 require_cmd sed
 
 pin_github_input_urls
+nix flake update

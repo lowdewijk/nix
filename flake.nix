@@ -5,14 +5,14 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/5816b6e9f5d9cb81ec9a1313497caae83c53d3a6";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/5816b6e9f5d9cb81ec9a1313497caae83c53d3a6";
+    nixpkgs.url = "github:NixOS/nixpkgs/32d7d366313675be94ab24e32860fa4dc1c742b4";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/32d7d366313675be94ab24e32860fa4dc1c742b4";
     home-manager = {
       url = "github:nix-community/home-manager/7664e05e2413d5e2b8c54a884eb8ea0f8a504fc2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/faebcd38b26dc949dc4433e59474b04200ffc78b";
+      url = "github:noctalia-dev/noctalia-shell/b2009681f7ecee2cc9c9a71a7b47f923a3b78e04";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix/036c78ea4cd8a42c8546c6316a944fd7d59d4341";
