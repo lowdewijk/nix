@@ -5,23 +5,23 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/5816b6e9f5d9cb81ec9a1313497caae83c53d3a6";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/5816b6e9f5d9cb81ec9a1313497caae83c53d3a6";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/7664e05e2413d5e2b8c54a884eb8ea0f8a504fc2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell/faebcd38b26dc949dc4433e59474b04200ffc78b";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix/036c78ea4cd8a42c8546c6316a944fd7d59d4341";
     nix-ld = {
-      url = "github:Mic92/nix-ld";
+      url = "github:Mic92/nix-ld/b320f5cb8b7f141c224c3631539cd0c45fcf7ee3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents = {
-      url = "github:numtide/llm-agents.nix";
+      url = "github:numtide/llm-agents.nix/6b2e2cb6d784cc919c64f998093ecdb4f2b76152";
     };
   };
 
