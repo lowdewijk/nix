@@ -1,4 +1,5 @@
 vim.lsp.config("lua_ls", {
+  cmd = { _G.myconfig_paths.lua_ls },
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
@@ -28,7 +29,9 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.enable("lua_ls")
 
-vim.lsp.config("nixd", {})
+vim.lsp.config("nixd", {
+  cmd = { _G.myconfig_paths.nixd },
+})
 vim.lsp.enable("nixd")
 
 if vim.fn.executable("pyrefly") == 1 then

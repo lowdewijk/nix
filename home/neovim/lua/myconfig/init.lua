@@ -1,3 +1,42 @@
+local function is_path_within_dir(path, dir)
+  local normalized_dir = vim.fs.normalize(dir)
+  local normalized_path = vim.fs.normalize(path)
+  local dir_prefix = normalized_dir .. "/"
+
+  return normalized_path == normalized_dir or normalized_path:sub(1, #dir_prefix) == dir_prefix
+end
+
+local function reject_out_of_sandbox_args()
+  local cwd = vim.uv.cwd()
+
+  for _, arg in ipairs(vim.fn.argv()) do
+    local path = arg
+    if path ~= "" and path:sub(1, 1) ~= "/" then
+      path = cwd .. "/" .. path
+    end
+
+    if path ~= "" and not is_path_within_dir(path, cwd) then
+      vim.api.nvim_echo(
+        {
+          {
+            string.format(
+              "Refusing to open %s: file is not within the sandbox rooted at %s",
+              arg,
+              cwd
+            ),
+            "ErrorMsg",
+          },
+        },
+        true,
+        {}
+      )
+      vim.cmd.cquit(1)
+    end
+  end
+end
+
+reject_out_of_sandbox_args()
+
 -- Set <space> as the leader key
 -- This needs to happen before lazy plugins load
 vim.g.mapleader = " "

@@ -14,7 +14,7 @@ return {
         agent = "codex",
         agents = {
           codex = {
-            cmd = "codex",
+            cmd = _G.myconfig_paths.codex,
             args = {
               "--sandbox",
               "workspace-write",
