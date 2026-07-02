@@ -30,7 +30,7 @@
         defaultBranch = "main";
       };
       core = {
-        editor = "${pkgs.lib.getExe pkgs.neovim}";
+        editor = "${pkgs.lib.getExe pkgs.neovim} --clean";
       };
       color = {
         ui = "auto";

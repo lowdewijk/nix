@@ -70,7 +70,7 @@
       DIRENV_LOG_FORMAT = "";
 
       # Don't use nano
-      EDITOR = "nvim";
+      EDITOR = "nvim --clean";
 
       NIXPKGS_ALLOW_UNFREE = 1;
     };
