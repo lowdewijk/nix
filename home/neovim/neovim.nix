@@ -11,6 +11,13 @@
     if lib.hasPrefix homePrefix globals.nixos_git_root
     then "${config.home.homeDirectory}${lib.removePrefix homePrefix globals.nixos_git_root}"
     else globals.nixos_git_root;
+  nvimBwrapRuntime = pkgs.symlinkJoin {
+    name = "nvim-bwrap-runtime";
+    paths = [
+      (pkgs.writeTextDir "bin/nvim-bwrap.lua" (builtins.readFile ./bin/nvim-bwrap.lua))
+      (pkgs.writeTextDir "lua/myconfig/nvim_bwrap.lua" (builtins.readFile ./lua/myconfig/nvim_bwrap.lua))
+    ];
+  };
 
   /* 
   Inside the Neovim bubblewrap, OpenSSH's default /etc/ssh/ssh_config path can fail
@@ -28,6 +35,14 @@
       -o GlobalKnownHostsFile=/etc/ssh/ssh_known_hosts \
       -o ForwardX11=no \
       "$@"
+  '';
+  nvimLuaPath = "${nvimBwrapRuntime}/lua/?.lua;${nvimBwrapRuntime}/lua/?/init.lua";
+  nvimBwrapLauncher = "${nvimBwrapRuntime}/bin/nvim-bwrap.lua";
+  nvimBwrapTestRunner = pkgs.writeShellScriptBin "test-nvim-bwrap" ''
+    set -euo pipefail
+
+    export NVIM_BWRAP_LUA_PATH=${lib.escapeShellArg nvimLuaPath}
+    exec ${pkgs.lua5_1}/bin/lua "${repoRoot}/home/neovim/tests/nvim_bwrap_spec.lua"
   '';
 
   /*
@@ -47,112 +62,6 @@
 
   Some wayland support is given to neovim, so I can copy to the clipboard.
   */
-  nvimBwrapLauncher = pkgs.writeShellScript "nvim-bwrap-launcher" ''
-    set -euo pipefail
-
-    : "''${HOME:?HOME must be set}"
-
-    # these lines are only here to support nix build
-    if [[ -z "''${XDG_RUNTIME_DIR:-}" || -z "''${WAYLAND_DISPLAY:-}" ]]; then
-      exec ${pkgs.neovim-unwrapped}/bin/nvim --clean "$@"
-    fi
-
-    repo_root=${lib.escapeShellArg repoRoot}
-    home_dir="$(cd -- "$HOME" && pwd -P)"
-    cwd="$(pwd -P)"
-    workspace="$cwd"
-    extra_workspace_bind=()
-    ssh_auth_sock_bind=()
-    ssh_auth_sock_env=()
-
-    if git_root="$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null)"; then
-      workspace="$(cd -- "$git_root" && pwd -P)"
-
-      if git_common_dir="$(git -C "$cwd" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)"; then
-        git_common_dir="$(cd -- "$git_common_dir" && pwd -P)"
-        git_repo_location="$git_common_dir"
-
-        if [[ "$git_common_dir" == */.git ]]; then
-          git_repo_location="$(dirname -- "$git_common_dir")"
-        fi
-
-        if [[ "$git_repo_location" != "$workspace" ]]; then
-          extra_workspace_bind=(--bind "$git_repo_location" "$git_repo_location")
-        fi
-      fi
-    fi
-
-    is_safe_cwd() {
-      local path="$1"
-      local rel_path
-      local top_level_dir
-
-      if [[ "$path" == "$home_dir" ]]; then
-        return 1
-      fi
-
-      if [[ "$path" == "$home_dir"/* ]]; then
-        rel_path="''${path#$home_dir/}"
-        top_level_dir="''${rel_path%%/*}"
-        [[ "$top_level_dir" != .* ]]
-        return
-      fi
-
-      return 0
-    }
-
-    if [[ ! -S "''${XDG_RUNTIME_DIR}/''${WAYLAND_DISPLAY}" ]]; then
-      printf 'Wayland socket not found: %s\n' "''${XDG_RUNTIME_DIR}/''${WAYLAND_DISPLAY}" >&2
-      exit 1
-    fi
-
-    if [[ -n "''${SSH_AUTH_SOCK:-}" && -S "''${SSH_AUTH_SOCK}" ]]; then
-      ssh_auth_sock_bind=(--bind "''${SSH_AUTH_SOCK}" "''${SSH_AUTH_SOCK}")
-      ssh_auth_sock_env=(--setenv SSH_AUTH_SOCK "''${SSH_AUTH_SOCK}")
-    fi
-
-    nvim_args=("$@")
-    if ! is_safe_cwd "$cwd"; then
-      nvim_args=(--clean "$@")
-    fi
-
-    exec ${pkgs.bubblewrap}/bin/bwrap \
-      --dev /dev \
-      --proc /proc \
-      --ro-bind /lib64 /lib64 \
-      --ro-bind /nix/store /nix/store \
-      --ro-bind /run/current-system /run/current-system \
-      --ro-bind /etc /etc \
-      --ro-bind "$repo_root" "$repo_root" \
-      --ro-bind "$HOME/.nix-profile" "$HOME/.nix-profile" \
-      --dir "$XDG_RUNTIME_DIR" \
-      --dir "$HOME/.ssh" \
-      --ro-bind "''${XDG_RUNTIME_DIR}/''${WAYLAND_DISPLAY}" "''${XDG_RUNTIME_DIR}/''${WAYLAND_DISPLAY}" \
-      --ro-bind "$HOME/.config/nvim" "$HOME/.config/nvim" \
-      --bind "$workspace" "$workspace" \
-      "''${extra_workspace_bind[@]}" \
-      "''${ssh_auth_sock_bind[@]}" \
-      --bind "$HOME/.local/share/nvim" "$HOME/.local/share/nvim" \
-      --bind "$HOME/.local/state/nvim" "$HOME/.local/state/nvim" \
-      --bind-try "$HOME/.cache/nvim" "$HOME/.cache/nvim" \
-      --bind-try "$HOME/.cache/uv" "$HOME/.cache/uv" \
-      --bind-try "$HOME/.codex" "$HOME/.codex" \
-      --ro-bind-try "$HOME/.ssh/config" "$HOME/.ssh/config" \
-      --ro-bind-try "$HOME/.ssh/known_hosts" "$HOME/.ssh/known_hosts" \
-      --ro-bind-try "$HOME/.ssh/known_hosts2" "$HOME/.ssh/known_hosts2" \
-      --setenv VIRTUAL_ENV "$cwd/.venv" \
-      --setenv TMPDIR /tmp \
-      --setenv TMP /tmp \
-      --setenv TEMP /tmp \
-      --setenv HOME "$HOME" \
-      --setenv XDG_RUNTIME_DIR "$XDG_RUNTIME_DIR" \
-      --setenv WAYLAND_DISPLAY "$WAYLAND_DISPLAY" \
-      "''${ssh_auth_sock_env[@]}" \
-      --setenv PATH "$cwd/.venv/bin:${sandboxedSshBin}/bin:$HOME/.nix-profile/bin:/run/current-system/sw/bin" \
-      --chdir "$cwd" \
-      --tmpfs /tmp \
-      ${pkgs.neovim-unwrapped}/bin/nvim "''${nvim_args[@]}"
-  '';
   nvimBwrapPackage = pkgs.symlinkJoin {
     name = "neovim-unwrapped-bwrap";
     paths = [pkgs.neovim-unwrapped];
@@ -164,11 +73,18 @@
       };
     postBuild = ''
       rm "$out/bin/nvim"
-      makeWrapper ${pkgs.bash}/bin/bash "$out/bin/nvim" \
+      makeWrapper ${pkgs.lua5_1}/bin/lua "$out/bin/nvim" \
+        --set NVIM_BWRAP_BWRAP_BIN ${lib.escapeShellArg "${pkgs.bubblewrap}/bin/bwrap"} \
+        --set NVIM_BWRAP_LUA_PATH ${lib.escapeShellArg nvimLuaPath} \
+        --set NVIM_BWRAP_NEOVIM_BIN ${lib.escapeShellArg "${pkgs.neovim-unwrapped}/bin/nvim"} \
+        --set NVIM_BWRAP_REPO_ROOT ${lib.escapeShellArg repoRoot} \
+        --set NVIM_BWRAP_SANDBOXED_SSH_BIN ${lib.escapeShellArg "${sandboxedSshBin}/bin/ssh"} \
         --add-flags ${lib.escapeShellArg nvimBwrapLauncher}
     '';
   };
 in {
+  home.packages = [nvimBwrapTestRunner];
+
   programs.neovim = {
     enable = true;
     package = nvimBwrapPackage;
