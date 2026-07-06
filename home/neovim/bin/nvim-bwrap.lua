@@ -300,10 +300,17 @@ if wayland_display ~= nil and wayland_display ~= "" then
   set_env(bwrap_args, "WAYLAND_DISPLAY", wayland_display)
 end
 append_all(bwrap_args, ssh_auth_sock_env)
+local inherited_path = os.getenv("PATH") or ""
+local sandbox_path = cwd .. "/.venv/bin:" .. dirname(sandboxed_ssh_bin)
+if inherited_path ~= "" then
+  sandbox_path = sandbox_path .. ":" .. inherited_path
+else
+  sandbox_path = sandbox_path .. ":" .. home .. "/.nix-profile/bin:/run/current-system/sw/bin"
+end
 set_env(
   bwrap_args,
   "PATH",
-  cwd .. "/.venv/bin:" .. dirname(sandboxed_ssh_bin) .. ":" .. home .. "/.nix-profile/bin:/run/current-system/sw/bin"
+  sandbox_path
 )
 
 append_all(bwrap_args, {

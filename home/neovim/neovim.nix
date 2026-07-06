@@ -116,6 +116,9 @@ in {
       # Python
       ruff
 
+      # TypeScript / JavaScript
+      nodejs
+      typescript
       prettier
     ];
 
