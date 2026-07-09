@@ -35,7 +35,15 @@ vim.lsp.config("nixd", {
 vim.lsp.enable("nixd")
 
 if vim.fn.executable("pyrefly") == 1 then
-  vim.lsp.config("pyrefly", {})
+  vim.lsp.config("pyrefly", {
+    init_options = {
+      pyrefly = {
+        analysis = {
+          diagnosticMode = "workspace",
+        },
+      },
+    },
+  })
   vim.lsp.enable("pyrefly")
 elseif vim.fn.executable("pyright") == 1 then
   vim.lsp.config("pyright", {
