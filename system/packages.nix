@@ -23,6 +23,7 @@
     spotify
     signal-desktop
     scribus
+    losslesscut
   ];
   shellPackages = with pkgs; [
     dnslookup
