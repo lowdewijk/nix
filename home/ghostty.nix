@@ -49,8 +49,7 @@ in {
       "confirm-close-surface" = false;
       "window-inherit-working-directory" = true;
 
-      command = "direct:${pkgs.zsh}/bin/zsh --login";
-      "shell-integration" = "zsh";
+      command = "direct:${pkgs.nushell}/bin/nu";
 
       background = palette.base;
       foreground = palette.text;

@@ -18,6 +18,9 @@
       aws = {
         disabled = true;
       };
+      package = {
+        disabled = true;
+      };
       python = {
         disabled = true;
       };

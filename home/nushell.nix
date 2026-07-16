@@ -5,6 +5,9 @@
       use std/config *
 
       $env.config.edit_mode = 'vi'
+      $env.config.show_banner = false
+      $env.PROMPT_INDICATOR_VI_INSERT = ""
+      $env.PROMPT_INDICATOR_VI_NORMAL = ""
 
       # Initialize the PWD hook as an empty list if it doesn't exist
       $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []

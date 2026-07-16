@@ -26,6 +26,7 @@
     ./firefox.nix
     ./nushell.nix
     ./zoxide.nix
+    ./carapace.nix
   ];
 
   # never change this
