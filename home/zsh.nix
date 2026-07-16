@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  ...
+}: {
   programs.zsh = {
     enable = true;
 
@@ -47,10 +50,6 @@
 
       # remove API_annoying message when * result in no match
       setopt +o nomatch
-
-      # setup starship and direnv
-      eval "$(starship init zsh)"
-      eval "$(direnv hook zsh)"
 
       # makes backward behave the way you want it with respect to line breaks
       # https://unix.stackexchange.com/questions/206853/setting-backspace-2-in-zsh-with-vi-bindings

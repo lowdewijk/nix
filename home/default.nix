@@ -24,6 +24,8 @@
     ./mpv.nix
     ./noctalia/noctalia.nix
     ./firefox.nix
+    ./nushell.nix
+    ./zoxide.nix
   ];
 
   # never change this
