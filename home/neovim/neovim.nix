@@ -19,7 +19,7 @@
     ];
   };
 
-  /* 
+  /*
   Inside the Neovim bubblewrap, OpenSSH's default /etc/ssh/ssh_config path can fail
   ownership checks on Nix store includes, so force ssh to start from the user config.
   */
@@ -47,17 +47,17 @@
 
   /*
   Bubble wrapped version of Neovim that binds the current workspace plus the directories
-  needed for neovim to function. 
+  needed for neovim to function.
 
-  The workspace is the current working directory unless it is inside a git repository, 
-  in which case the git repo root is bound instead. For git worktrees, the backing shared 
+  The workspace is the current working directory unless it is inside a git repository,
+  in which case the git repo root is bound instead. For git worktrees, the backing shared
   git directory is also bound when it lives elsewhere on disk.
 
-  If the current working directory is not a visible directory within the home directory 
-  (i.e. a dot directory or directory outside of $HOME) then Neovim will launch without 
+  If the current working directory is not a visible directory within the home directory
+  (i.e. a dot directory or directory outside of $HOME) then Neovim will launch without
   plugins to be safe (--clean).
 
-  ssh remote access is given to Neovim so I can sync-remote my workspace to another machine. 
+  ssh remote access is given to Neovim so I can sync-remote my workspace to another machine.
   Neovim does not have access to my keys though, only my ssh socket and config.
 
   Some wayland support is given to neovim, so I can copy to the clipboard.
@@ -89,9 +89,6 @@ in {
     enable = true;
     package = nvimBwrapPackage;
     defaultEditor = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    viAlias = true;
 
     withRuby = false;
     withPython3 = false;

@@ -74,11 +74,8 @@ in
           cpv = "rsync --info=progress2 --no-inc-recursive -ahP";
           toclip = "wl-copy";
           fromclip = "wl-paste";
-          tm = "ssh oddity@training-megaset";
-          t1 = "ssh oddity@training-1";
-          t2 = "ssh oddity@training-2";
-          t3 = "ssh oddity@training-3";
-          t4 = "ssh oddity@training-4";
+          t3 = "ssh -t oddity@training-3 \"tmux -L lodewijk -f ~/lodewijk/.tmux.conf new-session -A -s main 'exec nu -l'\"";
+          t4 = "ssh -t oddity@training-4 \"tmux -L lodewijk -f ~/lodewijk/.tmux.conf new-session -A -s main 'exec nu -l'\"";
         };
 
         extraConfig = ''
@@ -90,6 +87,9 @@ in
           # Setup Direnv hook
           # Initialize the PWD hook as an empty list if it doesn't exist.
           $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []
+
+          # Don't list row numbers in table mode
+          $env.config.table.index_mode = "never"
 
           $env.config.hooks.env_change.PWD ++= [{||
             if (which direnv | is-empty) {
