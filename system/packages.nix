@@ -24,6 +24,7 @@
     signal-desktop
     scribus
     losslesscut
+    wf-recorder
   ];
   shellPackages = with pkgs; [
     dnslookup
@@ -63,6 +64,7 @@
     p7zip
     slack
     trash-cli
+    gh
   ];
 in {
   environment.systemPackages = shellPackages ++ desktopPackages;
