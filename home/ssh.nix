@@ -12,6 +12,11 @@
       "prod-needs-testing" = {
         User = "oddity";
       };
+
+      "lightsail" = {
+        HostName = "63.183.203.92";
+        User = "ec2-user";
+      };
     };
   };
 }
