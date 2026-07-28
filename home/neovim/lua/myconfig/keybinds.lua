@@ -274,19 +274,50 @@ vim.keymap.set("n", "<leader>q", function()
     workspace = true,
   })
 end, { desc = "Telescope: workspace errors only" })
+
+local function show_diagnostic_on_jump(_, bufnr)
+  vim.diagnostic.open_float({
+    bufnr = bufnr,
+    scope = "cursor",
+    focus = false,
+  })
+end
+
 vim.keymap.set("n", "g]", function()
-  vim.diagnostic.goto_next({
+  vim.diagnostic.jump({
+    count = 1,
     severity = vim.diagnostic.severity.ERROR,
+    on_jump = show_diagnostic_on_jump,
     wrap = false,
   })
-end, { desc = "Next error" })
+end, { desc = "Next warning" })
 
 vim.keymap.set("n", "g[", function()
-  vim.diagnostic.goto_prev({
+  vim.diagnostic.jump({
+    count = -1,
     severity = vim.diagnostic.severity.ERROR,
+    on_jump = show_diagnostic_on_jump,
     wrap = false,
   })
-end, { desc = "Previous error" })
+end, { desc = "Previous warning" })
+
+vim.keymap.set("n", "q]", function()
+  vim.diagnostic.jump({
+    count = 1,
+    severity = vim.diagnostic.severity.WARN,
+    on_jump = show_diagnostic_on_jump,
+    wrap = false,
+  })
+end, { desc = "Next warning" })
+
+vim.keymap.set("n", "q[", function()
+  vim.diagnostic.jump({
+    count = -1,
+    severity = vim.diagnostic.severity.WARN,
+    on_jump = show_diagnostic_on_jump,
+    wrap = false,
+  })
+end, { desc = "Previous warning" })
 
 -- Notify
 -- Additionally to the normal escape behavior, clear the search messages (noh) and clear the notifications
