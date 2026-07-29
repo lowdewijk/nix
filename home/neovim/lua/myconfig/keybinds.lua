@@ -146,6 +146,31 @@ local function open_codex_cli_prompt(opts)
   })
 end
 
+-- Quitting neovim
+vim.keymap.set("n", "<leader>q", function()
+  local modified = false
+
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].modified then
+      modified = true
+      break
+    end
+  end
+
+  if not modified then
+    vim.cmd("qa")
+    return
+  end
+
+  local choice = vim.fn.confirm("There are unsaved changes.", "&Save All\n&Discard All\n&Cancel", 1)
+
+  if choice == 1 then
+    vim.cmd("wall")
+    vim.cmd("qa")
+  elseif choice == 2 then
+    vim.cmd("qa!")
+  end
+end, { desc = "Quit with Save All / Discard All" })
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select entire buffer" })
 
 -- Clipboard and registers
@@ -263,12 +288,12 @@ end, { desc = "Format current buffer" })
 
 -- Diagnostics
 local ts = require("telescope.builtin")
-vim.keymap.set("n", "<leader>qa", function()
+vim.keymap.set("n", "<leader>d", function()
   ts.diagnostics({
     workspace = true,
   })
 end, { desc = "Open workspace diagnostic list" })
-vim.keymap.set("n", "<leader>q", function()
+vim.keymap.set("n", "<leader>g", function()
   ts.diagnostics({
     severity = vim.diagnostic.severity.ERROR,
     workspace = true,
@@ -301,23 +326,23 @@ vim.keymap.set("n", "g[", function()
   })
 end, { desc = "Previous warning" })
 
-vim.keymap.set("n", "q]", function()
+vim.keymap.set("n", "d]", function()
   vim.diagnostic.jump({
     count = 1,
-    severity = vim.diagnostic.severity.WARN,
+    severity = vim.diagnostic.severity.INFO,
     on_jump = show_diagnostic_on_jump,
     wrap = false,
   })
-end, { desc = "Next warning" })
+end, { desc = "Next diagnostic" })
 
-vim.keymap.set("n", "q[", function()
+vim.keymap.set("n", "d[", function()
   vim.diagnostic.jump({
     count = -1,
-    severity = vim.diagnostic.severity.WARN,
+    severity = vim.diagnostic.severity.INFO,
     on_jump = show_diagnostic_on_jump,
     wrap = false,
   })
-end, { desc = "Previous warning" })
+end, { desc = "Previous diagnostic" })
 
 -- Notify
 -- Additionally to the normal escape behavior, clear the search messages (noh) and clear the notifications
