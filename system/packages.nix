@@ -65,6 +65,7 @@
     slack
     trash-cli
     gh
+    claude-code
   ];
 in {
   environment.systemPackages = shellPackages ++ desktopPackages;
