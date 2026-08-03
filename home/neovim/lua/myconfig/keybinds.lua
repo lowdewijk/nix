@@ -288,7 +288,7 @@ end, { desc = "Format current buffer" })
 
 -- Diagnostics
 local ts = require("telescope.builtin")
-vim.keymap.set("n", "<leader>d", function()
+vim.keymap.set("n", "<leader>s", function()
   ts.diagnostics({
     workspace = true,
   })
@@ -326,19 +326,17 @@ vim.keymap.set("n", "g[", function()
   })
 end, { desc = "Previous warning" })
 
-vim.keymap.set("n", "d]", function()
+vim.keymap.set("n", "s]", function()
   vim.diagnostic.jump({
     count = 1,
-    severity = vim.diagnostic.severity.INFO,
     on_jump = show_diagnostic_on_jump,
     wrap = false,
   })
 end, { desc = "Next diagnostic" })
 
-vim.keymap.set("n", "d[", function()
+vim.keymap.set("n", "s[", function()
   vim.diagnostic.jump({
     count = -1,
-    severity = vim.diagnostic.severity.INFO,
     on_jump = show_diagnostic_on_jump,
     wrap = false,
   })
