@@ -1,5 +1,39 @@
 #!/usr/bin/env nu
 
+def place_envrc [worktree_path: string dir_name: string] {
+  let envrc = [
+    'source_up_if_exists' 
+    'git_root="$(git rev-parse --show-toplevel)"'
+    $'use flake "git+file://$git_root?dir=($dir_name)" --reference-lock-file "$PWD/flake.lock" --no-write-lock-file'
+  ]
+
+  let full_path = $worktree_path | path join $dir_name
+  ($envrc | str join "\n") | save ($full_path | path join .envrc)
+  ^direnv allow $full_path
+}
+
+def place_neoconf [worktree_name: string ml2_path: string] {
+  let neoconf = '{
+  "run-on-save": {
+    "commands": ["sync-training-3", "sync-training-4"],
+    "success_msg": "Synced ml2 {{WORKTREE_NAME}}"
+  },
+  "commands": {
+    "sync-training-4": {
+      "command":  "sync-remote",
+      "args":  ["oddity@training-4:~/lodewijk/ml2/worktrees/{{WORKTREE_NAME}}"],
+    },
+    "sync-training-3": {
+      "command":  "sync-remote",
+      "args":  ["oddity@training-3:~/lodewijk/ml2/worktrees/{{WORKTREE_NAME}}"],
+    }
+  }
+}' | str replace --all "{{WORKTREE_NAME}}" $worktree_name
+  $neoconf | save --force ($ml2_path | path join .neoconf.json)
+}
+  
+  
+
 def main [
     worktree_name: string # The name of the worktree directory
     branch: string # The name of the worktree branch
@@ -8,6 +42,7 @@ def main [
   let repo = ($env.HOME | path join projects violencev2 oddity)
   let worktrees = ($env.HOME | path join projects violencev2 worktrees)
   let worktree_path = ($worktrees | path join $worktree_name)
+
 
   git -C $repo fetch origin
 
@@ -34,19 +69,12 @@ def main [
     git -C $repo worktree add --no-track -b $branch $worktree_path $from
   }
 
+  place_envrc  $worktree_path "ml2"
+  place_envrc $worktree_path "tools/cocobaccie"
+
   let ml2_path = ($worktree_path | path join ml2)
-
-  cp envrc-template ($ml2_path | path join .envrc)
-  direnv allow $ml2_path
-
-  open --raw neoconf-template.json
-  | str replace --all "{{WORKTREE_NAME}}" $worktree_name
-  | save --force ($ml2_path | path join .neoconf.json)
-
-  cp ($repo | path join ml2 flake.lock) $ml2_path
-
-  direnv allow $ml2_path
+  place_neoconf $worktree_name $ml2_path 
 
   cd $ml2_path
-  nix run .#install-precommit-hooks
+  ^nix run .#install-precommit-hooks
 }
