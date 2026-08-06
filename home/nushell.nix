@@ -60,6 +60,7 @@ in
           switch = "sudo nixos-rebuild switch --flake /home/lobo/nix";
           boot = "sudo nixos-rebuild boot --flake /home/lobo/nix";
           v = "nvim";
+          l = "ls";
           ll = "ls -l";
           cat = "bat";
           ga = "git add -A";
@@ -68,7 +69,6 @@ in
           gc = "git commit";
           gcm = "git commit -m";
           gp = "git push";
-          gl = "git log";
           gwta = "git worktree add";
           gwtr = "git worktree remove";
           cpv = "rsync --info=progress2 --no-inc-recursive -ahP";
@@ -80,6 +80,13 @@ in
 
         extraConfig = ''
           use std/config *
+
+          def --wrapped gl [...args] {
+            ^git log "--pretty=format:%h%x1f%s%x1f%aI%x1f%an" ...$args
+            | lines
+            | split column (char unit_separator) sha message date author
+            | update date { into datetime }
+          }
 
           $env.PROMPT_INDICATOR_VI_INSERT = ""
           $env.PROMPT_INDICATOR_VI_NORMAL = ""
