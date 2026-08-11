@@ -38,7 +38,7 @@ layout {
         urgent-color "#f38ba8"
     }
 
-    default-column-width { proportion 0.55; }
+    default-column-width { proportion 0.50; }
 
     preset-column-widths {
         proportion 0.33333
@@ -69,6 +69,8 @@ spawn-at-startup "noctalia"
 spawn-at-startup "niri-start-1password"
 
 binds {
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R {switch-preset-column-width-back; }
     Mod+Return { spawn "ghostty"; }
     Mod+B { spawn "firefox"; }
     Mod+Space { spawn "noctalia" "msg" "panel-open" "launcher"; }
