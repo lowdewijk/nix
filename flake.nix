@@ -5,23 +5,23 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/32d7d366313675be94ab24e32860fa4dc1c742b4";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/32d7d366313675be94ab24e32860fa4dc1c742b4";
+    nixpkgs.url = "github:NixOS/nixpkgs/59dacfab0717b157eb8f758eb1c16f74805ec90e";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/59dacfab0717b157eb8f758eb1c16f74805ec90e";
     home-manager = {
-      url = "github:nix-community/home-manager/7664e05e2413d5e2b8c54a884eb8ea0f8a504fc2";
+      url = "github:nix-community/home-manager/42bb40f7aaab63a107b64a20c4a4ade6550758d0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/b2009681f7ecee2cc9c9a71a7b47f923a3b78e04";
+      url = "github:noctalia-dev/noctalia-shell/cf55ac0d9ea1edeeb12b90bc51f2808ea5797af6";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix/036c78ea4cd8a42c8546c6316a944fd7d59d4341";
+    catppuccin.url = "github:catppuccin/nix/673f730d0fc8db3468c51575f1d3d777cc55e51f";
     nix-ld = {
-      url = "github:Mic92/nix-ld/b320f5cb8b7f141c224c3631539cd0c45fcf7ee3";
+      url = "github:Mic92/nix-ld/1267405dbb13b1b664445ff3654da3a33ee272e4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents = {
-      url = "github:numtide/llm-agents.nix/6b2e2cb6d784cc919c64f998093ecdb4f2b76152";
+      url = "github:numtide/llm-agents.nix/d4a6e87fd4b9d7f551b0d2aba1514213617502a5";
     };
   };
 
@@ -40,7 +40,7 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          llm-agents.overlays.default
+          llm-agents.overlays.shared-nixpkgs
           localOverlay
         ];
       };
@@ -57,7 +57,7 @@
         modules = [
           {
             nixpkgs.overlays = [
-              llm-agents.overlays.default
+              llm-agents.overlays.shared-nixpkgs
               localOverlay
             ];
           }
