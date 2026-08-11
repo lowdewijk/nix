@@ -82,9 +82,9 @@ in
           use std/config *
 
           def --wrapped gl [...args] {
-            ^git log "--pretty=format:%h%x1f%s%x1f%aI%x1f%an" ...$args
+            ^git log "--pretty=format:%h%x1f%aI%x1f%an%x1f%s" ...$args
             | lines
-            | split column (char unit_separator) sha message date author
+            | split column (char unit_separator) sha date author message
             | update date { into datetime }
           }
 
