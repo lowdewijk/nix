@@ -18,7 +18,6 @@
     vlc
     mattermost-desktop
     todoist-electron
-    discord
     chromium
     spotify
     signal-desktop
