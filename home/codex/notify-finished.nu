@@ -15,6 +15,13 @@ def main [payload: string] {
     | str replace -a "\n" ' '
     | str substring 0..499
   )
+  let workspace = (
+    $event
+    | get -o cwd
+    | default (pwd)
+    | path basename
+  )
+  let notification = $"[($workspace)] ($message)"
 
-  ^/run/current-system/sw/bin/dbus-send --session --dest=org.freedesktop.Notifications --type=method_call /org/freedesktop/Notifications org.freedesktop.Notifications.Notify string:Codex uint32:0 string: string:Codex $"string:($message)" array:string: dict:string:variant: int32:-1
+  ^/run/current-system/sw/bin/dbus-send --session --dest=org.freedesktop.Notifications --type=method_call /org/freedesktop/Notifications org.freedesktop.Notifications.Notify string:Codex uint32:0 string: string:Codex $"string:($notification)" array:string: dict:string:variant: int32:-1
 }

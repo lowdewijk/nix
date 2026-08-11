@@ -18,8 +18,9 @@ trust_level = "trusted"
 [projects."/home/lobo/projects/veganactivists.nl"]
 trust_level = "trusted"
 
-[projects."/home/lobo/projects"]
+[projects."/home/lobo/projects/vanl"]
 trust_level = "trusted"
+
 
 [projects."/home/lobo/projects/megaset/oddity"]
 trust_level = "trusted"
