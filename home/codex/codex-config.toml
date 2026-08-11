@@ -1,0 +1,93 @@
+personality = "pragmatic"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "medium"
+notify = ["nu", "/home/lobo/nix/home/codex/notify-finished.nu"]
+
+[projects."/home/lobo/nix"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/violencev2/oddity"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/veganfuture.org"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/veganactivistsnl-bot"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/veganactivists.nl"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/megaset/oddity"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/cows_magazine"]
+trust_level = "trusted"
+
+[projects."/home/lobo/GoogleDrive"]
+trust_level = "trusted"
+
+[projects."/home/lobo"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/violencev2/worktrees"]
+trust_level = "trusted"
+
+[projects."/home/lobo/Downloads/Dataset CAUCAFall/CAUCAFall"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/cut-falls"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/cut-falls/src"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/kindfuturenow.org"]
+trust_level = "trusted"
+
+[projects."/home/lobo/GoogleDrive/veganfuture/Magazines"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/violencev2/worktrees/dvc/ml2"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/violencev2/worktrees/train-falls/tools/cocobaccie"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/violencev2/worktrees/job-runner-error-handling/ml2"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/dedupvids/videohash"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/violencev2/worktrees/train-falls/ml2"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/violencev2/worktrees/prep-multi/ml2"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/violencev2/worktrees/multi-class/ml2"]
+trust_level = "trusted"
+
+[projects."/home/lobo/projects/violencev2/worktrees/multi-output/ml2"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.4" = "gpt-5.6-terra"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[features]
+memories = true
+
+[memories]
+use_memories = true
+generate_memories = true
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
