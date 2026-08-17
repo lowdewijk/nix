@@ -122,10 +122,10 @@ binds {
     Mod+Shift+L { move-column-right; }
 
      
-    Mod+semicolon   { focus-monitor-left; }
-    Mod+apostrophe { focus-monitor-right; }
-    Mod+Shift+semicolon { move-workspace-to-monitor-left; }
-    Mod+Shift+apostrophe { move-workspace-to-monitor-right; }
+    Mod+Z   { focus-monitor-left; }
+    Mod+X { focus-monitor-right; }
+    Mod+Shift+Z { move-workspace-to-monitor-left; }
+    Mod+Shift+X { move-workspace-to-monitor-right; }
 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
