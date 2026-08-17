@@ -40,7 +40,7 @@ in
     }
 
     (createNuScript {
-      name = "ml2-create-worktree";
+      name = "oddity-create-worktree";
 
       runtimeInputs = [
         pkgs.git

@@ -71,6 +71,7 @@ def main [
 
   place_envrc  $worktree_path "ml2"
   place_envrc $worktree_path "tools/cocobaccie"
+  place_envrc $worktree_path "engine"
 
   let ml2_path = ($worktree_path | path join ml2)
   place_neoconf $worktree_name $ml2_path 
