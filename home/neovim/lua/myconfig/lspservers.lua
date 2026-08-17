@@ -76,3 +76,12 @@ vim.lsp.config("rust_analyzer", {
   },
 })
 vim.lsp.enable("rust_analyzer")
+
+local rust_format_on_save = vim.api.nvim_create_augroup("RustFormatOnSave", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = rust_format_on_save,
+  pattern = "*.rs",
+  callback = function()
+    vim.lsp.buf.format({ bufnr = 0 })
+  end,
+})
