@@ -31,8 +31,17 @@ def place_neoconf [worktree_name: string ml2_path: string] {
 }' | str replace --all "{{WORKTREE_NAME}}" $worktree_name
   $neoconf | save --force ($ml2_path | path join .neoconf.json)
 }
-  
-  
+
+def write_engine_scripts [worktree_path: string worktree_name: string] {
+   mkdir ([$worktree_path engine .direnv bin] | path join)
+   let sync_t3_script = $"
+ #!/bin/sh
+ git-sync oddity@training-3:~/lodewijk/engine/worktrees/($worktree_name) ([$worktree_path engine] | path join) ([$worktree_path nix] | path join)"
+   let sync_t3_script_file = ([$worktree_path engine .direnv bin sync-t3] | path join)
+   $sync_t3_script | save -f $sync_t3_script_file
+   chmod +x $sync_t3_script_file
+ }
+
 
 def main [
     worktree_name: string # The name of the worktree directory
@@ -72,6 +81,8 @@ def main [
   place_envrc  $worktree_path "ml2"
   place_envrc $worktree_path "tools/cocobaccie"
   place_envrc $worktree_path "engine"
+
+  write_engine_scripts $worktree_path $worktree_name
 
   let ml2_path = ($worktree_path | path join ml2)
   place_neoconf $worktree_name $ml2_path 
