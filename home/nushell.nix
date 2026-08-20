@@ -47,6 +47,17 @@ in
       ];
     })
 
+    (createNuScript {
+      name = "git-sync";
+
+      runtimeInputs = [
+        pkgs.coreutils
+        pkgs.git
+        pkgs.openssh
+        pkgs.rsync
+      ];
+    })
+
     {
       programs.nushell = {
         enable = true;
