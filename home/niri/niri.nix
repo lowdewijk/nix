@@ -66,6 +66,31 @@
 
     "$niri_bin" msg action set-workspace-name "$new_name"
   '';
+  toggleTouchpad = pkgs.writeShellScriptBin "niri-toggle-touchpad" ''
+    #!${pkgs.bash}/bin/bash
+    set -euo pipefail
+
+    state_dir="$HOME/.local/state/niri"
+    state_file="$state_dir/touchpad.kdl"
+
+    ${pkgs.coreutils}/bin/mkdir -p "$state_dir"
+
+    if [ -f "$state_file" ] && ${pkgs.gnugrep}/bin/grep -qx '        off' "$state_file"; then
+      ${pkgs.coreutils}/bin/rm -f "$state_file"
+      state="enabled"
+    else
+      ${pkgs.coreutils}/bin/printf '%s\n' \
+        'input {' \
+        '    touchpad {' \
+        '        off' \
+        '    }' \
+        '}' >"$state_file"
+      state="disabled"
+    fi
+
+    ${pkgs.niri}/bin/niri msg action load-config-file
+    ${pkgs.libnotify}/bin/notify-send --app-name=niri "Touchpad $state"
+  '';
   ghosttyYaziHere = pkgs.writeShellScriptBin "ghostty-yazi-here" ''
     #!${pkgs.bash}/bin/bash
     set -euo pipefail
@@ -140,6 +165,7 @@ in {
     start1password
     killWorkspace
     nameWorkspace
+    toggleTouchpad
     ghosttyYaziHere
     wl-clipboard
   ];
