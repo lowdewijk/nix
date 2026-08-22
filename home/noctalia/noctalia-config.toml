@@ -5,7 +5,7 @@ order = ["widgets"]
 position = "bottom"
 start = ["launcher", "active_window"]
 center = ["workspaces"]
-end = ["caffeine", "network", "output_volume", "battery", "date", "control-center"]
+end = ["caffeine", "network", "output_volume", "battery", "udiskie", "date", "control-center"]
 auto_hide = false
 background_opacity = 0.93
 capsule = true
@@ -111,3 +111,5 @@ type = "volume"
 display = "name"
 max_label_chars = 16
 
+[widget.udiskie]
+type = "aristides/udiskie:status"

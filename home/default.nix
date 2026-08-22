@@ -17,6 +17,7 @@
     ./desktop-entries.nix
     ./fzf.nix
     ./yazi/yazi.nix
+    ./udiskie.nix
     ./xdg-mimeapps.nix
     ./niri/niri.nix
     ./neovim/neovim.nix
