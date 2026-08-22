@@ -71,6 +71,7 @@ in
           switch = "sudo nixos-rebuild switch --flake /home/lobo/nix";
           boot = "sudo nixos-rebuild boot --flake /home/lobo/nix";
           v = "nvim";
+          y = "yazi";
           l = "ls";
           ll = "ls -l";
           cat = "bat";
