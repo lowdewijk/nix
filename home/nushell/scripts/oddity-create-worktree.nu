@@ -32,15 +32,39 @@ def place_neoconf [worktree_name: string ml2_path: string] {
   $neoconf | save --force ($ml2_path | path join .neoconf.json)
 }
 
-def write_engine_scripts [worktree_path: string worktree_name: string] {
-   mkdir ([$worktree_path engine .direnv bin] | path join)
-   let sync_t3_script = $"
+def write_engine_scripts [worktree_path: string] {
+  let worktree_name = ($worktree_path | path parse | get stem)
+  mkdir ([$worktree_path engine .direnv bin] | path join)
+  let sync_t3_script = $"
  #!/bin/sh
  git-sync oddity@training-3:~/lodewijk/engine/worktrees/($worktree_name) ([$worktree_path engine] | path join) ([$worktree_path nix] | path join)"
-   let sync_t3_script_file = ([$worktree_path engine .direnv bin sync-t3] | path join)
-   $sync_t3_script | save -f $sync_t3_script_file
-   chmod +x $sync_t3_script_file
- }
+  let sync_t3_script_file = ([$worktree_path engine .direnv bin sync-t3] | path join)
+  $sync_t3_script | save -f $sync_t3_script_file
+  chmod +x $sync_t3_script_file
+}
+
+def write_ml2_scripts [worktree_path: string] {
+  let worktree_name = ($worktree_path | path parse | get stem)
+  mkdir ([$worktree_path ml2 .direnv bin] | path join)
+
+  let sync_t3_script = $"
+#!/bin/sh
+sync-remote oddity@training-3:~/lodewijk/ml2/worktrees/($worktree_name)
+echo 'ml2 synced to t3'
+"
+  let sync_t3_script_file = ([$worktree_path ml2 .direnv bin sync-t3] | path join)
+  $sync_t3_script | save -f $sync_t3_script_file
+  chmod +x $sync_t3_script_file
+
+  let sync_t4_script = $"
+#!/bin/sh
+sync-remote oddity@training-4:~/lodewijk/ml2/worktrees/($worktree_name)
+echo 'ml2 synced to t4'
+"
+  let sync_t4_script_file = ([$worktree_path ml2 .direnv bin sync-t4] | path join)
+  $sync_t4_script | save -f $sync_t4_script_file
+  chmod +x $sync_t4_script_file
+}
 
 
 def main [
@@ -82,7 +106,8 @@ def main [
   place_envrc $worktree_path "tools/cocobaccie"
   place_envrc $worktree_path "engine"
 
-  write_engine_scripts $worktree_path $worktree_name
+  write_engine_scripts $worktree_path 
+  write_ml2_scripts $worktree_path
 
   let ml2_path = ($worktree_path | path join ml2)
   place_neoconf $worktree_name $ml2_path 
