@@ -36,18 +36,7 @@
     llm-agents,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
     globals = import ./globals.nix;
-    localOverlay = import ./pkgs/overlay.nix;
-    mkPkgs = system:
-      import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          llm-agents.overlays.shared-nixpkgs
-          localOverlay
-        ];
-      };
     mkSystem = globalsKey: let
       hostGlobals = globals.${globalsKey};
       specialArgs = {
@@ -63,7 +52,6 @@
           {
             nixpkgs.overlays = [
               llm-agents.overlays.shared-nixpkgs
-              localOverlay
             ];
           }
           ./system
@@ -87,12 +75,5 @@
       };
   in {
     nixosConfigurations = nixpkgs.lib.genAttrs (builtins.attrNames globals) mkSystem;
-    overlays.default = localOverlay;
-    packages.${system} = let
-      pkgs = mkPkgs system;
-    in {
-      inherit (pkgs) videoduplicatefinder-cli;
-      default = pkgs.videoduplicatefinder-cli;
-    };
   };
 }

@@ -44,7 +44,7 @@
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processor https://github.com/mikefarah/yq
     httpie # execute rest commands on the command line
-    videoduplicatefinder-cli
+    nix-index
     file
     which
     ncdu # inspect diskspace
@@ -65,6 +65,7 @@
     trash-cli
     gh
     claude-code
+    comma
   ];
 in {
   environment.systemPackages = shellPackages ++ desktopPackages;
