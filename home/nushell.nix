@@ -71,6 +71,8 @@ in
           switch = "sudo nixos-rebuild switch --flake /home/lobo/nix";
           boot = "sudo nixos-rebuild boot --flake /home/lobo/nix";
           v = "nvim";
+          vi = "nvim";
+          vim = "nvim";
           y = "yazi";
           l = "ls";
           ll = "ls -l";
@@ -127,7 +129,7 @@ in
             type: {
               layout: ide
               columns: 1
-              col_width: 50
+              col_width: 120
               selection_rows: 45
               description_rows: 36
             }
