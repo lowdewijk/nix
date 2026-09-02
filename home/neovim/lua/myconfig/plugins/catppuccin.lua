@@ -4,13 +4,33 @@ return {
   priority = 1000,
   lazy = false,
   config = function()
-    require("catppuccin").setup({
-      flavour = "mocha",
-      transparent_background = true,
+    local function setup(flavour)
+      require("catppuccin").setup({
+        flavour = flavour,
+        transparent_background = flavour == "mocha",
+        highlight_overrides = {
+          all = function(colors)
+            return {
+              LineNrAbove = { fg = colors.subtext1 },
+              LineNrBelow = { fg = colors.subtext1 },
+              CursorLineNr = { fg = colors.yellow, bold = true },
+              ["@parameter.call"] = { fg = colors.sapphire },
+              ["@string.interpolation"] = { fg = colors.peach },
+            }
+          end,
+        },
+      })
+    end
+
+    vim.api.nvim_create_autocmd("ColorSchemePre", {
+      group = vim.api.nvim_create_augroup("MyconfigCatppuccin", { clear = true }),
+      pattern = "catppuccin*",
+      callback = function(event)
+        local flavour = event.match:match("^catppuccin%-(.+)$") or "mocha"
+        setup(flavour)
+      end,
     })
-    vim.cmd("colorscheme catppuccin")
-    local palette = require("catppuccin.palettes").get_palette("mocha")
-    vim.api.nvim_set_hl(0, "@parameter.call", { fg = palette.sapphire })
-    vim.api.nvim_set_hl(0, "@string.interpolation", { fg = palette.peach })
+
+    vim.cmd("colorscheme catppuccin-mocha")
   end,
 }
