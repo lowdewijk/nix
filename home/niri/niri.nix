@@ -74,17 +74,21 @@
     state_file="$state_dir/touchpad.kdl"
 
     ${pkgs.coreutils}/bin/mkdir -p "$state_dir"
+    exec 9>"$state_dir/touchpad.lock"
+    ${pkgs.util-linux}/bin/flock -n 9 || exit 0
 
     if [ -f "$state_file" ] && ${pkgs.gnugrep}/bin/grep -qx '        off' "$state_file"; then
       ${pkgs.coreutils}/bin/rm -f "$state_file"
       state="enabled"
     else
+      temp_file="$(${pkgs.coreutils}/bin/mktemp "$state_dir/touchpad.kdl.XXXXXX")"
       ${pkgs.coreutils}/bin/printf '%s\n' \
         'input {' \
         '    touchpad {' \
         '        off' \
         '    }' \
-        '}' >"$state_file"
+        '}' >"$temp_file"
+      ${pkgs.coreutils}/bin/mv -f "$temp_file" "$state_file"
       state="disabled"
     fi
 

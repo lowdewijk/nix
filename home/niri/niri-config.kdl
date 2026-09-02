@@ -13,7 +13,7 @@ input {
         click-method "clickfinger"
     }
 
-    focus-follows-mouse
+    // focus-follows-mouse
 }
 
 include optional=true "~/.local/state/niri/touchpad.kdl"
@@ -90,7 +90,7 @@ binds {
     Mod+M { maximize-column; }
     Mod+O { toggle-overview; }
     Mod+T { spawn "todoist-electron"; }
-    Mod+0 { spawn "niri-toggle-touchpad"; }
+    Mod+0 repeat=false { spawn "niri-toggle-touchpad"; }
     Print { screenshot; }
     Mod+p { screenshot; }
 
