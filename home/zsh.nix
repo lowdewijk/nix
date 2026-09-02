@@ -33,7 +33,7 @@
       gl = "git log";
       gwta = "git worktree add";
       gwtr = "git worktree remove";
-      cpv = "rsync --info=progress2 --no-inc-recursive -ahP";
+      cpv = "rsync --info=progress2 -ahP";
       toclip = "wl-copy";
       fromclip = "wl-paste";
 

@@ -83,7 +83,7 @@ in
           gp = "git push";
           gwta = "git worktree add";
           gwtr = "git worktree remove";
-          cpv = "rsync --info=progress2 --no-inc-recursive -ahP";
+          cpv = "rsync --info=progress2 -ahP";
           toclip = "wl-copy";
           fromclip = "wl-paste";
           t3 = "ssh -t oddity@training-3 \"tmux -L lodewijk -f ~/lodewijk/.tmux.conf new-session -A -s main 'exec nu -l'\"";
