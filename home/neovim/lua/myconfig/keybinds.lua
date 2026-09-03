@@ -378,4 +378,25 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Themery
-vim.keymap.set("n", "<leader>t", "<cmd>Themery<CR>", opts)
+vim.keymap.set("n", "<leader>t", "<cmd>Themery<CR>")
+
+-- Very magic mode
+
+-- auto inject very magic mode when typing a substitution
+vim.keymap.set("c", "/", function()
+  if vim.fn.getcmdtype() ~= ":" then
+    return "/"
+  end
+
+  local ok, parsed = pcall(vim.api.nvim_parse_cmd, vim.fn.getcmdline(), {})
+
+  if ok and parsed.cmd == "substitute" then
+    return "/\\v"
+  end
+
+  return "/"
+end, { expr = true })
+
+-- auto inject very magic mode when starting a search
+vim.keymap.set({ "n", "v", "o" }, "/", "/\\v")
+vim.keymap.set({ "n", "v", "o" }, "?", "?\\v")
