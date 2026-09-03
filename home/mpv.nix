@@ -12,6 +12,9 @@
       l = "playlist-next";
       "f" = ''show-text "''${osd-ass-cc/0}{\\an8}''${filename}"'';
       "Ctrl+x" = "script-binding delete-current-file";
+      G = "seek 100 absolute-percent exact; set pause yes";
+      "RIGHT" = "frame-step";
+      "LEFT" = "frame-back-step";
     };
   };
 
