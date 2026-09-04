@@ -71,29 +71,27 @@ spawn-at-startup "noctalia"
 spawn-at-startup "niri-start-1password"
 
 binds {
+    Mod+Q repeat=false { close-window; }
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R {switch-preset-column-width-back; }
-    Mod+Return { spawn "ghostty"; }
-    Mod+B { spawn "firefox"; }
-    Mod+Space { spawn "noctalia" "msg" "panel-open" "launcher"; }
-    Mod+E { spawn "ghostty-yazi-here"; }
-    Mod+N { spawn "ghostty" "--working-directory=/home/lobo/notes" "-e" "nvim"; }
-    Mod+S { spawn "noctalia" "msg" "panel-open" "control-center"; }
-    Mod+W { spawn "noctalia" "msg" "panel-open" "wallpaper"; }
-    Mod+Comma { spawn "niri-name-workspace"; }
-    Mod+Shift+Comma { spawn "noctalia" "msg" "settings-toggle"; }
-    Mod+Escape { spawn "noctalia" "msg" "session" "lock"; }
-    Mod+Q repeat=false { close-window; }
-    Mod+Shift+Q { spawn "niri-kill-workspace"; }
-    Mod+Shift+E { quit; }
     Mod+F { fullscreen-window; }
     Mod+M { maximize-column; }
+    Mod+Comma { spawn "niri-name-workspace"; }
     Mod+O { toggle-overview; }
-    Mod+T { spawn "todoist-electron"; }
+    Mod+Shift+Q { spawn "niri-kill-workspace"; }
+    Mod+Escape { spawn "noctalia" "msg" "session" "lock"; }
     Mod+0 repeat=false { spawn "niri-toggle-touchpad"; }
-    Print { screenshot; }
-    Mod+p { screenshot; }
+    Print repeat=false { screenshot; }
+    Mod+P repeat=false { screenshot; }
 
+    Mod+Return { spawn "ghostty"; }
+    Mod+B { spawn "firefox"; }
+    Mod+E { spawn "ghostty-yazi-here"; }
+    Mod+N { spawn "ghostty" "--working-directory=/home/lobo/notes" "-e" "nvim"; }
+    Mod+T { spawn "todoist-electron"; }
+
+    Mod+Space { spawn "noctalia" "msg" "panel-open" "launcher"; }
+    Mod+C { spawn "noctalia" "msg" "panel-open" "clipboard"; }
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn "noctalia" "msg" "volume-up";
     }
