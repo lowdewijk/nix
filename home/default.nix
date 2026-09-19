@@ -25,6 +25,7 @@
     ./mpv.nix
     ./noctalia/noctalia.nix
     ./firefox.nix
+    ./chromium.nix
     ./nushell.nix
     ./zoxide.nix
     ./carapace.nix
