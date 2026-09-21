@@ -4,6 +4,7 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      "application/xhtml+xml" = ["firefox.desktop"];
       "application/javascript" = ["nvim.desktop"];
       "application/json" = ["nvim.desktop"];
       "application/toml" = ["nvim.desktop"];
@@ -32,6 +33,7 @@
       "audio/x-scpls" = ["mpv.desktop"];
       "audio/x-vorbis+ogg" = ["mpv.desktop"];
       "text/markdown" = ["nvim.desktop"];
+      "text/html" = ["firefox.desktop"];
       "image/avif" = ["qimgv.desktop"];
       "image/bmp" = ["qimgv.desktop"];
       "image/gif" = ["qimgv.desktop"];
@@ -67,6 +69,11 @@
       "text/x-shellscript" = ["nvim.desktop"];
       "text/x-toml" = ["nvim.desktop"];
       "text/x-yaml" = ["nvim.desktop"];
+      "x-scheme-handler/about" = ["firefox.desktop"];
+      "x-scheme-handler/chrome" = ["firefox.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+      "x-scheme-handler/unknown" = ["firefox.desktop"];
       "video/3gpp" = ["mpv.desktop"];
       "video/3gpp2" = ["mpv.desktop"];
       "video/mp2t" = ["mpv.desktop"];
