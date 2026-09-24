@@ -31,6 +31,15 @@
     categories = ["System"];
   };
 
+  xdg.desktopEntries.sticky-webcam = {
+    name = "Sticky Webcam";
+    comment = "Open the webcam as a floating sticky window";
+    exec = "niri-webcam";
+    icon = "camera-video";
+    terminal = false;
+    categories = ["AudioVideo" "Video"];
+  };
+
   xdg.desktopEntries.idle-displays = {
     name = "idle displays";
     genericName = "Power off displays";

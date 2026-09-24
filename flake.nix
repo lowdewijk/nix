@@ -27,6 +27,10 @@
     llm-agents = {
       url = "github:numtide/llm-agents.nix/d4a6e87fd4b9d7f551b0d2aba1514213617502a5";
     };
+    niri-float-sticky = {
+      url = "github:probeldev/niri-float-sticky";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

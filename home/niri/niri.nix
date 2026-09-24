@@ -2,9 +2,11 @@
   pkgs,
   globals,
   config,
+  inputs,
   ...
 }: let
   mkGitSymlink = gitPath: config.lib.file.mkOutOfStoreSymlink (/. + "${globals.nixos_git_root}/${gitPath}");
+  niriFloatSticky = inputs.niri-float-sticky.packages.${pkgs.stdenv.hostPlatform.system}.default;
   start1password = pkgs.writeShellScriptBin "niri-start-1password" ''
     #!${pkgs.bash}/bin/bash
     exec ${pkgs.util-linux}/bin/setsid ${pkgs._1password-gui}/bin/1password --silent >/dev/null 2>&1
@@ -164,6 +166,20 @@
 
     exec "$ghostty_bin" -e yazi
   '';
+  webcam = pkgs.writeShellScriptBin "niri-webcam" ''
+    #!${pkgs.bash}/bin/bash
+    set -euo pipefail
+
+    device="''${1:-/dev/video0}"
+    exec ${pkgs.mpv}/bin/mpv \
+      --title=Webcam \
+      --force-window=yes \
+      --profile=low-latency \
+      --untimed \
+      --no-osc \
+      --autofit=480x270 \
+      "av://v4l2:$device"
+  '';
 in {
   home.packages = with pkgs; [
     start1password
@@ -171,6 +187,8 @@ in {
     nameWorkspace
     toggleTouchpad
     ghosttyYaziHere
+    webcam
+    niriFloatSticky
     wl-clipboard
   ];
 

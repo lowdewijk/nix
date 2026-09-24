@@ -60,6 +60,12 @@ window-rule {
     clip-to-geometry true
 }
 
+window-rule {
+    match title="^Webcam$"
+    open-floating true
+    default-floating-position x=24 y=24 relative-to="top-right"
+}
+
 layer-rule {
     match namespace="^noctalia-wallpaper*"
     place-within-backdrop true
@@ -69,6 +75,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 spawn-at-startup "noctalia"
 spawn-at-startup "niri-start-1password"
+spawn-at-startup "niri-float-sticky" "-title" "^Webcam$"
 
 binds {
     Mod+Q repeat=false { close-window; }
