@@ -120,22 +120,6 @@ in
             direnv export json | from json | default {} | load-env
             $env.PATH = do (env-conversions).path.from_string $env.PATH
           }]
-
-          # Setup
-          $env.config.menus ++= [{
-            name: completion_menu
-            only_buffer_difference: false
-            marker: "| "
-            type: {
-              layout: ide
-              columns: 1
-              col_width: 120
-              selection_rows: 45
-              description_rows: 36
-            }
-            style: {}
-          }]
-
         '';
       };
     }
