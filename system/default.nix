@@ -29,6 +29,7 @@
 
   programs.xwayland.enable = true;
   services.udisks2.enable = true;
+  services.mullvad-vpn.enable = true;
   systemd.tmpfiles.rules = ["d /run/media/${globals.username} 0755 ${globals.username} users -"];
 
   boot.loader.efi.canTouchEfiVariables = true;
