@@ -180,6 +180,13 @@
       --autofit=480x270 \
       "av://v4l2:$device"
   '';
+  toggleWindowedFullscreen = pkgs.writeShellScriptBin "niri-toggle-windowed-fullscreen" ''
+    #!${pkgs.bash}/bin/bash
+    set -euo pipefail
+
+    ${pkgs.niri}/bin/niri msg action toggle-windowed-fullscreen
+    ${config.programs.noctalia.package}/bin/noctalia msg bar-toggle
+  '';
 in {
   home.packages = with pkgs; [
     start1password
@@ -188,6 +195,7 @@ in {
     toggleTouchpad
     ghosttyYaziHere
     webcam
+    toggleWindowedFullscreen
     niriFloatSticky
     wl-clipboard
   ];

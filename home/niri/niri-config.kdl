@@ -83,6 +83,7 @@ binds {
     Mod+Shift+R {switch-preset-column-width-back; }
     Mod+F { fullscreen-window; }
     Mod+M { maximize-column; }
+    Mod+Ctrl+Shift+F { spawn "niri-toggle-windowed-fullscreen"; }
     Mod+Comma { spawn "niri-name-workspace"; }
     Mod+O { toggle-overview; }
     Mod+Shift+Q { spawn "niri-kill-workspace"; }
