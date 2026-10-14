@@ -2,6 +2,7 @@ personality = "pragmatic"
 model = "gpt-5.6-terra"
 model_reasoning_effort = "medium"
 notify = ["nu", "/home/lobo/nix/home/codex/notify-finished.nu"]
+approvals_reviewer = "auto_review"
 
 [projects."/home/lobo/nix"]
 trust_level = "trusted"
@@ -76,6 +77,12 @@ trust_level = "trusted"
 [projects."/home/lobo/projects/violencev2/worktrees/multi-output/ml2"]
 trust_level = "trusted"
 
+[projects."/home/lobo/projects/oddity-wiki"]
+trust_level = "trusted"
+
+[projects."/home/lobo/notes"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 "gpt-5.3-codex" = "gpt-5.4"
 "gpt-5.4" = "gpt-5.6-terra"
@@ -83,12 +90,21 @@ trust_level = "trusted"
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 
+[tui]
+vim_mode_default = true
+screen_reader_detection_done = true
+
 [features]
 memories = true
 
 [memories]
 use_memories = true
 generate_memories = true
+
+[sandbox_workspace_write]
+writable_roots = [
+  "/home/lobo/projects/violencev2/oddity/.git/worktrees/multi-output3",
+]
 
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"

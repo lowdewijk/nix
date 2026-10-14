@@ -97,7 +97,7 @@
     ${pkgs.niri}/bin/niri msg action load-config-file
     ${pkgs.libnotify}/bin/notify-send --app-name=niri "Touchpad $state"
   '';
-  ghosttyYaziHere = pkgs.writeShellScriptBin "ghostty-yazi-here" ''
+  ghosttyHere = pkgs.writeShellScriptBin "ghostty-here" ''
     #!${pkgs.bash}/bin/bash
     set -euo pipefail
 
@@ -149,22 +149,22 @@
 
     focused_window="$("$niri_bin" msg -j focused-window 2>/dev/null || true)"
     if [ -z "$focused_window" ]; then
-      exec "$ghostty_bin" -e yazi
+      exec "$ghostty_bin" "$@"
     fi
 
     app_id="$(printf '%s' "$focused_window" | "$jq_bin" -r '.app_id // empty')"
     pid="$(printf '%s' "$focused_window" | "$jq_bin" -r '.pid // empty')"
 
     if [ "$app_id" != "com.mitchellh.ghostty" ] || [ -z "$pid" ]; then
-      exec "$ghostty_bin" -e yazi
+      exec "$ghostty_bin" "$@"
     fi
 
     cwd="$(find_deepest_cwd "$pid" || true)"
     if [ -n "$cwd" ] && [ -d "$cwd" ]; then
-      exec "$ghostty_bin" +new-window --working-directory="$cwd" -e yazi
+      exec "$ghostty_bin" +new-window --working-directory="$cwd" "$@"
     fi
 
-    exec "$ghostty_bin" -e yazi
+    exec "$ghostty_bin" "$@"
   '';
   webcam = pkgs.writeShellScriptBin "niri-webcam" ''
     #!${pkgs.bash}/bin/bash
@@ -193,7 +193,7 @@ in {
     killWorkspace
     nameWorkspace
     toggleTouchpad
-    ghosttyYaziHere
+    ghosttyHere
     webcam
     toggleWindowedFullscreen
     niriFloatSticky

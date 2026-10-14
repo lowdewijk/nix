@@ -92,9 +92,9 @@ binds {
     Print repeat=false { screenshot; }
     Mod+P repeat=false { screenshot; }
 
-    Mod+Return { spawn "ghostty"; }
+    Mod+Return { spawn "ghostty-here"; }
     Mod+B { spawn "firefox"; }
-    Mod+E { spawn "ghostty-yazi-here"; }
+    Mod+E { spawn "ghostty-here" "-e" "yazi"; }
     Mod+N { spawn "ghostty" "--working-directory=/home/lobo/notes" "-e" "nvim"; }
     Mod+T { spawn "todoist-electron"; }
 

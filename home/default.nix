@@ -12,6 +12,7 @@
     ./starship.nix
     ./tmux.nix
     ./codex/codex.nix
+    ./claude.nix
     ./direnv.nix
     ./bat.nix
     ./desktop-entries.nix
