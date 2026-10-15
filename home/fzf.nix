@@ -4,20 +4,18 @@ in {
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    historyWidgetOptions = [
-      "--layout reverse"
-    ];
+    historyWidget.options = ["--layout reverse"];
     tmux.enableShellIntegration = true;
 
     # CTRL-T opttions
-    fileWidgetOptions = [
+    fileWidget.options = [
       "--walker-skip ${skipDirs}"
       "--preview 'bat -n --color=always {}'"
       "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
     ];
 
     # ALT-C options
-    changeDirWidgetOptions = [
+    changeDirWidget.options = [
       "--walker-skip ${skipDirs}"
     ];
   };

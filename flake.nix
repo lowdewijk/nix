@@ -27,6 +27,7 @@
     llm-agents = {
       url = "github:numtide/llm-agents.nix/2a6f134521edbf22992d89fdf97d417fb81c5334";
     };
+    codex-cli-nix.url = "github:sadjow/codex-cli-nix";
     niri-float-sticky = {
       url = "github:probeldev/niri-float-sticky/b3e79bd99bf99b993c3348f0051564f9d25f65e4";
       inputs.nixpkgs.follows = "nixpkgs";

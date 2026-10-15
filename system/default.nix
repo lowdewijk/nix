@@ -78,6 +78,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  catppuccin = {
+    enable = true;
+    autoEnable = true;
+  };
+
   # add myself as a trusted-user so devenv can manage its cache
   nix.extraOptions = ''
     trusted-users = root ${globals.username}
