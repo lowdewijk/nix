@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   globals,
   config,
@@ -128,7 +129,7 @@ in {
       _G.myconfig_paths = {
         lua_ls = "${pkgs.lua-language-server}/bin/lua-language-server",
         nixd = "${pkgs.nixd}/bin/nixd",
-        codex = "${pkgs.llm-agents.codex}/bin/codex",
+        codex = "${inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/codex",
       }
       require("myconfig")
     '';
