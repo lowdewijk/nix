@@ -44,6 +44,7 @@ in
 
       runtimeInputs = [
         pkgs.git
+        pkgs.zoxide
       ];
     })
 

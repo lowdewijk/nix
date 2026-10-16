@@ -102,6 +102,8 @@ def main [
     git -C $repo worktree add --no-track -b $branch $worktree_path $from
   }
 
+  ^zoxide add -- $worktree_path
+
   place_envrc  $worktree_path "ml2"
   place_envrc $worktree_path "tools/cocobaccie"
   place_envrc $worktree_path "engine"
